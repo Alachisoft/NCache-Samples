@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+  <session-factory>
+    <property name="cache.provider_class">Alachisoft.NCache.Integrations.NHibernate.Cache.NCacheProvider, Alachisoft.NCache.Integrations.NHibernate.Cache</property>
+    <property name="cache.use_second_level_cache">true</property>
+    <property name="cache.use_query_cache">true</property>
+  </session-factory>
+</hibernate-configuration>
