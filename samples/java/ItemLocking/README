@@ -1,0 +1,88 @@
+﻿========================================================================
+      NCache Item Locking Sample Program Version 1.0      
+========================================================================
+
+PURPOSE OF THIS SAMPLE 
+=======================  
+This sample program demonstrates the usage of Item Locking APIs.
+  
+
+CONVENTIONS
+===========
+For Linux  : $NCHOME refers to installation path where NCache is 
+             installed.        
+
+For Windows: %NCHOME% refers to the installation path where NCache is 
+             installed.
+
+             
+PREREQUISITES
+=============
+This sample program requires     
+
+    - NCHOME environment variable must be set. NCHOME refers to installation 
+      path where NCache is installed. 
+
+      To set NCHOME For Linux: 
+
+        - Open shell.
+		- Type "export NCHOME=/opt/ncache" without quotes and press ENTER key. 
+          Replace /opt/ncache with the actual installation path if you have 
+          installed NCache on non-default location. 
+
+
+      To set NCHOME For Windows: 
+        - Open Command Prompt.
+        - type 'set NCHOME="C:\Program Files\NCache\"' without quotes 
+          and press enter. 
+
+    - jdk1.6 or higher
+    - Netbeans v6 or later if you are using NetBeans to build and 
+      run the project.
+	  
+However any other preffered method can NCache to compile the source 
+located at $NCHOME/samples/java/ItemLocking/src/
+
+
+HOW TO CONFIGURE
+=================
+This sample program NCache local cache "mycache" for operations. 
+
+Local cache "mycache" can be started via:
+
+    - startcache tool.
+     - startcache tool located at $NCHOME/bin/startcache.sh (linux)
+     - startcache tool located at %NCHOME%/bin/tools/startcache.exe (windows)
+
+         OR
+
+    - NCache Web Manager currently shipped only for Windows.
+
+
+HOW TO COMPILE AND RUN
+=======================
+Make sure JAVA_HOME environment path variable is set. 
+
+To Compile and Run via NetBeans:
+
+    - Open Netbeans IDE.
+    - Select File->Open Project
+    - Locate $NCHOME/samples/java/ItemLocking
+    - Add all .jar files to project libraries located at:
+           - $NCHOME/java/lib
+           - $NCHOME/java/lib/resources
+    - Choose Run -> Clean and Build Project (Shift-F11) 
+    - Press F6 to run the Project and observe output in NetBeans Output window.
+  
+         OR
+
+To Compile and Run via Ant:
+
+    - Make sure $ANT_HOME environment path variable is set.
+    - Start shell (terminal/cmd)
+    - Change directory to $NCHOME/samples/java/ItemLocking
+    - Type 'ant' (without quotes)
+    - This will compile the source and will place itemlocking.jar 
+       at $NCHOME/samples/java/ItemLocking/dist/
+    - Change directory to $NCHOME/samples/java/ItemLocking/dist/
+    - NCache 'java -jar itemlocking.jar' without quotes to run the program.

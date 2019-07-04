@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="hibernator.BLL.Orders" table="orders">
+    <id column="OrderID" name="OrderID">
+      <generator class="assigned"/>
+    </id>
+    <property name="CustomerID" type="java.lang.String">
+      <column name="CustomerID"/>
+    </property>
+    <property name="ShipAddress" type="int">
+      <column name="ShipAddress"/>
+    </property>
+    <property name="ShipCity" type="int">
+      <column name="ShipCity"/>
+    </property>
+    <property name="ShipPostalCode" type="int">
+      <column name="ShipPostalCode"/>
+    </property>
+    <property name="ShipRegion" type="int">
+      <column name="ShipRegion"/>
+    </property>
+    <property name="ShippedDate" type="timestamp">
+      <column name="ShippedDate"/>
+    </property>
+    <property name="OrderDate" type="timestamp">
+      <column name="OrderDate"/>
+    </property>
+  </class>
+</hibernate-mapping>

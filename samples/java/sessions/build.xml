@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- build file for building a war -->
+
+<project name="build" default="war" basedir=".">
+
+    <property name="src.dir" value="src"/>
+    <property name="dest.dir" value="build"/>
+    <property name="war.name" value="guessgame.war"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="project.dir" value="."/>
+    <property name="libdir" value="../../../java/lib/"/>
+
+	<target name="init" description="Create 'destination' and 'distribution' directories.">
+		<mkdir dir="${dest.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+	</target>
+
+    <target name="clean" description="Delete all generated files and folders.">
+		<delete file="${dist.dir}/${war.name}" />
+		<delete dir="${dist.dir}" />
+    </target>
+
+	<target name="compile" depends="init" description="Compile the source code.">
+		<javac srcdir="${project.dir}/${src.dir}" destdir="${dest.dir}" >
+		</javac>
+	</target>
+
+	<target depends="compile" description="Create the 'war' that will be depolyed on the web server(s)." name="war">
+	
+	<war destfile="${dist.dir}/${war.name}" webxml="${project.dir}/web/WEB-INF/web.xml">
+		<classes dir="${dest.dir}"/>
+		<lib dir="${libdir}">
+			<include name="*.jar"/>
+		</lib>
+		<lib dir="${libdir}/resources">
+			<include name="*.jar"/>
+		</lib>
+		<lib dir="${libdir}/integrations">
+			<include name="nc-sessionprovider.jar"/>
+		</lib>
+		<webinf dir="${project.dir}/web/WEB-INF"/>
+		<fileset dir="${project.dir}/web">
+			<exclude name="WEB-INF/*.*"/>
+		</fileset>
+	</war>
+</target>
+
+
+</project>

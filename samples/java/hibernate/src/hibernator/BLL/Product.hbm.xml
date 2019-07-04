@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="hibernator.BLL.Product" table="product">
+    <id column="ProductID" name="ProductID">
+      <generator class="assigned"/>
+    </id>
+    <property name="ProductName" type="java.lang.String">
+      <column name="ProductName"/>
+    </property>
+    <property name="OrderID" type="int">
+      <column name="OrderID"/>
+    </property>
+    <property name="UnitPrice" type="double">
+      <column name="UnitPrice"/>
+    </property>
+  </class>
+</hibernate-mapping>
