@@ -21,6 +21,7 @@ namespace Alachisoft.NCache.Samples
             return order;
         }
     }
+
     [Serializable]
     class ElectronicsOrder : Order
     {
@@ -29,13 +30,16 @@ namespace Alachisoft.NCache.Samples
             OrderId = $"ElectronicsOrder{Guid.NewGuid()}";
         }
     }
+
     [Serializable]
     class GarmentsOrder : Order
     {
         public GarmentsOrder()
         {
-            OrderId = $"ElectronicsOrder{Guid.NewGuid()}";
+            OrderId = $"GarmentsOrder{Guid.NewGuid()}";
         }
     }
+
+   
 }
 
