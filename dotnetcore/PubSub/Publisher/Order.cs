@@ -37,5 +37,7 @@ namespace Alachisoft.NCache.Samples
             OrderId = $"ElectronicsOrder{Guid.NewGuid()}";
         }
     }
+
+   
 }
 
