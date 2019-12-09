@@ -39,12 +39,17 @@ Before the sample application is executed make sure that:
 - To enable and register backing source,
 	- Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
 	- Now select the 'Backing Source' tab in the "Advanced Settings" of cache's details page. 
-	- Provide the assembly names and classes to use and name these providers as described above. 
-	- Specify connection string as 'connstring' parameter for database that specified in app.config. 
-	- Click 'Deploy Backing Source Provider' to deploy backing source. 
-	- Locate and select 'BackingSourceProvider.Sql.Netcore.dll', 'SampleData.dll' and all other dependent assemblies for providers.
-	- Click 'Ok'.
-	-Save changes.
+	- To enable Read Through Backing Source,
+		- Click the checkbox labelled "Enable Read Through". Click on "Add Provider" button next next to this checkbox.
+		- Provide a unique provider name ("SqlReadThruProvider", for example).
+		- Click on "Browse" button for library field. Select library "BackingSource.Providers.Sql.Netcore.dll".
+		- Select class "Alachisoft.NCache.Samples.Providers.SqlReadThruProvider" from the now populated drop down list.
+		- Specify connection string as 'connstring' parameter for database that specified in app.config. 
+	- Similarly, to enable Write Thru backing source, follow the same steps as above. Choose "Alachisoft.NCache.Samples.Providers.SqlWriteThruProvider" from the class drop down list.
+	- Backing source provider files need to be deployed.
+		- Click 'Deploy Backing Source Provider' to deploy backing source. 
+		- Locate and select 'BackingSourceProvider.Sql.Netcore.dll', 'SampleData.dll' and all other dependent assemblies for providers.
+	- Click 'Ok' and save changes.
 
 ### Build and Run the Sample
     

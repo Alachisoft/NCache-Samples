@@ -35,11 +35,11 @@ Before the sample application is executed make sure that:
 -  Besides implementation, NCache requires user specified configuration to enable the cache loader. A user can configure and enable the CacheStartupLoader settings through NCache Web Manager. Following are the steps to configure and deploy Cache Loader.
 	- Start NCache Web Manager and create a clustered cache with the name specified in app.config.
 	- Now select the 'Cache Loader' tab in the "Advanced Settings" of cache's details page.
-	- Check the 'Enable Cache Startup Loader' and provide the Library Name(CacheStartupLoaderImpl) and Class Name(Alachisoft.NCache.Samples.CacheStartupLoader) of the implementation.
+	- Check the 'Enable Cache Startup Loader' and provide the Library Name(CacheLoaderImpl) and Class Name(Alachisoft.NCache.Samples.CacheStartupLoader) of the implementation.
 	- Provide the parameter "conn-string" as the database connection string. These parameters are provided to the cache loader assembly. 
 	- Check the "Run startup loader on multiple nodes" to enables the Distribution Hints.
 	- A multi-node environment requires distribution hints to run the loader.
-	- To deploy cache loader assemblies click 'Deploy Cache Loader' and select CacheStartupLoaderImpl and SampleData assemblies and click 'OK'.
+	- To deploy cache loader assemblies click 'Deploy Cache Loader' and select CacheLoaderImpl and SampleData assemblies and click 'OK'.
 	- Save changes.
 
 ### Build and Run the Sample
