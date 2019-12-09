@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Company>Alachisoft</Company>
+    <Product>Alachisoft ® NCache</Product>
+    <Copyright>Copyright © 2019 Alachisoft</Copyright>
+    <Description>NCache ™ is a registered trademark of Alachisoft.</Description>
+    <Authors>Alachisoft</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SampleData\SampleData\SampleData.csproj" />
+    <ProjectReference Include="..\CustomDependencyImpl\CustomDependencyImpl.csproj" />
+  </ItemGroup>
+
+</Project>

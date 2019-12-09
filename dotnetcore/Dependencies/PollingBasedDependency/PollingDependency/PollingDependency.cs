@@ -17,14 +17,14 @@ using Alachisoft.NCache.Client;
 namespace Alachisoft.NCache.Samples
 {
     /// <summary>
-    /// Class that implements OLE DB dependency
+    /// Class that implements SQL DB dependency
     /// </summary>
 	public class PollingDependency
 	{
         private static ICache _cache;
 
         /// <summary>
-        /// Executing this method will perform all the operations to configure OLE DB dependency
+        /// Executing this method will perform all the operations to configure SQL DB dependency
         /// </summary>
 		public static void Run()
 		{
@@ -33,7 +33,7 @@ namespace Alachisoft.NCache.Samples
 				// Initialize cache
                 InitializeCache();
 
-                // Create and apply OLE DB dependency
+                // Create and apply SQL DB dependency
                 AddDependency();
 
                 // Dispose the cache once done
@@ -41,7 +41,7 @@ namespace Alachisoft.NCache.Samples
 			}
 			catch (Exception ex)
 			{
-				Console.Write(ex.Message);
+				Console.Write(ex.ToString());
 			}
 		}
 
@@ -63,7 +63,7 @@ namespace Alachisoft.NCache.Samples
         }
 
         /// <summary>
-        /// This method configures OLEDB dependency
+        /// This method configures SQLDB dependency
         /// </summary>
         private static void AddDependency()
         {
@@ -73,7 +73,7 @@ namespace Alachisoft.NCache.Samples
             // Notification based DBDependency
             // JDBC connectionString                         
 
-            string connectionString = System.Configuration.ConfigurationManager.AppSettings["conn-string"];
+            string connectionString = System.Configuration.ConfigurationManager.AppSettings["connectionString"];
             if (String.IsNullOrEmpty(connectionString))
             {
                 Console.WriteLine("The connection string cannot be null or empty.");
@@ -84,14 +84,14 @@ namespace Alachisoft.NCache.Samples
             {
                 string key = i + ":dbo.Products";
                 // Cache key for product id 10 will be "10:dbo.Products"
-                CacheDependency dependency = DBDependencyFactory.CreateOleDbCacheDependency(connectionString, key);
+                CacheDependency dependency = DBDependencyFactory.CreateSqlCacheDependency(connectionString, key);
                 CacheItem cacheitem = new CacheItem(i);
                 cacheitem.Dependency = dependency;
 
 
                 _cache.Insert(key, cacheitem);
             }
-            Console.WriteLine("Products added in the cache with OLEDB cache dependency.");
+            Console.WriteLine("Products added in the cache with SQL cache dependency.");
 
             // To Verify that the polling dependency works uncomment the following code.
             // The code waits for the user to update products with productId 6.
@@ -107,7 +107,7 @@ namespace Alachisoft.NCache.Samples
             //}
             //else
             //{
-            //    Console.WriteLine("6:oldRow.Products removed due to OLE DB dependency.");
+            //    Console.WriteLine("6:oldRow.Products removed due to SQL DB dependency.");
             //}
         }
 	}

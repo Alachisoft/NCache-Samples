@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Alachisoft</Authors>
+    <Company>Alachisoft</Company>
+    <Product>Alachisoft ® NCache</Product>
+    <Copyright>NCache ™ is a registered trademark of Alachisoft.</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.0.2" />
+  </ItemGroup>
+
+</Project>

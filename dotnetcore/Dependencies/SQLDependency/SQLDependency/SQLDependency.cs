@@ -90,7 +90,7 @@ namespace SQLDependency
                 //UpdateProductsInDatabase(product);
 
                 //// Verify dependency being triggered
-                //product = _cache.Get(cacheKey) as Product;
+                //product = _cache.Get<Product>(cacheKey);
 
                 //if (product != null)
                 //{
