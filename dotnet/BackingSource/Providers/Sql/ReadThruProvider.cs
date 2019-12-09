@@ -52,7 +52,7 @@ namespace Alachisoft.NCache.Samples.Providers
 		{
             ProviderCacheItem cacheItem = new ProviderCacheItem(sqlDatasource.LoadCustomer(key));
             cacheItem.ResyncOptions.ResyncOnExpiration = true;
-            cacheItem.ResyncOptions.ProviderName = sqlDatasource.ConnString;
+            // Resync provider name will be picked from default provider.
             return cacheItem;
 		}
 

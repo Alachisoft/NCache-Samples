@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GuessGame", ".", "{0E0593D4-CA1E-4622-A714-7E74B11B4673}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -35,6 +35,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {07EF4C76-0BD3-4595-8231-35ED0B5FC9C6}
+		SolutionGuid = {C5545A91-FA3E-4ABB-8A0E-F852068CB1A4}
 	EndGlobalSection
 EndGlobal

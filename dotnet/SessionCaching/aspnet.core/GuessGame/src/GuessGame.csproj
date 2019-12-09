@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alachisoft.NCache.SessionServices" Version="5.0.0" />
+    <PackageReference Include="Alachisoft.NCache.SessionServices" Version="5.0.2.*" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.0" />
