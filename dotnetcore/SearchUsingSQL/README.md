@@ -1,10 +1,3 @@
-Here is readme for queries. Please use the same flow every where in enterprise samples.
-
---
-Regards,
-Faisal Iqbal
-
-
 # SearchUsingSQL
 
 ### Table of contents
