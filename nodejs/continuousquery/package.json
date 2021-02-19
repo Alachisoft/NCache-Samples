@@ -1,0 +1,15 @@
+{
+  "name": "ContinuousQuery",
+  "version": "1.0.0",
+  "description": "* [Introduction](#introduction)\r * [Prerequisites](#prerequisites)\r * [Build and Run the sample](#build-and-run-the-sample)\r * [Additional Resources](#additional-resources)\r * [Technical Support](#technical-support)\r * [Copyrights](#copyrights)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ncache-client": "^0.0.7-alpha.2"
+  }
+}
