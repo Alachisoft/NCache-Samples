@@ -1,0 +1,5 @@
+{
+    "cacheProperties" : {
+        "cacheName":"myPartitionedCache"
+    }
+}

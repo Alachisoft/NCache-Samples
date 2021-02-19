@@ -1,0 +1,13 @@
+{
+	"objects":
+	[
+		{
+			"$Index_Class$": "Alachisoft.NCache.Sample.Data.Product",
+            "Id" : 1,
+			"Name" : "Dairy Milk Cheese",
+			"ClassName" : "ClassA", 
+			"Category" : "Edibles",
+			"UnitPrice":12
+		}
+	]
+}
