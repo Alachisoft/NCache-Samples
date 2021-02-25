@@ -1,0 +1,8 @@
+{
+    "cacheProperties" : {
+        "cacheName":"myPartitionedCache"
+    },
+    "app":{
+        "dependencyFilePath": "/samples/dependencies/filebaseddependency/foobar.txt"
+    }
+}

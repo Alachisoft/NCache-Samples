@@ -1,0 +1,15 @@
+{
+  "name": "basicoperations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve":"node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ncache-client": "0.0.7-alpha"
+  }
+}
