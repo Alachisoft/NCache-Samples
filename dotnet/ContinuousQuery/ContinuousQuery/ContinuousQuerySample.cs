@@ -99,7 +99,7 @@ namespace Alachisoft.NCache.Samples
         /// <returns>returns instance of QueryCommand</returns>
         private static QueryCommand BuildQueryCommand()
         {
-            string query = "SELECT Alachisoft.NCache.Sample.Data.Customer WHERE this.Country = ?";
+            string query = "SELECT $VALUE$ FROM Alachisoft.NCache.Sample.Data.Customer WHERE Country = ?";
 
             QueryCommand queryCommand= new QueryCommand(query);
 
