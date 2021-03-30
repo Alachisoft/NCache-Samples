@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessGame.NetCore", "ASP.NET Core Application\GuessGame.NetCore.csproj", "{65E996E6-AD57-4BE0-9F5D-C8D913E30096}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GuessGame", "ASP.NET Application\GuessGame\", "{D8AAE9A4-3DCA-4582-A600-4C572628AEF9}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_2189"
+		Debug.AspNetCompiler.PhysicalPath = "ASP.NET Application\GuessGame\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2189\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_2189"
+		Release.AspNetCompiler.PhysicalPath = "ASP.NET Application\GuessGame\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_2189\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "2189"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65E996E6-AD57-4BE0-9F5D-C8D913E30096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E996E6-AD57-4BE0-9F5D-C8D913E30096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E996E6-AD57-4BE0-9F5D-C8D913E30096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E996E6-AD57-4BE0-9F5D-C8D913E30096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8AAE9A4-3DCA-4582-A600-4C572628AEF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AAE9A4-3DCA-4582-A600-4C572628AEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8AAE9A4-3DCA-4582-A600-4C572628AEF9}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AAE9A4-3DCA-4582-A600-4C572628AEF9}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16869AB6-5F46-4CD1-BDFF-E9BED7318F96}
+	EndGlobalSection
+EndGlobal

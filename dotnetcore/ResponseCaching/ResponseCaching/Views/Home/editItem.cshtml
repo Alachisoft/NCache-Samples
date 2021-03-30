@@ -1,0 +1,45 @@
+﻿@using NCacheResponseCaching.Models
+@model NCacheResponseCaching.Models.ProductModel
+
+@{
+    ViewData["Title"] = "Edit Product";
+
+}
+        <h2>Update Product Detail</h2>
+        <br />
+        <br />
+        @{ using (Html.BeginForm("Save", "Home", FormMethod.Post))
+            {
+                @Html.Hidden("id", @Model.Id, new { @type = "hidden" })
+
+                <div class="row form-group">
+                    <label class="col-sm-4">
+                        Price
+                    </label>
+                    <div class="col-sm-2">
+                        @Html.TextBox("price", @Model.UnitPrice, new { @type = "text", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4">
+                        Name
+                    </label>
+                    <div class="col-sm-4">
+                        @Html.TextBox("name", @Model.ProductName, new { @type = "text", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4">
+                        Quantity Per Unit
+                    </label>
+                    <div class="col-sm-4">
+                        @Html.TextBox("quantityPerUnit", @Model.QuantityPerUnit, new { @type = "text", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+
+                <input type="submit" id="btn" name="Save" value="Save" />
+            }
+        }
+
+        <div class="clearfix"></div>

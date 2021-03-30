@@ -37,7 +37,7 @@ Before the sample application is executed make sure that:
           - Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
           - Now select the 'Query Indexes' tab in the "Advanced Settings" of cache's details page.
           - Add a query index by browsing 'sampledata.dll'. 
-          - Select the 'Products' class and click 'Add Selected Classes'.
+          - Select the 'Product' class and click 'Add Selected Classes'.
           - Check the class and all of its attributes and click OK.
           - Save changes.
 
@@ -66,4 +66,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

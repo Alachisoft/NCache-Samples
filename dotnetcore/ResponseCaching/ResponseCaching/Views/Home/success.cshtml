@@ -1,0 +1,15 @@
+﻿@using NCacheResponseCaching.Models
+@model NCacheResponseCaching.Models.ProductModel
+
+@{
+    ViewData["Title"] = "Success Page";
+
+}
+
+@*THIS PAGE IS NEVER CACHED. IT RATHER INVALIDATES THE CACHED RESPONSE OF ViewItem.cshtml FOR THE GIVEN PRODUCT ID*@
+
+<distributed-cache-ncache name="Product:@{@Model.Id}" invalidates="true" >
+</distributed-cache-ncache>
+
+<br /><br/>
+<h4 style="padding-left: 37%;">The product has been updated sucessfully. </h4>

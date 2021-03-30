@@ -1,0 +1,43 @@
+﻿@using NCacheResponseCaching.Models
+@model NCacheResponseCaching.Models.ProductModel
+
+@{
+    ViewData["Title"] = "View Product Details";
+
+}
+
+    <distributed-cache-ncache name="Product:@{@Model.Id}" 
+                              expires-on="@DateTime.Now.AddMinutes(10)">
+
+        <h2>Product's Detail View</h2>
+        <br /><div class="row float-lg-right"><h9 style=" color:green">This page generated at @DateTime.Now.ToString()</h9></div><br />
+        <br />
+        <table class="table table-borderless">
+            @{
+                <tr class="row form-group">
+                    <th class="col-sm-2">Product ID:</th >
+                    <td class="col-sm-2 form-control">@Model.Id</td>
+                </tr>
+                <tr class="row form-group">
+                    <th class="col-sm-2">Product Name:</th>
+                    <td class="col-sm-2 form-control">@Model.ProductName</td>
+                </tr>
+                <tr class="row form-group">
+                    <th class="col-sm-2">Product Price:</th>
+                    <td class="col-sm-2 form-control">@Model.UnitPrice</td>
+                </tr>
+                <tr class="row form-group">
+                    <th class="col-sm-2">QuantityPerUnit:</th>
+                    <td class="col-sm-2 form-control">@Model.QuantityPerUnit</td>
+                </tr>
+                <tr class="row form-group">
+                    <td class="col-sm-4 form-control"> 
+                     <a style="
+    padding-left: 50%;" href="@Url.Action("Edit", "Home", new { id = @Model.Id})">Edit this product</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="clearfix"></div>
+    </distributed-cache-ncache>
