@@ -92,29 +92,11 @@
     <Reference Include="Alachisoft.NCache.Web, Version=5.2.0.0, Culture=neutral, PublicKeyToken=cff5926ed6a53769, processorArchitecture=MSIL">
       <HintPath>..\packages\Alachisoft.NCache.SDK.5.2.0\lib\net40\Alachisoft.NCache.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\packages\Alachisoft.NCache.SDK.5.2.0\lib\net40\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Oracle.DataAccess">
-      <HintPath>..\..\..\..\Resources\build\64-bit\4.0\Oracle.DataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <HintPath>..\packages\Oracle.ManagedDataAccess.19.10.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="protobuf-net-ext, Version=2.3.5.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\Alachisoft.NCache.SDK.5.2.0\lib\net40\protobuf-net-ext.dll</HintPath>
-    </Reference>
-    <Reference Include="Quartz, Version=2.6.2.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Quartz.2.6.2\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -166,9 +148,6 @@
     <None Include="config.ncconf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="job_scheduling_data_2_0.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="tls.ncconf" />
   </ItemGroup>
@@ -181,7 +160,7 @@
       <Name>SampleData</Name>
     </ProjectReference>
     <ProjectReference Include="..\NCacheLINQ.Business\NCacheLINQ.Business.csproj">
-      <Project>{5D30B3A1-966F-46ED-B939-EBC5AA71017C}</Project>
+      <Project>{5d30b3a1-966f-46ed-b939-ebc5aa71017c}</Project>
       <Name>NCacheLINQ.Business</Name>
     </ProjectReference>
   </ItemGroup>
