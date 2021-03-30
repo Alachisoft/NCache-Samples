@@ -28,7 +28,7 @@ Before the sample application is executed make sure that:
 	- Now select the Options' tab in the "Advanced Settings" of cache's details page. 
 	- Enable event notifications (item-add, item-remove, item-update)
 	- Save changes.
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     

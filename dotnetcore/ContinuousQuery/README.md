@@ -31,7 +31,7 @@ Before the sample application is executed make sure that:
 	- Save changes.
 
 
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 	
 ### Build and Run the Sample
     

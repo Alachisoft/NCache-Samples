@@ -28,7 +28,7 @@ grant change notification to [username]
 	- Change the cache name 
 	- conn-string to connect with database.
 	
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     

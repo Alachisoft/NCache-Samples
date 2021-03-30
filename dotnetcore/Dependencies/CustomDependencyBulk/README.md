@@ -40,7 +40,7 @@ Before the sample application is executed make sure that:
 		- Locate and select 'CustomDependencyBulkImpl.dll', 'SampleData.dll' and all other dependent assemblies for providers.
 	- Click 'Ok' and save changes.
 
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
 

@@ -13,7 +13,7 @@
 
 This sample program demonstrates how to use NCache with Asp.NetCore SignalR for real time web operations.
 
-It uses a partitioned cache named, 'myReplicatedCache', which is registered on your machine upon the installation of NCache.
+It uses a partitioned cache named, 'demoCache', which is registered on your machine upon the installation of NCache.
 
 ### Prerequisites
 
@@ -23,7 +23,7 @@ Before the sample application is executed make sure that:
 	- Verify the "ConnectionStrings" tag
 	- Verify the options in "NCacheConfiguration"
 	
-- By default this sample uses 'myReplicatedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     

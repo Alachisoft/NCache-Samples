@@ -13,7 +13,7 @@
 
 This is a sample of sharing session betweem ASP.NET Core and ASP.NET web application that uses the NCache Session Services to store session information. 
 
-It uses a partitioned cache named, 'myPartitionedCache', which is registered on your machine upon the installation of NCache. 
+It uses a partitioned cache named, 'demoCache', which is registered on your machine upon the installation of NCache. 
 
 To start or re-register this cache later, you can use NCache Web Manager or NCache command line tools.
 
@@ -30,7 +30,7 @@ Before the sample application is executed make sure that:
 - In the configuration files of both application "enableSessionSharing" flag is added and is set to "true".
 - appsettings.json have been changed according to the configurations. 
 	- Change the cache name if needed
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
  

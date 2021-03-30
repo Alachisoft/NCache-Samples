@@ -177,7 +177,7 @@ The following are the main classes used during intial NHibernate configuration a
   | Property  | Type  | Default Value  | Description  |
   |:-:|:-:|:-:|---|
   | RegionPrefix  | **System.String**  | "nhibernate"  | If the NHibernate configuration has a set default region prefix, then this should be set with that value.  |
-  | CacheId  | **System.String**  | "nhibernate"  | The Id of the NCache cluster e.g. "myPartitionedCache  |
+  | CacheId  | **System.String**  | "nhibernate"  | The Id of the NCache cluster e.g. "demoCache  |
   | IsDefault  | **bool**  | *false*  | Sets the **CacheConfig** instance as the default to be used in case multiple instances are registered. ***Only one*** instance with a give *RegionPrefix* value should be set as default by setting this value to *true*. This property does not matter if only one **CacheConfig** is registered for given *RegionPrefix*  |
   | ConnectionTimeout  | **System.Nullable\<double>**  | null  | Gets or sets the *connectionOptions* **ConnectionTimeout** property  |
   | KeepAliveInterval  | **System.Nullable\<double>**  | null  | Gets or sets the *connectionOptions* **KeepAliveInterval** property |

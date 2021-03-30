@@ -34,7 +34,7 @@ Before the sample application is executed make sure that:
 	- Change the cache name 
 	- Change connection string for the SQL database in app.config.
 - Make sure SQL service is running and server hosts Northwind sample database.
-- By default this sample uses 'mycache', make sure that cache is running. 
+- By default this sample uses 'demoLocalCache', make sure that cache is running. 
 - Query indexes for the Northwind model in the application need to be configured in NCache before the application is used. Follow the given steps for that,
 - Build the sample; generating the core app DLL file.
 - To use this sample, you must first specify the indexes of the objects you want to query in the cache.	     

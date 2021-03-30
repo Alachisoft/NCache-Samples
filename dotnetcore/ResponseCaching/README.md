@@ -17,7 +17,7 @@ This sample illustrates the use of a Response Caching using NCache. The sample c
 	- Edit page, updates the database, if sucessfully updated, database changes trigger the SQL dependency that removes the index page from the cache and redirects you to Success page.
 	-Success page , in case your view is successfully updated it removes it from cache using the invalidation feature.
 
-Sample uses a partitioned cache named, 'myPartitionedCache',
+Sample uses a partitioned cache named, 'demoCache',
 which is registered on your machine upon the installation of NCache. 
 
 To start or re-register this cache later, you can use NCache Web Manager or NCache command line tools.
@@ -33,7 +33,7 @@ Requirements:
 Before the sample application is executed make sure that:
 - appsettings.json have been changed according to the configurations. 
 	- Change the cache name
-		- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+		- By default this sample uses 'demoCache', make sure that cache is running. 
 	- Change the connection string
 		- By default this sample uses 'Mydbstring', make sure that connection string connect with sql server. 
 

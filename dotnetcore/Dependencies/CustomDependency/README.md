@@ -24,7 +24,7 @@ Before the sample application is executed make sure that:
 	- Change the cache name
 	- connectionString:	the connection string used to connect to the database. By default it connects to the localhost.
 
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 - To enable and register custom dependency,
 	- Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
