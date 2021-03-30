@@ -23,17 +23,28 @@ Before the sample application is executed make sure that:
 - app.config have been changed according to the configurations. 
 	- Change the cache name
 	- connectionString:	the connection string used to connect to the database. By default it connects to the localhost.
-- To deploy Custom DependencyBulk, Build 'CustomDependencyBulkImpl' project.
-	- Start NCache Web Manager and create a clustered cache with the name specified in app.config.
-	- Click on 'Deploy Providers' in the Cache Setting(...) of clustered cache's page.
-	- Select CustomDependencyBulkImpl.dll and SampleData.dll and click Ok.
-	- Save changes.
 
 - By default this sample uses 'myPartitionedCache', make sure that cache is running. 
 
+- Before running this sample make sure custom dependency is enabled and "BulkCustomDependencyProvider" is registered.
+
+- To enable and register custom dependency,
+	- Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
+	- Now select the 'Custom Dependency' tab in the "Advanced Settings" of cache's details page. 
+	- To enable Custom Dependency,
+		- Click the checkbox labelled "Enable Custom Dependency". Click on "Add Provider" button next to this checkbox.
+		- Provide a unique provider name ("BulkCustomDependencyProvider", for example).Make sure the name matches with the one specified in the provider in the CustomDependencyBulkImpl project.
+		- Click on "Browse" button for library field. Select library "CustomDependencyBulkImpl.dll".
+		- Select class "Alachisoft.NCache.Samples.Providers.BulkCustomDependencyProvider" from the now populated drop down list.
+		- Specify connection string as 'connstring' parameter for database that specified in app.config. 
+	- Custom Dependency provider files need to be deployed.
+		- Click 'Deploy Custom Dependency Provider' to deploy custom dependency. 
+		- Locate and select 'CustomDependencyBulkImpl.dll', 'SampleData.dll' and all other dependent assemblies for providers.
+	- Click 'Ok' and save changes.
+
 ### Build and Run the Sample
 
-- Build 'CustomDependencyUsage' project.
+- Build 'CustomDependencyBulkUsage' project.
 - Run the sample application.
 
 ### Additional Resources
@@ -55,4 +66,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

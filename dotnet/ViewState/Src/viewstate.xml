@@ -1,0 +1,33 @@
+<configuration>
+  <viewstateConfig>
+    <webApp webAppId="CustomerOrderApp">
+      <viewstateGroup groupId="Customers" cacheUriMapping="false" enableViewstateCaching="True" viewstateThreshold="12" groupedViewStateWithSessions="false" maxViewStatePerSession="20">
+         <cacheSettings cacheName="demoCache" connectionRetryInterval="300">
+            <expiration type="Sliding" duration="5"/>
+         </cacheSettings>
+         <pages>
+           <page url="…/Customers.aspx"/> 
+         </pages>
+      </viewstateGroup>
+    <viewstateGroup groupId="Orders" cacheUriMapping="false" enableViewstateCaching="true" viewstateThreshold="23" groupedViewStateWithSessions="false" maxViewStatePerSession="5" enableMetadataLocking="True" releaseLockInterval="5">
+      <cacheSettings cacheName="demoCache" connectionRetryInterval="300">
+        <expiration type="Sliding" duration="20"/>
+      </cacheSettings>
+          <pages>
+            <page url="…/Orders.aspx"/>
+            <page url="…/OrderDetails.aspx"/>
+          </pages>
+     </viewstateGroup>
+</webApp>
+  <webApp webAppId="ViewStateApp">
+    <viewstateGroup groupId="Group_A" enableViewstateCaching="True" viewstateThreshold="2" groupedViewStateWithSessions="false" maxViewStatePerSession="200">
+      <cacheSettings cacheName="demoCache">
+        <expiration type="Sliding" duration="20"/>
+      </cacheSettings>
+           <pages>
+             <page url="…/viewstate.aspx"/>
+           </pages>
+      </viewstateGroup>
+    </webApp>
+  </viewstateConfig>
+</configuration>

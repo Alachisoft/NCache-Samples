@@ -78,7 +78,7 @@ namespace Alachisoft.NCache.Samples
         /// </summary>
         private static void InitializeDatabaseConnection()
         {
-            _connectionString = ConfigurationManager.AppSettings["connectionString"];
+            _connectionString = ConfigurationManager.AppSettings["ConnectionString"];
 
             if (String.IsNullOrEmpty(_connectionString))
             {
@@ -107,7 +107,11 @@ namespace Alachisoft.NCache.Samples
             {
                 keys[i] = products[i].Id.ToString();
                 CacheItem item = new CacheItem(products[i]);
-                item.Dependency = new CacheDependency(new Dependency(products[i].Id, _connectionString));
+                IDictionary<string, string> param = new Dictionary<string, string>();
+                param.Add("ProductID", products[i].Id.ToString());
+                param.Add("ConnectionString", _connectionString);
+                CustomDependency customDependency = new CustomDependency(ConfigurationManager.AppSettings["ProviderName"], param);
+                item.Dependency = customDependency;
                 items[i] = item;
             }
 

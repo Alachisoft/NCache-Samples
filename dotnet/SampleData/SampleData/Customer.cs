@@ -82,12 +82,7 @@ namespace Alachisoft.NCache.Sample.Data
         {
             set;
             get;
-        }
-
-        public static explicit operator Customer (NCache.Runtime.Caching.ProviderCacheItem v)
-        {
-            throw new NotImplementedException();
-        }
+        } 
 
         /// <summary>
         /// Postal code of the customer
