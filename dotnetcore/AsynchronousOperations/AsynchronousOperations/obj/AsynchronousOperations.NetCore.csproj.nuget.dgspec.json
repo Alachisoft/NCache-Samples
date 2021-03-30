@@ -1,0 +1,133 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\AsynchronousOperations\\AsynchronousOperations\\AsynchronousOperations.NetCore.csproj": {}
+  },
+  "projects": {
+    "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\AsynchronousOperations\\AsynchronousOperations\\AsynchronousOperations.NetCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\AsynchronousOperations\\AsynchronousOperations\\AsynchronousOperations.NetCore.csproj",
+        "projectName": "AsynchronousOperations.NetCore",
+        "projectPath": "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\AsynchronousOperations\\AsynchronousOperations\\AsynchronousOperations.NetCore.csproj",
+        "packagesPath": "C:\\Users\\muhammad_danyial\\.nuget\\packages\\",
+        "outputPath": "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\AsynchronousOperations\\AsynchronousOperations\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\muhammad_danyial\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Repos\\nuget_5.2": {},
+          "E:\\NugetTesting": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\SampleData\\SampleData\\SampleData.csproj": {
+                "projectPath": "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\SampleData\\SampleData\\SampleData.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Alachisoft.NCache.SDK": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\SampleData\\SampleData\\SampleData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\SampleData\\SampleData\\SampleData.csproj",
+        "projectName": "SampleData",
+        "projectPath": "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\SampleData\\SampleData\\SampleData.csproj",
+        "packagesPath": "C:\\Users\\muhammad_danyial\\.nuget\\packages\\",
+        "outputPath": "D:\\Repos\\NCacheSamples\\NCache-Samples\\dotnetcore\\SampleData\\SampleData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\muhammad_danyial\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Repos\\nuget_5.2": {},
+          "E:\\NugetTesting": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
