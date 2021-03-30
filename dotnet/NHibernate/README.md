@@ -19,7 +19,7 @@ There are two modules in this sample.
 	- Simple Class library that maps the database table with .net objects using NHibernate assembly.
 - NHibernateTest
 	- Console Application that creates a Factory object presented in the above module to get the data. The objects that are used in these 
-operations are cached using NCache. You can see the count of the cache items in the stats window of 'myPartitionedCache' (default cache for this sample).
+operations are cached using NCache. You can see the count of the cache items in the stats window of 'demoCache' (default cache for this sample).
 
 This sample uses SampleData project as a reference for model class "Customer".
 
@@ -60,7 +60,7 @@ databases, you may have to make changes to the App.config file of the NHibernate
     
     - Settings for NHibernateTest Module
     	- change the cache name in 'NCacheNHibernate.xml'.
-        - By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+        - By default this sample uses 'demoCache', make sure that cache is running. 
 		- These settings for NHibernateTest program can be changed from the  'NCacheNHibernate.xml' file located at:
 ```
 <NCache Root>\Samples\dotnet\NHibernate\NHibernateTest

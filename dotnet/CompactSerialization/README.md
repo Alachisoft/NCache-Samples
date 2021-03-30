@@ -25,7 +25,7 @@ Before the sample application is executed make sure that:
 
 - app.config have been changed according to the configurations. 
 	- Change the cache name
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 - To use your compact serializable objects with NCache, you must first 'Register your application objects with NCache'.
 	- Start NCache Web Manager and create a clustered cache with the name specified in app.config. 

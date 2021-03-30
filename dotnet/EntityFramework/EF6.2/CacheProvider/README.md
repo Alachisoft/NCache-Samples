@@ -39,7 +39,7 @@ Before the sample application is executed make sure that:
 	- **app-id** is same as specified in app.config.
 	- Change the cache name.
 - Make sure SQL service is running and server host Northwind sample database.
-- By default this sample uses 'mycache', make sure that cache is running. 
+- By default this sample uses 'demoLocalCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     

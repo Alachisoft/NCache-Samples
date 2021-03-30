@@ -24,7 +24,7 @@ Before the sample application is executed make sure that:
 	- Change the cache name
 	- connectionString:	the connection string used to connect to the database. By default it connects to the localhost.
 
-- By default this sample uses 'myPartitionedCache', make sure that cache is running.
+- By default this sample uses 'demoCache', make sure that cache is running.
 
 - Before running this sample make sure custom dependency is enabled and "CustomDependencyProvider" is registered.
 

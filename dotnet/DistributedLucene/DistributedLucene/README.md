@@ -24,7 +24,7 @@ Before the sample application is executed make sure that:
 - app.config have been changed according to the configurations. 
 	- Change the cache name as required.
 	- Change the index name as required.
-- By default this sample uses 'myPartitionedCache' and 'MyIndex', make sure that cache is running.
+- By default this sample uses 'demoCache' and 'MyIndex', make sure that cache is running.
 
 - To use this sample, you must first enable Lucene Indexes on cache. 
 	- Start NCache Web Manager and create a clustered cache with the name specified in app.config. 

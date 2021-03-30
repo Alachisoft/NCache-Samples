@@ -32,7 +32,7 @@ databases, you may have to comment/uncomment some code in the sample code.
 - Create a new database in CosmosDb named DemoDatabase and a collection "Customers" with a partition key set to '/id'.
 - After this, you can insert the seed customer data. Add a new container named "leases" with partitionkey of "/id" to monitor changes in database.
 - Change the cache name, EndPoint, auth key  in app.config
-- By default this sample uses 'myPartitionedCache', make sure that cache is running.
+- By default this sample uses 'demoCache', make sure that cache is running.
 - Before running this sample make sure custom dependency is enabled and "NotifyCustomDependencyProvider" is registered.
 - To enable and register backing source,
 	- Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
