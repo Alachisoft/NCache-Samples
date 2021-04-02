@@ -1,7 +1,7 @@
 using System;
 using System.Configuration;
 using System.Text;
-using Alachisoft.NCache.Web.SessionState;
+using Alachisoft.NCache.Caching.Distributed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

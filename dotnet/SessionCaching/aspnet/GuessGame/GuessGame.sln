@@ -1,8 +1,6 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29318.209
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GuessGame", ".", "{0E0593D4-CA1E-4622-A714-7E74B11B4673}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GuessGame", "..\GuessGame", "{0E0593D4-CA1E-4622-A714-7E74B11B4673}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/GuessGame"
@@ -20,7 +18,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GuessGame", ".", "{0E0593D4
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "65104"
-		SlnRelativePath = "..\GuessGame\"
 	EndProjectSection
 EndProject
 Global
@@ -28,13 +25,10 @@ Global
 		Debug|.NET = Debug|.NET
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0E0593D4-CA1E-4622-A714-7E74B11B4673}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{0E0593D4-CA1E-4622-A714-7E74B11B4673}.Debug|.NET.Build.0 = Debug|Any CPU
+		{0E0593D4-CA1E-4622-A714-7E74B11B4673}.Debug|.NET.ActiveCfg = Debug|.NET
+		{0E0593D4-CA1E-4622-A714-7E74B11B4673}.Debug|.NET.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C5545A91-FA3E-4ABB-8A0E-F852068CB1A4}
 	EndGlobalSection
 EndGlobal

@@ -27,7 +27,7 @@ Before the sample application is executed make sure that:
 
 - app.config have been changed according to the configurations. 
 	- change the cache name
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 - Northwind database must be configured in Sql Server.
 
 - Before running this sample make sure backing source is enable and following providers are registered.
@@ -74,4 +74,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

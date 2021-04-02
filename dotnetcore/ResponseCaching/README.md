@@ -11,8 +11,13 @@
 
 ### Introduction
 
-This sample illustrates the use of a Response Caching using NCache. It uses a partitioned cache named, 'myPartitionedCache',
+This sample illustrates the use of a Response Caching using NCache. The sample contains multiple pages such as,
+	- Index page, display list of products, create SQL dependency and cache the response.   
+	- View page, display product detail and cache the response
+	- Edit page, updates the database, if sucessfully updated, database changes trigger the SQL dependency that removes the index page from the cache and redirects you to Success page.
+	-Success page , in case your view is successfully updated it removes it from cache using the invalidation feature.
 
+Sample uses a partitioned cache named, 'demoCache',
 which is registered on your machine upon the installation of NCache. 
 
 To start or re-register this cache later, you can use NCache Web Manager or NCache command line tools.
@@ -23,18 +28,14 @@ To start or re-register this cache later, you can use NCache Web Manager or NCac
 Requirements:
 
 - Visual Studio 2015 or later.
-- .net core  2.2 or later.
+- .net core  3.1 or later.
 
 Before the sample application is executed make sure that:
 - appsettings.json have been changed according to the configurations. 
 	- Change the cache name
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
-
-Or use Option 2:
-- Un-comment code found in ConfigureServices method in Startup.cs in Option2 region.
-	- Change the cache name
-- Comment the code in Option1 region.
-- By default 'myPartitionedCache' is used, make sure that cache is running. 
+		- By default this sample uses 'demoCache', make sure that cache is running. 
+	- Change the connection string
+		- By default this sample uses 'Mydbstring', make sure that connection string connect with sql server. 
 
 ### Build and Run the Sample
     
@@ -59,4 +60,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

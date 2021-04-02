@@ -7,6 +7,7 @@ using System.Threading;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents;
 using System.Net.Http;
+using System.Collections.Generic;
 
 namespace Alachisoft.NCache.Samples
 {
@@ -178,20 +179,14 @@ namespace Alachisoft.NCache.Samples
             string monitoredCollection = ConfigurationManager.AppSettings["MonitoredCollection"];
             string leaseCollection = ConfigurationManager.AppSettings["LeaseCollection"];
             string databaseName = ConfigurationManager.AppSettings["DatabaseName"];
-            
+            string providerName = ConfigurationManager.AppSettings["ProviderName"];
 
-            // Let's create cosmosdb depdenency
-            CacheDependency cosmosDbDependency = new CosmosDbNotificationDependency<Customer>(customer.Id,
-                endPoint,
-                authKey,
-                databaseName,
-                monitoredCollection,
-                endPoint,
-                authKey,
-                databaseName,
-                leaseCollection);
-
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("Key", customer.Id);
+            param.Add("MonitoredCollectionName", monitoredCollection);
+            param.Add("LeaseCollectionName", leaseCollection);
             CacheItem cacheItem = new CacheItem(customer);
+            CustomDependency cosmosDbDependency = new CustomDependency(providerName, param);
             cacheItem.Dependency = cosmosDbDependency;
 
             // Inserting Loaded customer into cache with key: [item:1]

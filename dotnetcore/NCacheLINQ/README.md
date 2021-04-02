@@ -18,7 +18,7 @@ There are two modules in this sample:
 	- This module some attributes of Products. The Product class and its
 		attributes are also implemented in this module.
 - NCacheLINQ (Console application)
-	- Simple console application that presents you a menu to select the query you want to execute against the cache. This application uses 'myPartitionedCache' by default. You can specify any other from app.config. 
+	- Simple console application that presents you a menu to select the query you want to execute against the cache. This application uses 'demoCache' by default. You can specify any other from app.config. 
 	- Following LINQ Queries are implemented in this sample:
 		- FROM product in products WHERE product.ProductID > 10 SELECT product;
 		- FROM product in products WHERE product.Category == 4 SELECT product;
@@ -37,11 +37,11 @@ Before the sample application is executed make sure that:
           - Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
           - Now select the 'Query Indexes' tab in the "Advanced Settings" of cache's details page.
           - Add a query index by browsing 'sampledata.dll'. 
-          - Select the 'Products' class and click 'Add Selected Classes'.
+          - Select the 'Product' class and click 'Add Selected Classes'.
           - Check the class and all of its attributes and click OK.
           - Save changes.
 
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     
@@ -66,4 +66,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

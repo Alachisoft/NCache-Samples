@@ -13,7 +13,7 @@
 
 This sample program demonstrates how to use NCache with Asp.Net SignalR for real time web operations.
 
-It uses a partitioned cache named, 'myPartitionedCache', which is registered on your machine upon the installation of NCache.
+It uses a partitioned cache named, 'demoCache', which is registered on your machine upon the installation of NCache.
 And a key for events registration on cache. Both of these values can be provided in web.config. 
 
 
@@ -26,7 +26,7 @@ Before the sample application is executed make sure that:
 - web.config has been changed according to the configurations. 
 	- Change the cache name
 	- Change the eventkey
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     
@@ -51,4 +51,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.Owin;
 using Owin;
-using Alachisoft.NCache.SignalR;
 using Microsoft.AspNet.SignalR;
 using System.Configuration;
+using Alachisoft.NCache.AspNet.SignalR;
 
 [assembly: OwinStartup(typeof(SignalRChat.Startup))]
 

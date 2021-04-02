@@ -13,7 +13,7 @@
 
 This sample illustrates the use of a distributed cache. This sample demonstrates the scenario described in the [Work with a distributed cache in ASP.NET Core].
 
-It uses a partitioned cache named, 'myPartitionedCache', which is registered on your machine upon the installation of NCache. 
+It uses a partitioned cache named, 'demoCache', which is registered on your machine upon the installation of NCache. 
 
 To start or re-register this cache later, you can use NCache Web Manager or NCache command line tools.
 
@@ -28,13 +28,13 @@ Requirements:
 Before the sample application is executed make sure that:
 - appsettings.json have been changed according to the configurations. 
 	- Change the cache name
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 Or use Option 2:
 - Un-comment code found in ConfigureServices method in Startup.cs in Option2 region.
 	- Change the cache name
 - Comment the code in Option1 region.
-- By default 'myPartitionedCache' is used, make sure that cache is running. 
+- By default 'demoCache' is used, make sure that cache is running. 
 
 ### Build and Run the Sample
     
@@ -59,4 +59,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

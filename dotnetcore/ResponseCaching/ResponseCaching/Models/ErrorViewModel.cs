@@ -1,6 +1,6 @@
 using System;
 
-namespace ResponseCaching.Models
+namespace NCacheResponseCaching.Models
 {
     public class ErrorViewModel
     {

@@ -50,7 +50,7 @@ GRANT SEND ON SERVICE :: "NCacheSQLService-[IP-Address]"to[User Name];
 	- Change the cache name 
 	- conn-string to connect with database.
 	
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     
@@ -75,4 +75,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

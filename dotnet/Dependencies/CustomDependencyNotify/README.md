@@ -32,7 +32,21 @@ databases, you may have to comment/uncomment some code in the sample code.
 - Create a new database in CosmosDb named DemoDatabase and a collection "Customers" with a partition key set to '/id'.
 - After this, you can insert the seed customer data. Add a new container named "leases" with partitionkey of "/id" to monitor changes in database.
 - Change the cache name, EndPoint, auth key  in app.config
-- By default this sample uses 'myPartitionedCache', make sure that cache is running.
+- By default this sample uses 'demoCache', make sure that cache is running.
+- Before running this sample make sure custom dependency is enabled and "NotifyCustomDependencyProvider" is registered.
+- To enable and register backing source,
+	- Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
+	- Now select the 'Custom Dependency' tab in the "Advanced Settings" of cache's details page. 
+	- To enable Custom Dependency,
+		- Click the checkbox labelled "Enable Custom Dependency". Click on "Add Provider" button next to this checkbox.
+		- Provide a unique provider name ("NotifyCustomDependencyProvider", for example).Make sure the name matches the one specified in the provider in CustomDependencyNotifyImpl project.
+		- Click on "Browse" button for library field. Select library "CustomDependencyNotifyImpl.dll".
+		- Select class "Alachisoft.NCache.Samples.Providers.NotifyCustomDependencyProvider" from the now populated drop down list.
+		- Specify connection string as 'connstring' parameter for database that specified in app.config. 
+	- Custom Dependency provider files need to be deployed.
+		- Click 'Deploy Custom Dependency Provider' to deploy custom dependency. 
+		- Locate and select 'CustomDependencyNotifyImpl.dll', 'Models.dll' and all other dependent assemblies for providers.
+	- Click 'Ok' and save changes.
 
 ### Build and Run the Sample
     
@@ -57,4 +71,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

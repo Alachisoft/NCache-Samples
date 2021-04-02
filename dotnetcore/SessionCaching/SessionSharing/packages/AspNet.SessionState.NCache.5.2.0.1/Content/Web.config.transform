@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <system.web>
+    <compilation>
+      <assemblies>
+        <add assembly="Alachisoft.NCache.SessionStoreProvider, Version=5.2.0.0, Culture=neutral, PublicKeyToken=CFF5926ED6A53769"/>
+      </assemblies>
+    </compilation>
+    <sessionState cookieless="false" regenerateExpiredSessionId="true" mode="Custom" customProvider="NCacheSessionProvider" timeout="20" >
+      <providers>
+		<add name="NCacheSessionProvider" type="Alachisoft.NCache.Web.SessionState.NSessionStoreProvider" exceptionsEnabled="true" enableSessionLocking="true" emptySessionWhenLocked="false" sessionLockingRetry="-1" sessionAppId="NCacheTest" useInProc="false" enableLogs="false" cacheName="democache" writeExceptionsToEventLog="false" AsyncSession="false" />
+      </providers>
+    </sessionState>
+  </system.web>
+
+</configuration>

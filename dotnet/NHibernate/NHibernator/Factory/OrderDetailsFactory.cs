@@ -2,8 +2,8 @@
 /// http://www.codeproject.com/dotnet/nhibernatept1.asp
 
 using System;
-using NHibernate;
-using NHibernate.Cfg;
+using Alachisoft.NCache.Integrations.NHibernate.Cache;
+using Alachisoft.NCache.Integrations.NHibernate.Cache.NCacheProvider;
 using System.Collections;
 using nhibernator.BLL;
 using Iesi.Collections;

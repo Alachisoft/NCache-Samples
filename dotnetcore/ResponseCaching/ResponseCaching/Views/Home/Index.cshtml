@@ -1,24 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@using NCacheResponseCaching.Models
+@model NCacheResponseCaching.Models.ProductModel
+
+@{
+    ViewData["Title"] = "Products List";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<p> The value for this item will change everytime the application is refreshed.</p>
-<div>@DateTime.Now.ToString()</div><br />
+        <distributed-cache-ncache name="prodList" expires-sliding="new TimeSpan(0,10,0)"
+             depends-on="SELECT ProductID, ProductName, QuantityPerUnit, UnitPrice FROM dbo.Products WHERE UnitPrice <= 1000" 
+                       dependency-type="SQLServer"  >
 
-<p>The value for this item will be static and remain in the cache forever, unless cache is cleared.</p>
-<distributed-cache name="Key:1">
-    <div>@DateTime.Now.ToString()</div><br />
-</distributed-cache>
+            <h1>ResponseCaching Sample</h1>
 
-<p>The value for this item will be static upon refreshing the application, but it will expire after 10 seconds.</p>
-<distributed-cache name="Key:2" expires-after="TimeSpan.FromSeconds(10)">
-    <div>@DateTime.Now.ToString()</div><br />
-</distributed-cache>
+            <br /><div class="row float-lg-right"><h9 style=" color:green">This page generated at @DateTime.Now.ToString()</h9></div><br />
+            <br />
+            <h2>Products List</h2>
+            <br />
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td scope="row">@item.ProductID</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.UnitPrice</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Home", new { id = @item.ProductID })">Edit</a>/
+                                    <a href="@Url.Action("Details", "Home", new { id = @item.ProductID })">View</a>
+                                </td>
+                            </tr>
+                        } }
+                </tbody>
 
-<p>The value for this item will be static and will only be removed from cache if the "vary-by" value is changed.</p>
-<distributed-cache name="Key:3" vary-by="test">
-    <div>@DateTime.Now.ToString()</div><br />
-</distributed-cache>
+            </table>
+            <div class="clearfix"></div>
 
+        </distributed-cache-ncache>

@@ -30,7 +30,7 @@ Before the sample application is executed make sure that:
 	```xml
     <ncContentOptimization>
     	<settings enableViewstateCaching="true" enableTrace="false">
-        	<cacheSettings cacheName="mycache" connectionRetryInterval="300">
+        	<cacheSettings cacheName="demoLocalCache" connectionRetryInterval="300">
             	<expiration type="None" duration="100"/>
             </cacheSettings>
         </settings>
@@ -40,7 +40,7 @@ Before the sample application is executed make sure that:
 - `web.config` has been changed according to the configurations, 
 	- Change the cache name
 - The data source for this application has been configured to use `northwind.xml` that is present in 'App_Data' folder (present in the sample's source code). Make sure it exists.
-- By default this sample uses 'mycache' so make sure that cache is running. 
+- By default this sample uses 'demoLocalCache' so make sure that cache is running. 
 
 ### Build and Run the Sample
     
@@ -65,4 +65,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2019 Alachisoft 
+[C] Copyright 2021 Alachisoft 

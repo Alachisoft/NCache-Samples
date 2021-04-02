@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheAttributes", "CacheAttributes\CacheAttributes.csproj", "{B5089BAB-4D99-409E-814F-8D1DDAA90EF6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleData", "..\..\SampleData\SampleData\SampleData.csproj", "{177B45FE-12C0-4D27-8298-3E516F478CDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5089BAB-4D99-409E-814F-8D1DDAA90EF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5089BAB-4D99-409E-814F-8D1DDAA90EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5089BAB-4D99-409E-814F-8D1DDAA90EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5089BAB-4D99-409E-814F-8D1DDAA90EF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{177B45FE-12C0-4D27-8298-3E516F478CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{177B45FE-12C0-4D27-8298-3E516F478CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{177B45FE-12C0-4D27-8298-3E516F478CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{177B45FE-12C0-4D27-8298-3E516F478CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {853E3F65-8EA1-47BA-9A76-DB02239DBF7E}
+	EndGlobalSection
+EndGlobal
