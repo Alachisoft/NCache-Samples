@@ -1,6 +1,6 @@
 // ===============================================================================
 // Alachisoft (R) NCache Sample Code.
-// NCache Customer Class used by samples
+// NCache Customer Class used by java.com.alachisoft.ncache.samples
 // ===============================================================================
 // Copyright © Alachisoft.  All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY

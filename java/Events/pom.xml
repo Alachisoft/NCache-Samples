@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>ncache.samples</groupId>
+        <artifactId>base</artifactId>
+        <version>5</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>Events</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>ncache.samples</groupId>
+            <artifactId>sampledata</artifactId>
+            <version>${project.version}</version>
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${basedir}/../SampleData/target/sampledata-5.2.0.jar</systemPath>-->
+        </dependency>
+        <dependency>
+            <groupId>com.alachisoft.ncache</groupId>
+            <artifactId>ncache-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

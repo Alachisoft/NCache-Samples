@@ -42,7 +42,7 @@ This sample program requires
 
 
 However any other preffered method can NCache to compile the source 
-located at $NCHOME/samples/java/BulkOperations/src/
+located at $NCHOME/java.com.alachisoft.ncache.samples/java/BulkOperations/src/
 
 
 HOW TO CONFIGURE
@@ -68,7 +68,7 @@ To Compile and Run via NetBeans:
 
     - Open Netbeans IDE.
     - Select File->Open Project
-    - Locate $NCHOME/samples/java/BulkOperations
+    - Locate $NCHOME/java.com.alachisoft.ncache.samples/java/BulkOperations
     - Add all .jar files to project libraries located at:
            - $NCHOME/java/lib
            - $NCHOME/java/lib/resources
@@ -81,9 +81,9 @@ To Compile and Run via Ant:
 
     - Make sure $ANT_HOME environment path variable is set.
     - Start shell (terminal/cmd)
-    - Change directory to $NCHOME/samples/java/BulkOperations
+    - Change directory to $NCHOME/java.com.alachisoft.ncache.samples/java/BulkOperations
     - Type 'ant' (without quotes)
     - This will compile the source and will place bulkoperations.jar 
-       at $NCHOME/samples/java/BulkOperations/dist/
-    - Change directory to $NCHOME/samples/java/BulkOperations/dist/
+       at $NCHOME/java.com.alachisoft.ncache.samples/java/BulkOperations/dist/
+    - Change directory to $NCHOME/java.com.alachisoft.ncache.samples/java/BulkOperations/dist/
     - NCache 'java -jar bulkoperations.jar' without quotes to run the program.

@@ -10,7 +10,7 @@
 // ===============================================================================
 package com.alachisoft.sample.hibernate.factory;
 
-import hibernator.BLL.Customer;
+import hibernator.BLL.Customers;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -27,7 +27,7 @@ public class CustomerFactory
     /// </summary>
     /// <returns>Complete list of customers</returns>
 
-    public List<Customer> GetCustomers() throws Exception
+    public List<Customers> GetCustomers() throws Exception
     {
         List customers = new ArrayList();
         Transaction tx = null;
@@ -40,9 +40,9 @@ public class CustomerFactory
             }
             tx = session.beginTransaction();
 
-            List customerEnumerator = session.createQuery("from Customer c").setCacheable(true).list(); //Retrieves the list of Customers from 2nd level cache
+            List customerEnumerator = session.createQuery("from Customers c").setCacheable(true).list(); //Retrieves the list of Customers from 2nd level cache
 
-            for (Customer cust : (List<Customer>) customerEnumerator)
+            for (Customers cust : (List<Customers>) customerEnumerator)
             {
                 customers.add(cust);
             }
@@ -66,9 +66,9 @@ public class CustomerFactory
     /// </summary>
     /// <param name="CustomerID">string representing customer id</param>
     /// <returns>Object representing customer of "Customer" type. </returns>
-    public Customer GetCustomer(String CustomerID) throws Exception
+    public Customers GetCustomer(String CustomerID) throws Exception
     {
-        Customer customer = null;
+        Customers customer = null;
         Transaction tx = null;
 
         //int ordercount =0;
@@ -79,14 +79,14 @@ public class CustomerFactory
                 session = factory.openSession();
             }
             tx = session.beginTransaction();
-            customer=(Customer)session.get( Customer.class, CustomerID);
+            customer=(Customers)session.get( Customers.class, CustomerID);
             tx.commit();
         }
         catch (Exception ex)
         {
             tx.rollback();
-            session.clear();
-            session.disconnect();
+//            session.clear();
+//            session.disconnect();
             throw ex;
         }
 
@@ -94,9 +94,9 @@ public class CustomerFactory
     }
     //customer = (Customer)session.Load(typeof(Customer), CustomerID);    //Load customer object from 2nd level cache
 
-    public Customer GetCustomerOrders(String CustomerID) throws Exception
+    public Customers GetCustomerOrders(String CustomerID) throws Exception
     {
-        Customer customer = null;
+        Customers customer = null;
         Transaction tx = null;
 
         try
@@ -106,7 +106,7 @@ public class CustomerFactory
                 session = factory.openSession();
             }
             tx = session.beginTransaction();
-            customer = (Customer) session.get(Customer.class, CustomerID);
+            customer = (Customers) session.get(Customers.class, CustomerID);
             tx.commit();
         }
         catch (Exception ex)
@@ -121,7 +121,7 @@ public class CustomerFactory
     /// Add current customer in database.
     /// </summary>
     /// <param name="cust">Customer to save.</param>
-    public void SaveCustomer(Customer customer) throws Exception
+    public void SaveCustomer(Customers customer) throws Exception
     {
         Transaction tx = null;
         try
@@ -139,8 +139,8 @@ public class CustomerFactory
         catch (Exception ex)
         {
             tx.rollback();
-            session.clear();
-            session.disconnect();
+//            session.clear();
+//            session.disconnect();
             throw ex;
             // handle exception
         }
@@ -150,7 +150,7 @@ public class CustomerFactory
     /// Insert/Update current customer in database.
     /// </summary>
     /// <param name="cust">Customer to update.</param>
-    public void UpdateCustomer(Customer customer) throws Exception
+    public void UpdateCustomer(Customers customer) throws Exception
     {
         Transaction tx = null;
         try
@@ -169,8 +169,8 @@ public class CustomerFactory
         catch (Exception ex)
         {
             tx.rollback();
-            session.clear();
-            session.disconnect();
+//            session.clear();
+//            session.disconnect();
             throw ex;
             // handle exception
         }
@@ -183,7 +183,7 @@ public class CustomerFactory
     public void RemoveCustomer(String CustomerID) throws Exception
     {
         Transaction tx = null;
-        Customer customer;
+        Customers customer;
         try
         {
 
@@ -196,7 +196,7 @@ public class CustomerFactory
 
             if (!enumerator.isEmpty())
             {
-                customer = (Customer) enumerator.get(0);
+                customer = (Customers) enumerator.get(0);
                 if (customer != null)
                 {
                     session.delete(customer);
@@ -218,8 +218,8 @@ public class CustomerFactory
         catch (Exception ex)
         {
             tx.rollback();
-            session.clear();
-            session.disconnect();
+//            session.clear();
+//            session.disconnect();
             throw ex;
             // handle exception
         }

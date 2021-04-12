@@ -41,7 +41,7 @@ This sample program requires
       run the project.
 	  
 However any other preffered method can NCache to compile the source 
-located at $NCHOME/samples/java/Streaming/src/
+located at $NCHOME/java.com.alachisoft.ncache.samples/java/Streaming/src/
 
 
 HOW TO CONFIGURE
@@ -67,7 +67,7 @@ To Compile and Run via NetBeans:
 
     - Open Netbeans IDE.
     - Select File->Open Project
-    - Locate $NCHOME/samples/java/Streaming
+    - Locate $NCHOME/java.com.alachisoft.ncache.samples/java/Streaming
     - Add all .jar files to project libraries located at:
            - $NCHOME/java/lib
            - $NCHOME/java/lib/resources
@@ -80,9 +80,9 @@ To Compile and Run via Ant:
 
     - Make sure $ANT_HOME environment path variable is set.
     - Start shell (terminal/cmd)
-    - Change directory to $NCHOME/samples/java/Streaming
+    - Change directory to $NCHOME/java.com.alachisoft.ncache.samples/java/Streaming
     - Type 'ant' (without quotes)
     - This will compile the source and will place streaming.jar 
-       at $NCHOME/samples/java/Streaming/dist/
-    - Change directory to $NCHOME/samples/java/Streaming/dist/
+       at $NCHOME/java.com.alachisoft.ncache.samples/java/Streaming/dist/
+    - Change directory to $NCHOME/java.com.alachisoft.ncache.samples/java/Streaming/dist/
     - NCache 'java -jar streaming.jar' without quotes to run the program.

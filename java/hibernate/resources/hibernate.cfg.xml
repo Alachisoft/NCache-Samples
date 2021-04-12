@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration">
+<hibernate-configuration>
+  <session-factory>
+    <!--    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>-->
+    <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+    <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+    <property name="connection.url">jdbc:oracle:thin:@20.200.20.180:1521/orcl</property>
+    <!--    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>    
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernatedb</property>    -->
+    <property name="hibernate.connection.username">scott</property>
+    <property name="hibernate.connection.password">diyatech</property>
+    <property name="connection.pool_size">2</property>
+    <!-- SQL dialect -->
+    <!--    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>    -->
+    <!-- Disable the second-level cache  -->
+    <property name="hibernate.cache.use_second_level_cache">true</property>
+    <!--    com.alachisoft.ncache.integrations.hibernate.cache.NCacheRegionFactory-->
+    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>
+    <property name="hibernate.javax.cache.provider">com.alachisoft.ncache.hibernate.jcache.HibernateNCacheCachingProvider</property>
+    <!--    <property name="hibernate.javax.cache.cache_manager">com.alachisoft.ncache.jcache.NCacheManager</property>-->
+    <property name="ncache.application_id">myapp</property>
+    <property name="hibernate.cache.use_query_cache">true</property>
+    <!--    <property name="net.sf.ehcache.configurationResourceName">file:Y:/java.com.alachisoft.ncache.samples/hibernate/jcache.xml</property>-->
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">false</property>
+    <!-- Drop and re-create the database schema on startup -->
+    <!--    <property name="hbm2ddl.auto">update</property>-->
+    <property name="hibernate.default_schema"/>
+    <mapping class="hibernator.BLL.Customers" file="" jar="" package="" resource="hibernator/BLL/Customer.hbm.xml"/>
+    <mapping resource="hibernator/BLL/Orders.hbm.xml"/>
+    <class-cache class="hibernator.BLL.Customers" include="all" region="hibernator.BLL.Customer:Customer" usage="nonstrict-read-write"/>
+    <class-cache class="hibernator.BLL.Orders" include="all" region="hibernator.BLL.Orders:Orders" usage="read-write"/>
+  </session-factory>
+</hibernate-configuration>
