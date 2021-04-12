@@ -26,7 +26,7 @@ For more details go to this link: https://www.alachisoft.com/ncache/java-support
 	- Select Next to get the Import Wizzard. Browse to find the location of the Project
 	- For more information follow this guide: http://people.cs.uchicago.edu/~kaharris/10200/tutorials/eclipse/import.html
 	
-#### To Compile and Run via Eclipse:
+#### To Compile and Run via IntelliJ:
 	- Launch IntelliJ IDEA.
 	- If the Welcome screen opens, click Open.
 	- Otherwise, from the main menu, select File | Open.
