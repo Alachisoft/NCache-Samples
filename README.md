@@ -9,6 +9,7 @@ The samples for modern NCache API are provided for the following supported envir
 - .NET Framework
 - .NET Core
 - Java
+- Node.Js
 
 For legacy API, the samples have been provided for:
 
