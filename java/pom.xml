@@ -43,7 +43,7 @@
     </properties>
 
     <build>
-        <sourceDirectory>src/main</sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
