@@ -18,6 +18,7 @@ import com.alachisoft.ncache.runtime.CacheItemPriority;
 import com.alachisoft.ncache.runtime.dependencies.FileDependency;
 
 import java.io.*;
+import java.net.URL;
 import java.util.Properties;
 
 public class FileBasedDependency {
@@ -32,7 +33,9 @@ public class FileBasedDependency {
             Cache cache = CacheManager.getCache(cacheName);
             cache.clear();
                         
-            String filename = System.getenv("NCHOME") + "java.com.alachisoft.ncache.samples\\dependency\\dist\\foobar.txt";
+            String filename = properties.getProperty("filePath");
+
+            //System.out.println("PATH: " + filename);
 
             CacheItem cacheItem = new CacheItem("cache Item 1");
             cacheItem.setCacheItemPriority(CacheItemPriority.Normal);

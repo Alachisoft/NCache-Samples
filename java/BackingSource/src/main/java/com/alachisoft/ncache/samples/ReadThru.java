@@ -16,7 +16,7 @@ import com.alachisoft.ncache.runtime.datasourceprovider.DistributedDataStructure
 import com.alachisoft.ncache.runtime.datasourceprovider.ProviderCacheItem;
 import com.alachisoft.ncache.runtime.datasourceprovider.ProviderDataStructureItem;
 import com.alachisoft.ncache.runtime.datasourceprovider.ReadThruProvider;
-import com.alachisoft.ncache.samples.data.DataSource;
+import com.alachisoft.ncache.samples.data.DataLayer;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import java.util.Map;
 public class ReadThru implements ReadThruProvider
 {
 
-    DataSource _dataSource;
+    DataLayer _dataLayer;
 
     /**
      * Perform tasks like allocating resources or acquiring connections
@@ -41,8 +41,8 @@ public class ReadThru implements ReadThruProvider
         String connString = map.get("connString");
         String user = map.get("user");
         String pass = map.get("pass");
-        _dataSource = new DataSource();
-        _dataSource.Init(connString, user, pass);
+        _dataLayer = new DataLayer();
+        _dataLayer.Init(connString, user, pass);
     }
 
     /**
@@ -53,7 +53,7 @@ public class ReadThru implements ReadThruProvider
     */
     @Override
     public ProviderCacheItem loadFromSource(String key) throws Exception {
-        ProviderCacheItem cacheItem = new ProviderCacheItem(_dataSource.loadCustomer(key));
+        ProviderCacheItem cacheItem = new ProviderCacheItem(_dataLayer.loadCustomer(key));
         cacheItem.getResyncOptions().setResyncOnExpiration(true);
         // Resync provider name will be picked from default provider.
         return cacheItem;
@@ -74,7 +74,7 @@ public class ReadThru implements ReadThruProvider
         for (String key : collection)
         {
             // get data from data source
-            Object data = _dataSource.loadCustomer(key);
+            Object data = _dataLayer.loadCustomer(key);
             // initialize ProviderCacheItem with the received data
             ProviderCacheItem cacheItem = new ProviderCacheItem(data);
             // you can change item properties before adding to cache. For example
@@ -102,15 +102,15 @@ public class ReadThru implements ReadThruProvider
         switch (distributedDataStructureType){
 
             case List:
-                return new ProviderDataStructureItem<>(_dataSource.loadCustomersFromCountry(key));
+                return new ProviderDataStructureItem<>(_dataLayer.loadCustomersFromCountry(key));
             case Queue:
-                return new ProviderDataStructureItem<>(_dataSource.loadCustomersByOrder(key));
+                return new ProviderDataStructureItem<>(_dataLayer.loadCustomersByOrder(key));
             case Set:
-                return new ProviderDataStructureItem<>(_dataSource.LoadOrderIDsByCustomer(key));
+                return new ProviderDataStructureItem<>(_dataLayer.LoadOrderIDsByCustomer(key));
             case Map:
-                return new ProviderDataStructureItem<>(_dataSource.LoadCustomersByCity(key));
+                return new ProviderDataStructureItem<>(_dataLayer.LoadCustomersByCity(key));
             case Counter:
-                return new ProviderDataStructureItem<>(_dataSource.getCustomerCountByCompanyName(key));
+                return new ProviderDataStructureItem<>(_dataLayer.getCustomerCountByCompanyName(key));
             default:
                 throw new IllegalArgumentException(distributedDataStructureType.name() + " Data type not supported...");
         }
@@ -122,6 +122,6 @@ public class ReadThru implements ReadThruProvider
      */
     @Override
     public void close() throws Exception {
-        _dataSource.closeConnection();
+        _dataLayer.closeConnection();
     }
 }

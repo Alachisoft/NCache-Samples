@@ -35,35 +35,19 @@ Before the sample application executed make sure that:
 -  Besides, implementation, NCache requires user specified configuration to enable the cache loader. A user can configure and enable the CacheStartupLoader settings through NCache Web Manager. Following are the steps to configure and deploy Cache Loader.
 	- Start NCache Web Manager and create a clustered cache with the name specified in an app.config.
 	- Now select the 'Cache Loader' tab in the "Advanced Settings" of cache's details page.
-	- Check the 'Enable Cache Startup Loader' and provide the Library Name(CacheLoaderImpl) and Class Name(Alachisoft.NCache.Samples.CacheStartupLoader) of the implementation.
-	- Provide the parameter "conn-string" as the database connection string. These parameters provided to the cache loader assembly. 
-	- Check the "Run startup loader on multiple nodes" to enables the Distribution Hints.
+	- Check the 'Enable Cache Startup Loader' and provide the Library Name(CacheLoaderImpl) and Class Name(com.alachisoft.ncache.samples.cacheLoaderImpl.Refresher) of the implementation.
+	- Provide the parameter "connString" as the database connection string.
+	- Provide the parameter "user" for databasr user name.
+	- Provide the parameter "password" for database password.
+	- These parameters provided to the cache loader assembly. 
 	- A multi-node environment requires distribution hints to run the loader.
 	- To deploy cache loader assemblies click 'Deploy Cache Loader' and select CacheLoaderImpl and SampleData assemblies and click 'OK'.
 	- Save changes.
 
 ### Build and Run the Sample
-
-    
-- Install com.alachisoft.ncache client mvn package.(To get latest NCache client Maven package go to this link)
-- https://mvnrepository.com/artifact/com.alachisoft.ncache/ncache-client
-- Add it in the **pom.xml** file inside **dependencies** section like this:
-    - ```
-      <dependencies>
-      <!-- https://mvnrepository.com/artifact/com.alachisoft.ncache/ncache-client -->
-            <dependency>
-                <groupId>com.alachisoft.ncache</groupId>
-                <artifactId>ncache-client</artifactId>
-                <version>5.2.0</version>
-            </dependency>
-      .....
-      </dependencies> 
-      ```
 - Run the following commands:
     ``` mvn clean package ```
 - Open your project in your favourite compiler and run the sample application.
-- Or open command prompt and go to the directory where you have saved the project.
-- ``` mvn exec:java -Dexec.mainClass=com.alachisoft.ncache.samples.Main ```
 - OR cd to **target** (where jars are copied) folder and run this command:
 	- ``` cd target ```
 	- ``` java -cp * com.alachisoft.ncache.samples.Mian ```

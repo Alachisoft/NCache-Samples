@@ -1,4 +1,4 @@
-# BACKING SOURCE
+# Hibernate Sample
 
 ### Table of contents
 

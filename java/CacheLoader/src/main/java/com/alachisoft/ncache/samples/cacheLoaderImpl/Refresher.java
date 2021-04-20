@@ -25,9 +25,9 @@ public class Refresher implements CacheLoader {
     public void init(Map<String, String> parameters, String cacheName) throws Exception {
         if(parameters != null && !parameters.isEmpty())
         {
-            _connectionString = parameters.getOrDefault("ConnectionString", "");
-            _user = parameters.getOrDefault("User", "");
-            _password = parameters.getOrDefault("Password", "");
+            _connectionString = parameters.getOrDefault("connString", "");
+            _user = parameters.getOrDefault("user", "");
+            _password = parameters.getOrDefault("password", "");
         }
         if(cacheName == null || cacheName.isEmpty())
             throw new IllegalArgumentException("Cache name cannot be null or empty.");

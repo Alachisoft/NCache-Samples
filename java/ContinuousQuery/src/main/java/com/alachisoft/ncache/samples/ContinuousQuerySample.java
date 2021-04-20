@@ -37,7 +37,7 @@ public class ContinuousQuerySample {
 
             cache.add("Customer:JohnMathew", customer);
 
-            String query = "SELECT com.alachisoft.ncache.java.com.alachisoft.ncache.samples.data.Customer WHERE this.phone = ?";
+            String query = "SELECT com.alachisoft.ncache.samples.data.Customer WHERE this.phone = ?";
 
             QueryCommand command = new QueryCommand(query);
             command.getParameters().put("gender", "25564-4546");

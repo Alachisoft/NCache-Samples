@@ -25,26 +25,9 @@ Before the sample application executed make sure that:
 - ByDefault this sample uses 'demoCache', make sure the cache is running.
 
 ### Build and Run the Sample
-
-- Install com.alachisoft.ncache client mvn package.(To get latest NCache client Maven package go to this link)
-- https://mvnrepository.com/artifact/com.alachisoft.ncache/ncache-client
-- Add it in the **async-operations-pom.xml** file inside **dependencies** section like this:
-    - ```
-      <dependencies>
-      <!-- https://mvnrepository.com/artifact/com.alachisoft.ncache/ncache-client -->
-            <dependency>
-                <groupId>com.alachisoft.ncache</groupId>
-                <artifactId>ncache-client</artifactId>
-                <version>5.2.0</version>
-            </dependency>
-      .....
-      </dependencies> 
-      ```
 - Run the following commands:
     ``` mvn clean package ```
 - Open your project in your favourite compiler and run the sample application.
-- Or open command prompt and go to the directory where you have saved the project.
-    - ``` mvn exec:java -Dexec.mainClass=com.alachisoft.ncache.samples.Main ```
 - OR cd to **target** (where jars are copied) folder and run this command:
 	- ``` cd target ```
     - ``` java -cp * com.alachisoft.ncache.samples.Main ```

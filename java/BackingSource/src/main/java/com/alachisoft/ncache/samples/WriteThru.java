@@ -12,7 +12,7 @@ package com.alachisoft.ncache.samples;
 
 import com.alachisoft.ncache.runtime.datasourceprovider.*;
 import com.alachisoft.ncache.samples.data.Customer;
-import com.alachisoft.ncache.samples.data.DataSource;
+import com.alachisoft.ncache.samples.data.DataLayer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class WriteThru implements WriteThruProvider
 {
-    DataSource _dataSource;
+    DataLayer _dataLayer;
 
     /**
      * Perform tasks like allocating resources or acquiring connections
@@ -35,8 +35,8 @@ public class WriteThru implements WriteThruProvider
         String connString = map.get("connString");
         String user = map.get("user");
         String pass = map.get("pass");
-        _dataSource = new DataSource();
-        _dataSource.Init(connString, user, pass);
+        _dataLayer = new DataLayer();
+        _dataLayer.Init(connString, user, pass);
     }
 
     /**
@@ -58,7 +58,7 @@ public class WriteThru implements WriteThruProvider
         // check if value is the type you need
         if(value.getClass().equals(Customer.class)){
             // send data to cache for writing
-            result = _dataSource.saveCustomer(value);
+            result = _dataLayer.saveCustomer(value);
             // id write ooperation is success, change status of operation result
             if(result) operationResult.setOperationStatus(OperationResult.Status.Success);
         }
@@ -92,7 +92,7 @@ public class WriteThru implements WriteThruProvider
             // check if value is the type you need
             if(value.getClass().equals(Customer.class)){
                 // send data to cache for writing
-                result = _dataSource.saveCustomer(value);
+                result = _dataLayer.saveCustomer(value);
                 // id write operation is success, change status of operation result
                 if(result) operationResult.setOperationStatus(OperationResult.Status.Success);
             }
@@ -118,11 +118,11 @@ public class WriteThru implements WriteThruProvider
 
             // for every other data structure, the new entry is sent as object from cache
             if(operation.getOperationType().equals(DataStructureOperationType.UpdateDataType))
-                result = _dataSource.saveCustomer((Customer) operation.getProviderItem().getData());
+                result = _dataLayer.saveCustomer((Customer) operation.getProviderItem().getData());
             else if(operation.getOperationType().equals(DataStructureOperationType.AddToDataType))
-                result = _dataSource.addToSource((Customer) operation.getProviderItem().getData());
+                result = _dataLayer.addToSource((Customer) operation.getProviderItem().getData());
             else if(operation.getOperationType().equals(DataStructureOperationType.DeleteFromDataType))
-                result = _dataSource.removeFromSource((Customer) operation.getProviderItem().getData());
+                result = _dataLayer.removeFromSource((Customer) operation.getProviderItem().getData());
             if(result) operationResult.setOperationStatus(OperationResult.Status.Success);
 
             operationResults.add(operationResult);
@@ -133,6 +133,6 @@ public class WriteThru implements WriteThruProvider
 
     @Override
     public void close() throws SQLException {
-        _dataSource.closeConnection();
+        _dataLayer.closeConnection();
     }
 }

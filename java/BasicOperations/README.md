@@ -11,44 +11,29 @@
 
 ### Introduction
 
-This sample program demonstrates how to use the NCache Synchronous API to perform CRUD operations. 
-It shows how to initialize the cache instance and Add, Get, Update and Remove object(s) from NCache.
+This sample program demonstrates how to use the NCache messaging API to publish or subscribe messages. It shows how to create, get or delete a message topic and publish or subscribe messages using it.
 
-This sample uses SampleData project as a reference for model class "Customer".
+This sample has 2 projects:
+
+1) Publisher: It will create a topic, publish some messages on it and then deletes it.
+2) Subscriber: It will create or get a topic and then create subscription on it.
 
 ### Prerequisites
 
-Before the sample application executed make sure that:
+Before the sample application is executed make sure that:
 
 - **config.properties** have been changed according to the configurations. 
 	- Change the cache name
-- ByDefault this sample uses 'demoCache', make sure cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
-    
-- Install com.alachisoft.ncache client mvn package.(To get latest NCache client Maven package go to this link)
-- https://mvnrepository.com/artifact/com.alachisoft.ncache/ncache-client
-- Add it in the **pom.xml** file inside **dependencies** section like this:
-    - ```
-      <dependencies>
-      <!-- https://mvnrepository.com/artifact/com.alachisoft.ncache/ncache-client -->
-            <dependency>
-                <groupId>com.alachisoft.ncache</groupId>
-                <artifactId>ncache-client</artifactId>
-                <version>5.2.0</version>
-            </dependency>
-      .....
-      </dependencies> 
-      ```
 - Run the following commands:
     ``` mvn clean package ```
 - Open your project in your favourite compiler and run the sample application.
-- Or open command prompt and go to the directory where you have saved the project.
-    - ``` mvn exec:java -Dexec.mainClass=com.alachisoft.ncache.samples.Main ```
-- OR cd to **target**(where jars are copied) folder and run this command:
+- OR cd to target and run this command: 
 	- ``` cd target ```
-    - ``` java -cp * com.alachisoft.ncache.samples.Main ```
-
+	- ``` java -cp * com.alachisoft.ncache.samples.RunPublisher ```
+	- ``` java -cp * com.alachisoft.ncache.samples.RunSubscriber ```
 
 ### Additional Resources
 

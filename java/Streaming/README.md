@@ -1,4 +1,4 @@
-# BASIC OPERATIONS WITH JSON
+# STREAMING
 
 ### Table of contents
 
@@ -11,26 +11,22 @@
 
 ### Introduction
 
-This sample program demonstrates how to use the NCache API to perform CRUD operations with JSON objects. 
-It shows how to initialize the cache instance and Add, Get, Update and Remove JSON object(s) from NCache.
-
-This sample uses SampleData project as a reference for model class "Customer" and uses Newtonsoft for JSON serialization.
+This sample program demonstrates how to use the NCache Stream API to perform operations. 
+Streaming allows to read data from cache in chunks just like any buffered stream.
 
 ### Prerequisites
 
-Before the sample application executed make sure that:
-
+Before the sample application is executed make sure that:
 - **config.properties** have been changed according to the configurations. 
-	- Change the cache name
-- ByDefault this sample uses 'demoCache', make sure the cache is running. 
-- jdk 11 or higher is required.
-- NCache Java client installed on the machine.   
+- Change the cache name
+- ByDefault this sample uses 'demoCache', make sure cache is running. 
 
 ### Build and Run the Sample
+    
 - Run the following commands:
-    - ``` mvn clean package ```
+    ``` mvn clean package ```
 - Open your project in your favourite compiler and run the sample application.
-- OR cd to target and run this command: 
+- OR cd to **target**(where jars are copied) folder and run this command:
 	- ``` cd target ```
     - ``` java -cp * com.alachisoft.ncache.samples.Main ```
 
@@ -53,4 +49,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2020 Alachisoft 
+[C] Copyright 2021 Alachisoft 

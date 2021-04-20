@@ -3,7 +3,7 @@ package com.alachisoft.ncache.samples.data;
 import java.sql.*;
 import java.util.*;
 
-public class DataSource {
+public class DataLayer {
     private Connection _conn;
     Statement _st;
 
@@ -36,7 +36,7 @@ public class DataSource {
     }
 
     /**
-     * Loads a  "Customer" object from the datasource.
+     * Loads a  "Customer" object from the DataLayer.
      * @param requestedCompanyName
      * @return
      */
@@ -54,7 +54,7 @@ public class DataSource {
     }
 
     /**
-     * Loads a  "Customer" object from the datasource.
+     * Loads a  "Customer" object from the DataLayer.
      * @param key
      * @return
      * @throws SQLException
@@ -77,7 +77,7 @@ public class DataSource {
     }
 
     /**
-     * Loads a  "Customer" object from the datasource.
+     * Loads a  "Customer" object from the DataLayer.
      * @param key
      * @return
      * @throws SQLException
@@ -101,7 +101,7 @@ public class DataSource {
     }
 
     /**
-     * Loads a "Customer" object from the datasource.
+     * Loads a "Customer" object from the DataLayer.
      * @param key
      * @return
      * @throws SQLException
@@ -125,7 +125,7 @@ public class DataSource {
     }
 
     /**
-     * Loads a  "Customer" object from the datasource.
+     * Loads a  "Customer" object from the DataLayer.
      * @param key
      * @return
      * @throws SQLException
@@ -145,7 +145,7 @@ public class DataSource {
     }
 
     /**
-     * Save Customer information to datasource
+     * Save Customer information to DataLayer
      * @param customer
      * @return
      */
@@ -169,7 +169,7 @@ public class DataSource {
     }
 
     /**
-     * Add <see cref="Customer"/> information to datasource.
+     * Add <see cref="Customer"/> information to DataLayer.
      * @param customer
      * @return
      * @throws SQLException
@@ -194,7 +194,7 @@ public class DataSource {
     }
 
     /**
-     *  Delete <see cref="Customer"/> information from datasource.
+     *  Delete <see cref="Customer"/> information from DataLayer.
      * @param customer
      * @return
      * @throws SQLException
