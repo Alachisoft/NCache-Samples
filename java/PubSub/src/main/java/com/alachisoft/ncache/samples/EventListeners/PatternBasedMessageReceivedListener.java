@@ -1,4 +1,4 @@
-package java.com.alachisoft.ncache.samples.EventListeners;
+package com.alachisoft.ncache.samples.EventListeners;
 
 import com.alachisoft.ncache.runtime.caching.MessageEventArgs;
 import com.alachisoft.ncache.runtime.caching.messaging.MessageReceivedListener;

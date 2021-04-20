@@ -1,4 +1,4 @@
-package java.com.alachisoft.ncache.samples.Publisher;// ===============================================================================
+package com.alachisoft.ncache.samples.Publisher;// ===============================================================================
 // Alachisoft (R) NCache Sample Code.
 // ===============================================================================
 // Copyright © Alachisoft.  All rights reserved.
@@ -13,7 +13,7 @@ import com.alachisoft.ncache.client.CacheManager;
 import com.alachisoft.ncache.runtime.caching.*;
 import com.alachisoft.ncache.runtime.exceptions.CacheException;
 import com.alachisoft.ncache.runtime.util.TimeSpan;
-import java.com.alachisoft.ncache.samples.EventListeners.EventListeners;
+import com.alachisoft.ncache.samples.EventListeners.EventListeners;
 
 import java.io.*;
 import java.util.*;
@@ -232,7 +232,7 @@ public class Publisher {
      */
     private static Properties getProperties() throws IOException
     {
-        String path = "java/resources/config.properties";
+        String path = "config.properties";
         InputStream inputStream = Publisher.class.getClassLoader().getResourceAsStream(path);
         Properties properties=new Properties();
         if (inputStream != null) {

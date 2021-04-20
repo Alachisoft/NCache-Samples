@@ -1,4 +1,4 @@
-package java.com.alachisoft.ncache.samples.Publisher;
+package com.alachisoft.ncache.samples.Publisher;
 
 public class RunPublisher {
     public static void main(String[] args) {

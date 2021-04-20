@@ -48,12 +48,14 @@ public class RunPublisher {
                     // Publishes the message with expiry.
                     publisher.publish(payLoad, TimeSpan.FromMinutes(5));
                     System.out.println("Message published with the expiry of 5 minutes.");
+                    Thread.sleep(1000);
                 }
                 else
                 {
                     // Publishes the message.
                     publisher.publish(payLoad);
                     System.out.println("Message published without expiry.");
+                    Thread.sleep(1000);
                 }
             }
 

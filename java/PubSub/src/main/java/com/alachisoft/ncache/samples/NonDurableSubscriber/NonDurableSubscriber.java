@@ -1,4 +1,4 @@
-package java.com.alachisoft.ncache.samples.NonDurableSubscriber;
+package com.alachisoft.ncache.samples.NonDurableSubscriber;
 // ===============================================================================
 // Alachisoft (R) NCache Sample Code.
 // ===============================================================================
@@ -10,8 +10,8 @@ package java.com.alachisoft.ncache.samples.NonDurableSubscriber;
 // ===============================================================================
 
 
-import java.com.alachisoft.ncache.samples.EventListeners.OnMessageReceivedListener;
-import java.com.alachisoft.ncache.samples.EventListeners.PatternBasedMessageReceivedListener;
+import com.alachisoft.ncache.samples.EventListeners.OnMessageReceivedListener;
+import com.alachisoft.ncache.samples.EventListeners.PatternBasedMessageReceivedListener;
 import com.alachisoft.ncache.client.Cache;
 import com.alachisoft.ncache.client.CacheManager;
 import com.alachisoft.ncache.runtime.caching.Topic;
@@ -116,7 +116,7 @@ public class NonDurableSubscriber {
      */
     private static Properties getProperties() throws IOException
     {
-        String path = "java/resources/config.properties";
+        String path = "config.properties";
         InputStream inputStream = NonDurableSubscriber.class.getClassLoader().getResourceAsStream(path);
         Properties properties=new Properties();
         if (inputStream != null) {

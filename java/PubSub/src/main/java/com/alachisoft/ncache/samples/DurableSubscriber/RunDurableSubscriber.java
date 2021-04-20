@@ -1,4 +1,4 @@
-package java.com.alachisoft.ncache.samples.DurableSubscriber;
+package com.alachisoft.ncache.samples.DurableSubscriber;
 
 public class RunDurableSubscriber {
     public static void main(String[] args) {

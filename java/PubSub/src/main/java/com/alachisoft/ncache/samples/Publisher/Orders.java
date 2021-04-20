@@ -1,4 +1,4 @@
-package java.com.alachisoft.ncache.samples.Publisher;
+package com.alachisoft.ncache.samples.Publisher;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;

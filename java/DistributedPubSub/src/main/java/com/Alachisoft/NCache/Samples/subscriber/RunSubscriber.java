@@ -33,6 +33,7 @@ public class RunSubscriber {
             MessageReceivedCallbacks messageReceivedCallbacks = new MessageReceivedCallbacks();
             subscriber.subscribe(cacheName, topicName, messageReceivedCallbacks);
 
+            Thread.sleep(10000);
 
 
         }catch (Exception e)

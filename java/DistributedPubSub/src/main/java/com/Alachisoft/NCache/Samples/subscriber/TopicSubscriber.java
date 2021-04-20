@@ -54,9 +54,7 @@ public class TopicSubscriber implements Closeable {
 
         // Subscribes to the topic.
         _topic.createSubscription(messageReceivedCallbacks);
-        System.out.println("Subscriber Started. Press enter to exit.");
-        Scanner s = new Scanner(System.in);
-        String u = s.nextLine();
+        Thread.sleep(10000);
     }
 
     /**

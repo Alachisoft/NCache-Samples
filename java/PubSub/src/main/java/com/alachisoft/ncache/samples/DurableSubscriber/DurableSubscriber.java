@@ -1,4 +1,4 @@
-package java.com.alachisoft.ncache.samples.DurableSubscriber;// ===============================================================================
+package com.alachisoft.ncache.samples.DurableSubscriber;// ===============================================================================
 // Alachisoft (R) NCache Sample Code.
 // ===============================================================================
 // Copyright © Alachisoft.  All rights reserved.
@@ -16,8 +16,8 @@ import com.alachisoft.ncache.runtime.caching.messaging.DurableTopicSubscription;
 import com.alachisoft.ncache.runtime.caching.messaging.TopicSearchOptions;
 import com.alachisoft.ncache.runtime.exceptions.CacheException;
 import com.alachisoft.ncache.runtime.util.TimeSpan;
-import java.com.alachisoft.ncache.samples.EventListeners.OnMessageReceivedListener;
-import java.com.alachisoft.ncache.samples.EventListeners.PatternBasedMessageReceivedListener;
+import com.alachisoft.ncache.samples.EventListeners.OnMessageReceivedListener;
+import com.alachisoft.ncache.samples.EventListeners.PatternBasedMessageReceivedListener;
 
 import java.io.*;
 import java.util.Properties;
@@ -122,7 +122,7 @@ public class DurableSubscriber {
      */
     private static Properties getProperties() throws IOException
     {
-        String path = "java/resources/config.properties";
+        String path = "config.properties";
         InputStream inputStream = DurableSubscriber.class.getClassLoader().getResourceAsStream(path);
         Properties properties=new Properties();
         if (inputStream != null) {
