@@ -19,8 +19,8 @@
             <groupId>ncache.samples</groupId>
             <artifactId>sampledata</artifactId>
             <version>${project.version}</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${basedir}/../SampleData/target/sampledata-5.2.0.jar</systemPath>-->
+            <scope>system</scope>
+            <systemPath>${basedir}/../SampleData/target/sampledata-5.2.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.alachisoft.ncache</groupId>

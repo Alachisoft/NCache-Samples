@@ -41,7 +41,7 @@ Before the sample application is executed make sure that:
 - Open your project in your favourite compiler and run the sample application.
 - OR cd to target and run this command: 
 	- ``` cd target ```
-	- ``` java -cp * com.alachisoft.ncache.samples.Events ```
+	- ``` java -cp * com.alachisoft.ncache.samples.Main ```
 
 ### Additional Resources
 
