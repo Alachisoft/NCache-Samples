@@ -1,4 +1,4 @@
-package com.Alachisoft.NCache.Samples.callbacks;
+package com.alachisoft.ncache.samples.callbacks;
 
 import com.alachisoft.ncache.runtime.caching.MessageFailedEventArgs;
 import com.alachisoft.ncache.runtime.caching.TopicDeleteEventArgs;

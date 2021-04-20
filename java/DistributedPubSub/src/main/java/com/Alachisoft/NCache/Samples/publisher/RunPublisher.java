@@ -7,11 +7,12 @@
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 // ===============================================================================
-package com.Alachisoft.NCache.Samples.publisher;
+package com.alachisoft.ncache.samples.publisher;
 import com.alachisoft.ncache.runtime.util.TimeSpan;
 
 import java.io.*;
 import java.util.Properties;
+import java.util.Scanner;
 
 /**
  * A sample program that demonstrates how to use the messaging api in NCache.
@@ -28,7 +29,7 @@ public class RunPublisher {
             String cacheName= _properties.getProperty("CacheID");
 
             String topicName = "myTopic";
-            int messageCount = 10;
+            int messageCount = 100;
 
             // Creates a publisher's instance.
             Publisher publisher = new Publisher();
@@ -57,7 +58,8 @@ public class RunPublisher {
             }
 
             System.out.println("Press enter to continue...");
-            System.console().readLine();
+            Scanner s = new Scanner(System.in);
+            String u = s.nextLine();
 
             //Deletes the topic.
             publisher.deleteTopic(topicName);

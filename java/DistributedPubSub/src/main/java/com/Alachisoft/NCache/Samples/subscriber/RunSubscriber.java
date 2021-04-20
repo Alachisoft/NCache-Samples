@@ -7,10 +7,9 @@
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 // ===============================================================================
-package com.Alachisoft.NCache.Samples.subscriber;
+package com.alachisoft.ncache.samples.subscriber;
 
-import com.Alachisoft.NCache.Samples.callbacks.MessageReceivedCallbacks;
-
+import com.alachisoft.ncache.samples.callbacks.MessageReceivedCallbacks;
 import java.io.*;
 import java.util.Properties;
 
@@ -28,14 +27,11 @@ public class RunSubscriber {
 
             String topicName = "myTopic";
             // Creates a subscriber's instance.
-            Subscriber subscriber = new Subscriber();
+            TopicSubscriber subscriber = new TopicSubscriber();
 
             // Subscribes on it, using the provided cache-Id and the topic-name.
             MessageReceivedCallbacks messageReceivedCallbacks = new MessageReceivedCallbacks();
-            subscriber.Subscribe(cacheName, topicName, messageReceivedCallbacks);
-
-            System.out.println("Subscriber Started. Press enter to exit.");
-            System.console().readLine();
+            subscriber.subscribe(cacheName, topicName, messageReceivedCallbacks);
 
 
 

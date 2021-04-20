@@ -7,20 +7,21 @@
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 // ===============================================================================
-package com.Alachisoft.NCache.Samples.subscriber;
+package com.alachisoft.ncache.samples.subscriber;
 
-import com.Alachisoft.NCache.Samples.callbacks.MessageReceivedCallbacks;
-import com.Alachisoft.NCache.Samples.callbacks.TopicDeletedCallback;
+import com.alachisoft.ncache.samples.callbacks.MessageReceivedCallbacks;
+import com.alachisoft.ncache.samples.callbacks.TopicDeletedCallback;
 import com.alachisoft.ncache.client.Cache;
 import com.alachisoft.ncache.client.CacheManager;
 import com.alachisoft.ncache.runtime.caching.Topic;
 
 import java.io.Closeable;
+import java.util.Scanner;
 
 /**
  * Class that provides the functionality of the publisher
  */
-public class Subscriber implements Closeable {
+public class TopicSubscriber implements Closeable {
 
     private Topic _topic;
     private Cache _cache;
@@ -32,7 +33,7 @@ public class Subscriber implements Closeable {
      * @param messageReceivedCallbacks The callback which will be invoked when a message is published on the topic.
      * @throws Exception
      */
-    public void Subscribe(String cacheName, String topicName, MessageReceivedCallbacks messageReceivedCallbacks) throws Exception {
+    public void subscribe(String cacheName, String topicName, MessageReceivedCallbacks messageReceivedCallbacks) throws Exception {
         if(cacheName == null){
             throw new Exception("The CacheID cannot be null.");
         }
@@ -53,6 +54,9 @@ public class Subscriber implements Closeable {
 
         // Subscribes to the topic.
         _topic.createSubscription(messageReceivedCallbacks);
+        System.out.println("Subscriber Started. Press enter to exit.");
+        Scanner s = new Scanner(System.in);
+        String u = s.nextLine();
     }
 
     /**

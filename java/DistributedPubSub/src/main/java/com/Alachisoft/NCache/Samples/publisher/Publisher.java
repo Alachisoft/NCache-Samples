@@ -7,9 +7,9 @@
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 // ===============================================================================
-package com.Alachisoft.NCache.Samples.publisher;
+package com.alachisoft.ncache.samples.publisher;
 
-import com.Alachisoft.NCache.Samples.callbacks.MessageFailedListeners;
+import com.alachisoft.ncache.samples.callbacks.MessageFailedListeners;
 import com.alachisoft.ncache.client.Cache;
 import com.alachisoft.ncache.client.CacheManager;
 import com.alachisoft.ncache.runtime.caching.DeliveryOption;
