@@ -13,9 +13,7 @@ package com.alachisoft.ncache.samples;
 
 import com.alachisoft.ncache.client.*;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class StreamingAPI
@@ -63,19 +61,14 @@ public class StreamingAPI
      */
     private static Properties getProperties() throws IOException
     {
-        String path = System.getProperty("user.dir")
-                + File.separator
-                + "src"
-                + File.separator
-                + "main"
-                + File.separator
-                + "resources"
-                + File.separator
-                + "config.properties";
-
-        FileReader reader=new FileReader(path);
+        String path = "config.properties";
+        InputStream inputStream = StreamingAPI.class.getClassLoader().getResourceAsStream(path);
         Properties properties=new Properties();
-        properties.load(reader);
+        if (inputStream != null) {
+            properties.load(inputStream);
+        } else {
+            throw new FileNotFoundException("property file '" + path + "' not found in the classpath");
+        }
         return properties;
     }
 }
