@@ -12,12 +12,8 @@ public class DataLayer {
         _st = _conn.createStatement();
     }
 
-    private void establishConnection(String connString, String pass, String user){
-        try {
-            _conn = DriverManager.getConnection(connString, user, pass);
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-        }
+    private void establishConnection(String connString, String pass, String user) throws SQLException {
+        _conn = DriverManager.getConnection(connString, user, pass);
     }
 
     public void closeConnection() throws SQLException {

@@ -32,7 +32,7 @@ Before the sample application executed make sure that:
 - Database UserName, password and ConnectionString must be configured in config.properties.
 - For backingSource add Oracle database credentials in web manager while registering backing source.
 - Build the sample as guided in build step, from the root of the java samples using command :
-	``` - mvn clean package ```
+	``` - mvn clean package -pl BackingSource -am ```
 - Before running this sample make sure backing source is enable and following providers registered.
 	For Read Thru
 		SqlReadThruProvider
@@ -47,7 +47,7 @@ Before the sample application executed make sure that:
 	- To enable Read Through Backing Source,
 		- Click the checkbox labelled "Enable Read Through". Click on "Add Provider" button next to this checkbox.
 		- Provide a unique provider name ("SqlReadThruProvider", for example).
-		- Click on "Browse" button for library field. Select library "BackingSource.jar".
+		- Click on "Browse" button for library field. Select library "BackingSource-5.2.0.jar".
 		- Select class "com.alachisoft.ncache.samples.ReadThru" from the now populated drop down list.
 		- Specify connection string as 'connString' parameter for database that specified in config.properties. 
 		- Specify user name string as 'user' parameter for database that specified in config.properties. 
