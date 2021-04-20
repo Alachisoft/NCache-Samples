@@ -33,18 +33,11 @@ Before the sample application executed make sure that:
 - To use your compact serializable objects with NCache, you must first 'Register your application objects with NCache'.
 	- Start NCache Web Manager and create a clustered cache with the name specified in config.properties. 
 	- Now select the 'Compact Serialization' tab in the "Advanced Settings" of cache's details page 
-	- Click the 'Add Types' button to add your types. Browse for the 'sampledata-5.2.0.jar' file.
+	- Click the 'Add Types' button to add your types. Browse for the 'CompactSerialization-5.2.0.jar' file.
 	  If specified dll is not present already, you will have to build 'CompactSerializationImpl' project.
-	- Add compact types by browsing 'sampledata-5.2.0.jar'.
-	- Select the types from the list shown in the assembly browser and click 'Add Classes'.
+	- Add compact types by browsing 'CompactSerialization-5.2.0.jar'.
+	- Select the com.alachisoft.ncache.samples.compactSerializationImpl types from the list shown in the assembly browser and click 'Add Classes'.
 	- Save changes.
-	- This sample requires sample data project. Build SampleData project and install its mvn package using the following commands:
-        - Open command prompt.
-        - cd to the SampleData directory.
-        - run: 
-            - ``` mvn clean ```
-            - ``` mvn compile ```
-            - ``` mvn install ```
 
 ### Build and Run the Sample
 - Run the following commands:

@@ -40,7 +40,7 @@ public class ContinuousQuerySample {
             String query = "SELECT com.alachisoft.ncache.samples.data.Customer WHERE this.phone = ?";
 
             QueryCommand command = new QueryCommand(query);
-            command.getParameters().put("gender", "25564-4546");
+            command.getParameters().put("phone", "25564-4546");
 
             ContinuousQuery continuousQuery = new ContinuousQuery(command);
 
@@ -76,7 +76,7 @@ public class ContinuousQuerySample {
             continuousQuery.addDataModificationListener(new QueryDataModificationListener() {
                                                             @Override
                                                             public void onQueryDataModified(String s, CQEventArg cqEventArg) {
-                                                                System.out.println(s);
+                                                                System.out.println("Data modified for: "+s);
                                                             }
                                                         },
                     removeEnumSet, EventDataFilter.None);
@@ -97,8 +97,11 @@ public class ContinuousQuerySample {
 
             //This should invoke query RegisterUpdateNotification 
             cache.insert("Customer:JohnMathew", customer);
-
+            Thread.sleep(2000);
             System.out.println();
+
+            Customer updatedCustomer = cache.get("Customer:JohnMathew", Customer.class);
+            printCustomerDetails(updatedCustomer);
 
             // Unregister notifications for ItemAdded events only
             continuousQuery.removeDataModificationListener(new QueryDataModificationListener() {
@@ -121,7 +124,7 @@ public class ContinuousQuerySample {
         System.out.println();
         System.out.println("Customer Details are as follows: ");
         System.out.println("Name:       " + customer.getContactName());
-        System.out.println("Contact No: " + customer.getContactNo());
+        System.out.println("Contact No: " + customer.getPhone());
         System.out.println("Address:    " + customer.getAddress());
     }
 
