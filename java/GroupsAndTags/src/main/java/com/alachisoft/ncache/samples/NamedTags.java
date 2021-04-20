@@ -46,7 +46,7 @@ public class NamedTags {
             cache.add(product2.getId(), cacheItem2);
 
             
-            String query = "SELECT $Value$ WHERE this.Category = ? AND this.Price > ?";
+            String query = "SELECT $Value$ FROM com.alachisoft.ncache.samples.data.Product WHERE Category = ? AND Price > ?";
 
             QueryCommand command = new QueryCommand(query);
             command.getParameters().put("Category", "Electronics");
