@@ -1,4 +1,4 @@
-# FILE DEPENDENCY
+# DEPENDENCY
 
 ### Table of contents
 
@@ -22,7 +22,8 @@ Before the sample application is executed make sure that:
 
 - config.properties have been changed according to the configurations. 
 	- Change the cache name
-	
+	- Configure the file path for file dependency.
+	- Make sure file specified exists on the path.
 - By default, this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample

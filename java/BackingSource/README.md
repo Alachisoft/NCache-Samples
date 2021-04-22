@@ -30,8 +30,7 @@ Before the sample application executed make sure that:
 - ByDefault this sample uses 'demoCache', make sure the cache is running. 
 - Oracle database must be configured.
 - Database UserName, password and ConnectionString must be configured in config.properties.
-- For backingSource add Oracle database credentials in web manager while registering backing source.
-- Build the sample as guided in build step, from the root of the java samples using command :
+- Build the sample as guided in build step, from the root of the java samples using command:
 	``` - mvn clean package -pl BackingSource -am ```
 - Before running this sample make sure backing source is enable and following providers registered.
 	For Read Thru

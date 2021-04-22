@@ -40,7 +40,6 @@ Before the sample application executed make sure that:
 	- Provide the parameter "user" for databasr user name.
 	- Provide the parameter "password" for database password.
 	- These parameters provided to the cache loader assembly. 
-	- A multi-node environment requires distribution hints to run the loader.
 	- To deploy cache loader assemblies click 'Deploy Cache Loader' and select CacheLoaderImpl and SampleData assemblies and click 'OK'.
 	- Save changes.
 
