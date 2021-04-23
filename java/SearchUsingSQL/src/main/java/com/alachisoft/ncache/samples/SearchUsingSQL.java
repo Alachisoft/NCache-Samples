@@ -122,11 +122,11 @@ public class SearchUsingSQL
         //  Query can only be applied to C# Primitive data types:
         //  and for those non primitive data types whose indexes are defined in NCache manager
 
-        String query = "SELECT $Value$ FROM com.alachisoft.ncache.samples.data.Product WHERE UnitPrice > ?";
+        String query = "SELECT $Value$ FROM com.alachisoft.ncache.samples.data.Product WHERE unitPrice > ?";
 
 
         QueryCommand queryCommand = new QueryCommand(query);
-        queryCommand.getParameters().put("UnitPrice", 100);
+        queryCommand.getParameters().put("unitPrice", 100);
         CacheReader reader = _cache.getSearchService().executeReader(queryCommand);
 
         int counter = 0;
@@ -147,10 +147,10 @@ public class SearchUsingSQL
      This method queries items from the cache using projection attributes.
      */
     private static void queryItemsUsingProjection() throws CacheException, IOException, ClassNotFoundException {
-        String query = "SELECT Name, Supplier FROM com.alachisoft.ncache.samples.data.Product WHERE UnitPrice > ?";
+        String query = "SELECT Name, Supplier FROM com.alachisoft.ncache.samples.data.Product WHERE unitPrice > ?";
 
         QueryCommand queryCommand = new QueryCommand(query);
-        queryCommand.getParameters().put("UnitPrice", 100);
+        queryCommand.getParameters().put("unitPrice", 100);
         CacheReader reader = _cache.getSearchService().executeReader(queryCommand);
 
         int counter = 0;

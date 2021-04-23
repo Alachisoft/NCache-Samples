@@ -13,11 +13,10 @@
 
 This sample program demonstrates how to use the Object Query Language in NCache. 
 This sample provides you with 3 examples of OQL. Following Queries are implemented in this sample:
-- 'SELECT System.String WHERE this.Employee = "DavidBrown"' done through NamedTags.
-- 'SELECT Alachisoft.NCache.sample.data.Product WHERE this.productId = 1' done through object index definition. 
-- 'SELECT Alachisoft.NCache.sample.data.Product WHERE this.name = UninterruptedPowerSupply' done through NamedTags.
+- 'SELECT $Value$ FROM com.alachisoft.ncache.samples.data.Product WHERE productId = 1' done through object index definition. 
+- 'SELECT $Value$ FROM com.alachisoft.ncache.samples.data.Product WHERE Supplier = "Tokyo Traders" done through NamedTags.
 
-This sample uses SampleData project as a reference for model class "Product" and "Employee".
+This sample uses SampleData project as a reference for model class "Product".
 
 ### Prerequisites
 
@@ -34,11 +33,6 @@ Before the sample application is executed make sure that:
           - Save changes.
           
 - By default this sample uses 'demoCache', make sure that cache is running. 
-- This sample requires sample data project. Build SampleData project and install its mvn package using the following commands:
-    - Open command prompt.
-    - cd to the SampleData directory.
-    - run: 
-        ``` mvn clean package ```
 
 ### Build and Run the Sample
 - Run the following commands:
