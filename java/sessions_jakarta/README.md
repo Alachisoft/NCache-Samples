@@ -1,14 +1,29 @@
-====================================================================================
-				NCache JSP Sessions Sample Program
-====================================================================================
+# NCache JSP Sessions
 
-PURPOSE OF THIS SAMPLE 
-======================
+### Table of contents
+
+* [Introduction](#introduction)
+* [Prerequisites](#prerequisites)
+* [HOW TO CONFIGURE](#HOW TO CONFIGURE)
+* [Build and Run the sample](#build-and-run-the-sample)
+* [Additional Resources](#additional-resources)
+* [Technical Support](#technical-support)
+* [Copyrights](#copyrights)
+
+
+### Introduction
+
 This sample program demonstrates the usage of NCache with JSP Sessions.
 
-Application Configuration
-=========================
+### PREREQUISITES
 
+Before deploying the war file please make sure that:
+	Files session.xml and client.ncconf must pe present at the specified config path.
+	Caches specified in session.xml must exist in the 'client.ncconf' with correct
+	server ip address and these caches should be started.
+
+### HOW TO CONFIGURE
+ 
 To ensure the correct caching of sessions, you must apply this filter as the
 first filter in your deployment descriptor. Filters are executed in the
 order they are defined in deployment descriptor. To create a filter, you must
@@ -32,29 +47,21 @@ the filter will be applied to all the URLs in a web application.
             <param-value>config</param-value>
    </init-param>
 
-PREREQUISITES
-=============
-Before deploying the war file please make sure that:
-	Files session.xml and client.ncconf must pe present at the specified config path.
-	Caches specified in session.xml must exist in the 'client.ncconf' with correct
-	server ip address and these caches should be started.
+### Build and Run the sample
 
-Build Application
-=================
 Follow these steps to build the war file:
 	Run the following command: mvn package
 	Or open your project in your favourite IDE and build using maven.
 	guessgame.war will be created in the target folder.
 
-Application Deployment
-======================
+#### Application Deployment
+
 Use appropriate sample depending upon the api supported by the web server.(i.e. javax.* or jakarta.*).
 For Example: TOMCAT 10 onwards use jakarta.* api.
 
 Note: If your web server supports jakarta.* api then use this sample.
 
-TOMCAT
-======
+#### TOMCAT
 
 Note: Following instructions are used for Tomcat version 10.0.4. Steps remain the same but
 the location of the files might change depending upon the version of the tomcat.
@@ -96,3 +103,24 @@ the location of the files might change depending upon the version of the tomcat.
       Where 'host' will be the address/IP of the machine where Tomcat is installed in case 
 	  of local machine it should be 'localhost' and 'port' where Tomcat is listening the request. 
 	  Make sure that you are using the correct port. The default port for Tomcat is 8080.
+
+### Additional Resources
+
+##### Documentation
+The complete online documentation for NCache is available at:
+http://www.alachisoft.com/resources/docs/#ncache
+
+##### Programmers' Guide
+The complete programmers guide of NCache is available at:
+http://www.alachisoft.com/resources/docs/ncache/prog-guide/
+
+### Technical Support
+
+Alachisoft [C] provides various sources of technical support. 
+
+- Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
+- To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
+
+### Copyrights
+
+[C] Copyright 2021 Alachisoft 
