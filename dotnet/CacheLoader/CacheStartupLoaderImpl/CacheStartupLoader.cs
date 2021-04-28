@@ -14,6 +14,8 @@ using Alachisoft.NCache.Runtime.Caching;
 using Alachisoft.NCache.Sample.Data;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+using Alachisoft.NCache.Client;
 
 namespace Alachisoft.NCache.Samples
 {
@@ -31,98 +33,24 @@ namespace Alachisoft.NCache.Samples
     /// </summary>
     public class CacheStartupLoader : ICacheLoader
     {
-        private SqlConnection _connection;
         private string _connectionString;
         private string _query;
-        private string _hint = string.Empty;
+        private static ICache _cache;
 
         /// <summary>
         /// Initialization of the data source from which data can be loaded...
         /// </summary>
         /// <param name="parameters">Cache startup must pass the parameters for initialization</param>
-        /// <param name="cacheId">Cache ID</param>
-        public void Init(System.Collections.IDictionary parameters, string cacheId)
+        /// <param name="cacheName">Cache ID</param>
+        public void Init(IDictionary<string, string> parameters, string cacheName)
         {
             if (parameters == null && parameters.Count == 0)
                 return;
 
-            _connectionString = parameters.Contains("conn-string") ? parameters["conn-string"] as string : null;
-            _hint = parameters.Contains("distributionhint") ? parameters["distributionhint"] as string : "";
+            _connectionString = parameters.Keys.Contains("conn-string") ? parameters["conn-string"] as string : null;
             _query = "SELECT OrderID, OrderDate,  ShipName, ShipAddress, ShipCity, ShipCountry FROM Orders";
 
-            _connection = new SqlConnection(_connectionString);
-            _connection.Open();
-        }
-
-        /// <summary>
-        /// Load the Next Chunk of data from the database
-        /// </summary>
-        /// <param name="userContext"></param>
-        /// <returns></returns>
-        public LoaderResult LoadNext(object userContext)
-        {
-            return LoadOrdersFromSource(userContext);
-        }
-
-        /// <summary>
-        /// Load the Orders from the database
-        /// </summary>
-        /// <param name="userContext"></param>
-        /// <returns></returns>
-        private LoaderResult LoadOrdersFromSource(object userContext)
-        {
-            string condition;
-            switch (_hint.ToLower())
-            {
-                case "shipper1":
-                    condition = " where ShipVia = 1";
-                    return LoadOrders(condition, userContext);
-                case "shipper2":
-                    condition = " where ShipVia = 2";
-                    return LoadOrders(condition, userContext);
-                case "shipper3":
-                    condition = " where ShipVia = 3";
-                    return LoadOrders(condition, userContext);
-                default:
-                    condition = "";
-                    return LoadOrders(condition, userContext);
-            }
-        }
-
-        /// <summary>
-        /// Load the Orders from the database based on condition from the database.
-        /// </summary>
-        /// <param name="condition"></param>
-        /// <param name="userContext"></param>
-        /// <returns></returns>
-        private LoaderResult LoadOrders(string condition, object userContext)
-        {
-            LoaderResult result = new LoaderResult();
-            result.UserContext = userContext;
-            if (_connection != null)
-            {
-                SqlCommand command = new SqlCommand(_query + condition, _connection);
-                IDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    // Read and construct Order
-                    Order order = new Order();
-                    order.OrderID = int.Parse(reader[0].ToString());
-                    order.OrderDate = Convert.ToDateTime(reader[1].ToString());
-                    order.ShipName = reader[2] as string;
-                    order.ShipAddress = reader[3] as string;
-                    order.ShipCity = reader[4] as string;
-                    order.ShipCountry = reader[5] as string;
-                    // Create a Cache item
-                    // You must create ProviderCacheItem before adding to the resultant data...
-                    ProviderCacheItem cacheItem = new ProviderCacheItem(order);
-
-                    // Add to Loader data...
-                    result.Data.Add(new System.Collections.Generic.KeyValuePair<string, ProviderItemBase> ( order.OrderID.ToString(), cacheItem));
-                }
-            }
-            result.HasMoreData = false;
-            return result;
+            _cache = CacheManager.GetCache(cacheName);
         }
 
         /// <summary>
@@ -130,8 +58,135 @@ namespace Alachisoft.NCache.Samples
         /// </summary>
         public void Dispose()
         {
-            _connection.Close();
-            _connection.Dispose();
+        }
+
+        public object LoadDatasetOnStartup(string dataset)
+        {
+            IList<object> loadDatasetAtStartup;
+
+            if (string.IsNullOrEmpty(dataset))
+                throw new InvalidOperationException("Invalid dataset.");
+
+            switch (dataset.ToLower())
+            {
+                case "products":
+                    loadDatasetAtStartup = FetchProductsFromDataSouce();
+                    break;
+                case "suppliers":
+                    loadDatasetAtStartup = FetchSuppliersFromDataSouce();
+                    break;
+                default:
+                    throw new InvalidOperationException("Invalid Dataset.");
+            }
+
+            string[] keys = GetKeys(loadDatasetAtStartup);
+            IDictionary<string, CacheItem> cacheData = GetCacheItemDictionary(keys, loadDatasetAtStartup);
+            _cache.InsertBulk(cacheData);
+
+            object userContext = DateTime.Now;
+            return userContext;
+        }
+
+        public static IDictionary<string, CacheItem> GetCacheItemDictionary(string[] keys, IList<Object> value)
+        {
+            IDictionary<string, CacheItem> items = new Dictionary<string, CacheItem>();
+            CacheItem cacheItem = null;
+
+            for (int i = 0; i < value.Count - 1; i++)
+            {
+                cacheItem = new CacheItem(value[i]);
+                items.Add(keys[i], cacheItem);
+            }
+
+            return items;
+        }
+
+        public string[] GetKeys(IList<object> objects)
+        {
+            string[] keys = new string[objects.Count];
+            for (int i = 0; i < keys.Length; i++)
+            {
+                keys[i] = objects[i].GetType() == typeof(Product) ? $"ProductId:{(objects[i] as Product).Id}" : $"SupplierId:{(objects[i] as Supplier).Id}";
+            }
+
+            return keys;
+        }
+
+        private IList<object> FetchProductsFromDataSouce()
+        {
+            string Query = "select * from Products where UnitsInStock > 0";
+            return ExecuteQuery(Query, "products");
+
+        }
+
+        private IList<object> FetchSuppliersFromDataSouce()
+        {
+            string Query = "select * from Suppliers";
+            return ExecuteQuery(Query, "Suppliers");
+
+        }
+
+        private IList<object> ExecuteQuery(string Query, string dataSet)
+        {
+            IList<object> Data;
+
+            using (SqlConnection myConnection = new SqlConnection(_connectionString))
+            {
+                SqlCommand oCmd = new SqlCommand(Query, myConnection);
+
+                myConnection.Open();
+
+                using (var reader = oCmd.ExecuteReader())
+                {
+                    Data = GetData(reader, dataSet);
+                }
+
+                myConnection.Close();
+            }
+            return Data;
+        }
+
+        private IList<object> GetData(SqlDataReader sqlDataReader, string dataSet)
+        {
+            IList<object> dataList = new List<object>();
+            while (sqlDataReader.Read())
+            {
+                if (string.Compare(dataSet, "suppliers", true) == 0)
+                {
+                    Supplier supplier = new Supplier()
+                    {
+                        Id = Convert.ToInt32(sqlDataReader["SupplierID"]),
+                        CompanyName = sqlDataReader["CompanyName"].ToString(),
+                        ContactName = sqlDataReader["ContactName"].ToString(),
+                        Address = sqlDataReader["Address"].ToString()
+                    };
+                    dataList.Add(supplier);
+
+                }
+                if (string.Compare(dataSet, "Products", true) == 0)
+                {
+                    Product product = new Product()
+                    {
+                        Name = sqlDataReader["ProductName"].ToString(),
+                        Id = Convert.ToInt32(sqlDataReader["ProductID"]),
+                        UnitsAvailable = Convert.ToInt32(sqlDataReader["UnitsInStock"]),
+                        UnitPrice = Convert.ToInt32(sqlDataReader["UnitPrice"])
+                    };
+                    dataList.Add(product);
+
+                }
+            }
+            return dataList;
+        }
+
+        public object RefreshDataset(string dataset, object userContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDictionary<string, RefreshPreference> GetDatasetsToRefresh(IDictionary<string, object> userContexts)
+        {
+            throw new NotImplementedException();
         }
     }
 }

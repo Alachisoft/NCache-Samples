@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefresherSample", "RefresherSampleFramework\RefresherSample.csproj", "{9B9BBA01-F54E-4E1A-B57E-EF7B7375F9E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefresherSample", "RefresherSample\RefresherSample.csproj", "{9B9BBA01-F54E-4E1A-B57E-EF7B7375F9E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleData", "SampleData\SampleData.csproj", "{E81246D1-83FB-4F3A-9D97-30771240C713}"
 EndProject
