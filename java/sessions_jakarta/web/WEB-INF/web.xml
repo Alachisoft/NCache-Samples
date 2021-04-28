@@ -12,9 +12,9 @@
         <filter-name>NCacheSessionProvider</filter-name>
         <filter-class>com.alachisoft.ncache.web.session.NCacheSessionProvider</filter-class>
         <init-param>
-            <description>configPath is used to load the client.ncconf file</description>
+            <description>configPath is used to load the client.ncconf and session.xml files.</description>
             <param-name>configPath</param-name>
-            <param-value>C:\\Program Files\\NCache\\config</param-value>
+            <param-value>config</param-value>
         </init-param>
     </filter>
     <filter-mapping>

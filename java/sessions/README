@@ -5,65 +5,10 @@
 PURPOSE OF THIS SAMPLE 
 ======================
 This sample program demonstrates the usage of NCache with JSP Sessions.
-
-
-CONVENTIONS
-===========
-For Linux  : $NCHOME refers to installation path where NCache is 
-             installed.        
-
-For Windows: %NCHOME% refers to the installation path where NCache is 
-             installed.
-
-             
-PREREQUISITES
-=============
-This sample program requires     
-
-    - NCHOME environment variable must be set. NCHOME refers to installation 
-      path where NCache is installed. 
-
-      To set NCHOME For Linux: 
-
-        - Open shell.
-		- Type "export NCHOME=/opt/ncache" without quotes and press ENTER key. 
-          Replace /opt/ncache with the actual installation path if you have 
-          installed NCache on non-default location. 
-
-
-      To set NCHOME For Windows: 
-        - Open Command Prompt.
-        - type 'set NCHOME="C:\Program Files\NCache\"' without quotes 
-          and press enter. 
-
-    - jdk1.6 or higher
-    - Netbeans v6 or later if you are using NetBeans to build and 
-      run the project.
-
-However any other preferred method can be used compile the source 
-located at $NCHOME/java.com.alachisoft.ncache.samples/java/sessions/src/
-
-By default this sample application use the 'mycache' to store the session data. 
-So make sure that cache 'mycache' exist in the 'client.ncconf' with correct 
-server ip address and this cache should be started.
-
-Note : $NCHOME refers to the location where NCache is installed.
-
-
+          
 Application Configuration
 =========================
-
-You need to add the required libraries into project libraries located at:
-   
-    - $NCHOME/java/lib
-    - $NCHOME/java/lib/resources
-    - $NCHOME/java/lib/integrations/nc-sessionprovider.jar
-        
     
-After adding the required libraries to your application, you need to add the 
-filter in the deployment descriptor of your web application. The class file 
-containing the filter implementation is �com.alachisoft.ncache.web.session.NCacheSessionProvider�.
-
 To ensure the correct caching of sessions, you must apply this filter as the
 first filter in your deployment descriptor. Filters are executed in the 
 order they are defined in deployment descriptor. To create a filter, you must 
@@ -82,41 +27,37 @@ the filter will be applied to all the URLs in a web application.
 
     NCache session filter should be configured with following parameter. 
    <init-param>
-            <description>configPath is used to load the client.ncconf</description>
+            <description>configPath is used to load the client.ncconf and session.xml files.</description>
             <param-name>configPath</param-name>
-            <param-value>NCHOME/config</param-value>
+            <param-value>config</param-value>
    </init-param>
    
-   NCHOME is the location where NCache is installed.
+PREREQUISITES
+=============
+Before deploying the war file please make sure that:   
+	Files session.xml and client.ncconf must pe present at the specified config path.
+	Caches specified in session.xml must exist in the 'client.ncconf' with correct 
+	server ip address and these caches should be started.
+
 
 Build Application
 =================
-
-Follow these steps to successfully build the project in NetBeans.
-
-	- Open the project at the following location �$NCHOME/java.com.alachisoft.ncache.samples/java/sessions/netbeans/� in the NetBeans environment.
-
-	- Make sure that project references all the libraries located at:
-     - $NCHOME/java/lib/
-     - $NCHOME/java/lib/resources
-     - $NCHOME/java/lib/integrations/nc-sessionprovider.jar
-   
-	- Build the project, it will generate the �GuessGame.war� file in the following location 
-      $NCHOME/java.com.alachisoft.ncache.samples/java/sessions/dist
+Follow these steps to build the war file:
+	Run the following command: mvn package
+	Or open your project in your favourite IDE and build using maven.
+	guessgame.war will be created in the target folder.
 
 	  
 Application Deployment
 ======================
-The 'javax.guess-game.war' file can be located at $NCHOME/java.com.alachisoft.ncache.samples/java/sessions/dist/
-The 'jakarta.guess-game.war' file can be located at $NCHOME/java.com.alachisoft.ncache.samples/java/sessions_jakarta/dist/
 
-Use appropriate war depending upon the api supported by the web server.(i.e. javax.* or jakarta.*).
-For Example: TOMCAT 10 onwards use jakarta.* packages so use jakarta.guess-game.war for deployment.
+Use appropriate sample depending upon the api supported by the web server.(i.e. javax.* or jakarta.*).
+For Example: TOMCAT 10 onwards please refer to our sessions_jakarta sample.
 
 TOMCAT
 ======
 
-Note: Following instructions are used for Tomcat version 6.0.29. Steps remain the same but 
+Note: Following instructions are used for Tomcat version 9.0.26. Steps remain the same but 
 the location of the files might change depending upon the version of the tomcat.
 
 	- Stop server.
@@ -129,7 +70,7 @@ the location of the files might change depending upon the version of the tomcat.
    
 	  log4j.rootLogger=DEBUG, R 
 	  log4j.appender.R=org.apache.log4j.RollingFileAppender 
-	  log4j.appender.R.File=${catalina.home}/logs/nc-guessgame.log 
+	  log4j.appender.R.File=${catalina.home}/logs/nc-web.guessgame.log
 	  log4j.appender.R.MaxFileSize=10MB 
 	  log4j.appender.R.MaxBackupIndex=10 
       log4j.appender.R.layout=org.apache.log4j.PatternLayout   
@@ -145,7 +86,7 @@ the location of the files might change depending upon the version of the tomcat.
 
 	- Restart server.
 
-	- Deploy the 'GuessGame.war' file, it must be copied into the correct 
+	- Deploy the 'guessgame.war' file, it must be copied into the correct
 	  directory so Tomcat can find it.  
 	  Move the file to the directory $CATALINA_HOME/webapps.
       "$CATALINA_HOME" is the location where Tomcat is installed.  
@@ -163,7 +104,7 @@ WildFly
 
 	- NCache uses 'log4j' for logging. WildFly by default uses 'log4j' for logging so no need to place it.
 
-	- Deploy the 'GuessGame.war' file, it must be copied into the correct directory so WildFly can find it.  
+	- Deploy the 'guessgame.war' file, it must be copied into the correct directory so WildFly can find it.  
       Move the file to the directory $WildFly_HOME/server/default/deploy.
 	  "$WildFly_HOME" is the location where WildFly is installed. 
 								OR
@@ -185,7 +126,7 @@ WEBLOGIC
       $WEBLOGIC_HOME is the location where WebLogic is installed.
       DOMAIN_NAME is the domain already created.
 
-	- Deploy the 'GuessGame.war' file, it must be copied into the correct directory so 
+	- Deploy the 'guessgame.war' file, it must be copied into the correct directory so 
 	  WebLogic can find it.  Move the file to the directory 
       $WEBLOGIC_HOME/user_projects/domains/DOMAIN_NAME/autodeploy
       $WEBLOGIC_HOME is the location where WebLogic is installed.  
@@ -215,8 +156,7 @@ WEBSPHERE
 
     - You can go to Applications -> New Application -> New Enterprise Application.
 
-    - Specify the path of the 'GuessGame.war' file and click Next. You can 
-	  locate the 'GuessGame.war' at the following location $NCHOME/java.com.alachisoft.ncache.samples/session/dist
+    - Specify the path of the 'GuessGame.war' file and click Next.
 
 	- Select 'Fast Path' installation mode and click Next.
 
@@ -249,41 +189,3 @@ WEBSPHERE
 	  listening the request. Make sure that you are using the correct port. 
       The default port for WebSphere is 9080.
 	  
-	- $NCHOME/lib
-    - $NCHOME/lib/resources
-    - $NCHOME/lib/integrations/nc-sessionprovider.jar
-        
-    
-After adding the required libraries to your application, you need to add the 
-filter in the deployment descriptor of your web application. The class file 
-containing the filter implementation is �com.alachisoft.ncache.web.session.NCacheSessionProvider�.
-
-To ensure the correct caching of sessions, you must apply this filter as the
-first filter in your deployment descriptor. Filters are executed in the 
-order they are defined in deployment descriptor. To create a filter, you must 
-define it first under the <filter> tag and then provide a URL mapping for the 
-filter using <filter-mapping> tag. The following filter configuration means that 
-the filter will be applied to all the URLs in a web application. 
-
-   <filter> 
-    <filter-name>NCacheSessionProvider</filter-name> 
-    <filter-class>com.alachisoft.ncache.web.session.NCacheSessionProvider</filter-class> 
-   </filter> 
-   <filter-mapping>
-        <filter-name>NCacheSessionProvider</filter-name>
-        <url-pattern>/*</url-pattern>
-   </filter-mapping>
-
-    NCache Session filter can be configured with a number of initialization parameters.  
-	The following are the required parameters. 
-   <init-param>
-            <description>Name of running cache that will be used to persist session state.</description>
-            <param-name>cacheName</param-name>
-            <param-value>mycache</param-value>
-   </init-param>
-   <init-param>
-            <description>configPath is used to load the client.ncconf</description>
-            <param-name>configPath</param-name>
-            <param-value>$INSTALL_PATH$/config/</param-value>
-   </init-param>
-   $INSTALL_PATH$ is the location where NCache is installed.

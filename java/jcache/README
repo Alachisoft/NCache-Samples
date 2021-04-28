@@ -5,63 +5,20 @@
 PURPOSE OF THIS SAMPLE 
 =======================  
 This sample program demonstrates the usage of JCache APIs.
-  
 
-CONVENTIONS
-===========
-For Linux  : $NCHOME refers to installation path where NCache is 
-             installed.        
-
-For Windows: %NCHOME% refers to the installation path where NCache is 
-             installed.
-
-             
 PREREQUISITES
 =============
-This sample program requires     
-
-    - NCHOME environment variable must be set. NCHOME refers to installation 
-      path where NCache is installed. 
-
-      To set NCHOME For Linux: 
-
-        - Open shell.
-		- Type "export NCHOME=/opt/ncache" without quotes and press ENTER key. 
-          Replace /opt/ncache with the actual installation path if you have 
-          installed NCache on non-default location. 
-
-
-      To set NCHOME For Windows: 
-        - Open Command Prompt.
-        - type 'set NCHOME="C:\Program Files\NCache\"' without quotes 
-          and press enter. 
-
-    - jdk1.6 or higher
-    - Netbeans v6 or later if you are using NetBeans to build and 
-      run the project.     
-
-      However any other preffered method can NCache to compile the source 
-      located at $NCHOME/java.com.alachisoft.ncache.samples/java/jcache/src/
-
+Before the sample application is executed make sure that:
+    config.properties have been changed according to the configurations.
+        Change the cache name
+    By default this sample uses 'demoCache', make sure that cache is running.
 
 
 HOW TO CONFIGURE
 =================
-This sample program NCache local cache "mycache" for operations. 
-
-Local cache "mycache" can be started via:
-
-     - startcache tool.
-     - startcache tool located at $NCHOME/bin/startcache.sh (linux)
-     - startcache tool located at %NCHOME%/bin/tools/startcache.exe (windows)
-
-         OR
-
-    - NCache Web Manager currently shipped only for Windows.
-
 There are 3 ways to load NCacheCachingProvider
-	1 - The META-INF/services/javax.cache.spi.CachingProvider service definition that is located in the nc-client.jar library 
-	assures that applications using the javax.cache.Caching bootstrap class use the Coherence JCache provider by default. 
+	1 - The META-INF/services/javax.cache.spi.CachingProvider service definition that is located in the ncache-client maven
+	package assures that applications using the javax.cache.Caching bootstrap class use the Coherence JCache provider by default.
 
 	2 - The second way is to use the Caching.getCachingProvider(String) or Caching.getCachingProvider(String, ClassLoader)
 	methods to explicitly request the Coherence JCache provider implementation.  
@@ -69,35 +26,13 @@ There are 3 ways to load NCacheCachingProvider
 	3 - Third way is to override the default cache provider using the javax.cache.spi.cachingprovider system property 
 	and specifying the fully qualified name of the JCache provider implementation class. 
 
-	NOTE : Service definition is located in the nc-client.jar so that user can use ncache-provider without configuring it.
+	NOTE : Service definition is located in the ncache-client maven package so that user can use ncache-provider without configuring it.
 
-	
-
-HOW TO COMPILE AND RUN
-=======================
-Make sure JAVA_HOME environment path variable is set. 
-
-To Compile and Run via NetBeans:
-
-    - Open Netbeans IDE.
-    - Select File->Open Project
-    - Locate $NCHOME/java.com.alachisoft.ncache.samples/java/jcache
-    - Add all .jar files to project libraries located at:
-           - $NCHOME/java/lib
-           - $NCHOME/java/lib/resources
-		   - $NCHOME/java/lib/integrations/nc-jcache.jar
-    - Choose Run -> Clean and Build Project (Shift-F11) 
-    - Press F6 to run the Project and observe output in NetBeans Output window.
-  
-         OR
-
-To Compile and Run via Ant:
-
-    - Make sure $ANT_HOME environment path variable is set.
-    - Start shell (terminal/cmd)
-    - Change directory to $NCHOME/java.com.alachisoft.ncache.samples/java/jcache
-    - Type 'ant' (without quotes)
-    - This will compile the source and will place jcache.jar 
-       at $NCHOME/java.com.alachisoft.ncache.samples/java/jcache/dist/
-    - Change directory to $NCHOME/java.com.alachisoft.ncache.samples/java/jcache/dist/
-    - ncache 'java -jar jcache.jar' without quotes to run the program.
+Build and Run the sample
+=========================
+Make sure JAVA_HOME environment path variable is set.
+    Run the following commands: mvn clean package
+    Open your project in your favourite compiler and run the sample application.
+    OR cd to target and run this command:
+        cd target
+        java -cp * com.alachisoft.ncache.samples.JCacheSample
