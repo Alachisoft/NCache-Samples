@@ -10,7 +10,12 @@
 * [Copyrights](#copyrights)
 
 ### Introduction
-
+Hibernate's 1st level caching module provides session level in the process caching. Whenever a session is created, a 
+session cache is associated with it. When an object is loaded from the database, a copy of the object is maintained 
+in the session cache. If the object is to be fetched again in the same session, the cached copy of the object 
+is returned. In a particular transaction, if the same object is updated multiple times, it is only updated in session 
+cache. At committing transaction, only the final state of object is persisted in the database thus avoiding repetitive 
+update calls
 
 
 ### Prerequisites
