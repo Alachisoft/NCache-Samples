@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./head'); %>
+</head>
+<body class="container">
+<label id="Label1" class="label1">Express js The computer has selected a random number between 1 and 100 (inclusive). 
+In this game you have to try to guess the number.</label>
+<label id="Label6" class="label6">Last Guess:</label>
+<label id="lblSystemName" class="lblSystemName">Page generated at: <%= data.user%></label>
+<form action="GuessNumber" method="post">
+    <label class = "Label2">Enter a number:</label>
+    <%if (data.hasWon) { %>
+        <input type="text" name="userGuessedValue" class="txtGuess" id="userGuessedValue" disabled></input>
+        <input type="submit" class="cmdGuess" id="btnGuess" name="New Game" value="New Game" />
+    <% } else{ %>
+        <input type="text" name="userGuessedValue" class="txtGuess" id="userGuessedValue" ></input>
+        <input type="submit" class="cmdGuess" id="btnGuess" name="Guess" value="Guess" />
+    <% } %>
+</form>
+<label id="Label5" class="Label5">Previous attempts:</label>
+<label id="lblLastGuess" class="lblLastGuess"><%=data.lastValue%></label>
+<label id="Label4" class="Label4"> Attempts History ---</label>
+<label id="lblMessage" class="lblMessage"><%=data.status%></label>
+<label id="lblHint" class="lblHint">Hint: The number is between <%=data.min%> and <%=data.max%> .</label>
+<label id="lblHistory" class="lblHistory"><%=data.history%></label>
+<label ID="Label3" class="Label3">Using NCache's Session Store Provider Implementation</label>
+</body>
+</html>
