@@ -18,30 +18,57 @@ namespace Alachisoft.NCache.Sample.Data
     public class Order
     {
         /// <summary>
-        /// Unique Id of the customer
+        /// Unique Id assigned to each order
         /// </summary>
         public int OrderID
         {
-            get;
             set;
-        }
-        /// <summary>
-        /// Unique Id of the customer
-        /// </summary>
-        public string CustomerID
-        {
             get;
-            set;
         }
 
         /// <summary>
-        /// Unique Id of the customer
+        /// The time when order was made
         /// </summary>
-        public string Address
+        public DateTime OrderDate
         {
-            get;
             set;
+            get;
         }
 
+        /// <summary>
+        /// Name of the person whom order is to be delivered
+        /// </summary>
+        public string ShipName
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// The address where order is to be delivered
+        /// </summary>
+        public string ShipAddress
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// City where order is to be delivered
+        /// </summary>
+        public string ShipCity
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        /// Country where order is to be delivered
+        /// </summary>
+        public string ShipCountry
+        {
+            set;
+            get;
+        }
     }
 }

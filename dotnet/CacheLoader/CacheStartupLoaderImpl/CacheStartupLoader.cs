@@ -16,6 +16,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using Alachisoft.NCache.Client;
+using SampleData;
 
 namespace Alachisoft.NCache.Samples
 {
@@ -25,16 +26,10 @@ namespace Alachisoft.NCache.Samples
     /// It executes at the startup of the Cache if configured.
     /// Primary purpose is to load the Cache with the data on startup.
     /// 
-    /// This implementation of cache loader is implemented to run cache loader on multiple nodes 
-    /// depending on "distribution hints" in this sample we are using "ShipVia" column of "Orders"
-    /// table of "northwind" database. There are three shippers in northwind, data for different 
-    /// shippers are loaded through different distribution hint.
-    /// 
     /// </summary>
     public class CacheStartupLoader : ICacheLoader
     {
         private string _connectionString;
-        private string _query;
         private static ICache _cache;
 
         /// <summary>
@@ -48,7 +43,6 @@ namespace Alachisoft.NCache.Samples
                 return;
 
             _connectionString = parameters.Keys.Contains("conn-string") ? parameters["conn-string"] as string : null;
-            _query = "SELECT OrderID, OrderDate,  ShipName, ShipAddress, ShipCity, ShipCountry FROM Orders";
 
             _cache = CacheManager.GetCache(cacheName);
         }
@@ -72,8 +66,8 @@ namespace Alachisoft.NCache.Samples
                 case "products":
                     loadDatasetAtStartup = FetchProductsFromDataSouce();
                     break;
-                case "suppliers":
-                    loadDatasetAtStartup = FetchSuppliersFromDataSouce();
+                case "Orders":
+                    loadDatasetAtStartup = FetchOrdersFromDataSouce();
                     break;
                 default:
                     throw new InvalidOperationException("Invalid Dataset.");
@@ -106,7 +100,7 @@ namespace Alachisoft.NCache.Samples
             string[] keys = new string[objects.Count];
             for (int i = 0; i < keys.Length; i++)
             {
-                keys[i] = objects[i].GetType() == typeof(Product) ? $"ProductId:{(objects[i] as Product).Id}" : $"SupplierId:{(objects[i] as Supplier).Id}";
+                keys[i] = objects[i].GetType() == typeof(Product) ? $"ProductId:{(objects[i] as Product).Id}" : $"OrderID:{(objects[i] as Order).OrderID}";
             }
 
             return keys;
@@ -114,15 +108,15 @@ namespace Alachisoft.NCache.Samples
 
         private IList<object> FetchProductsFromDataSouce()
         {
-            string Query = "select * from Products where UnitsInStock > 0";
+            string Query = "select * from dbo.Products where UnitsInStock > 0";
             return ExecuteQuery(Query, "products");
 
         }
 
-        private IList<object> FetchSuppliersFromDataSouce()
+        private IList<object> FetchOrdersFromDataSouce()
         {
-            string Query = "select * from Suppliers";
-            return ExecuteQuery(Query, "Suppliers");
+            string Query = "select * from dbo.Orders";
+            return ExecuteQuery(Query, "Orders");
 
         }
 
@@ -151,16 +145,16 @@ namespace Alachisoft.NCache.Samples
             IList<object> dataList = new List<object>();
             while (sqlDataReader.Read())
             {
-                if (string.Compare(dataSet, "suppliers", true) == 0)
+                if (string.Compare(dataSet, "Orders", true) == 0)
                 {
-                    Supplier supplier = new Supplier()
+                    Order order = new Order()
                     {
-                        Id = Convert.ToInt32(sqlDataReader["SupplierID"]),
-                        CompanyName = sqlDataReader["CompanyName"].ToString(),
-                        ContactName = sqlDataReader["ContactName"].ToString(),
-                        Address = sqlDataReader["Address"].ToString()
+                        OrderID = Convert.ToInt32(sqlDataReader["OrderID"]),
+                        ShipName = sqlDataReader["ShipName"].ToString(),
+                        ShipAddress = sqlDataReader["ShipAddress"].ToString(),
+                        ShipCity = sqlDataReader["ShipCity"].ToString()
                     };
-                    dataList.Add(supplier);
+                    dataList.Add(order);
 
                 }
                 if (string.Compare(dataSet, "Products", true) == 0)
