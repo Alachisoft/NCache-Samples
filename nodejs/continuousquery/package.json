@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ncache-client": "^0.0.7-alpha.2"
+    "ncache-client": "^5.2.0"
   }
 }
