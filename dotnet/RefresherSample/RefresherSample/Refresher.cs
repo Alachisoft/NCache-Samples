@@ -26,20 +26,21 @@ namespace RefresherSample
             _cache = CacheManager.GetCache(cacheName);
         }
 
-        public object LoadDatasetOnStartup(string dataset)
+        public object LoadDatasetOnStartup(string dataSet)
         {
+
             IList<object> loadDatasetAtStartup;
 
-            if (string.IsNullOrEmpty(dataset))
+            if (string.IsNullOrEmpty(dataSet))
                 throw new InvalidOperationException("Invalid dataset.");
 
-            switch (dataset.ToLower())
+            switch (dataSet.ToLower())
             {
                 case "products":
                     loadDatasetAtStartup = FetchProductsFromDataSouce();
                     break;
-                case "Orders":
-                    loadDatasetAtStartup = FetchOrdersFromDataSouce();
+                case "suppliers":
+                    loadDatasetAtStartup = FetchSuppliersFromDataSouce();
                     break;
                 default:
                     throw new InvalidOperationException("Invalid Dataset.");
@@ -72,13 +73,13 @@ namespace RefresherSample
                         _cache.Insert(key, cacheItem);
                     }
                     break;
-                case "Orders":
+                case "suppliers":
                     lastRefreshTime = userContext as DateTime?;
-                    IList<Order> OrdersNeedToRefresh = FetchUpdatedOrders(lastRefreshTime) as IList<Order>;
-                    foreach (var order in OrdersNeedToRefresh)
+                    IList<Supplier> suppliersNeedToRefresh = FetchUpdatedSuppliers(lastRefreshTime) as IList<Supplier>;
+                    foreach (var supplier in suppliersNeedToRefresh)
                     {
-                        string key = $"OrderID:{order.OrderID}";
-                        CacheItem cacheItem = new CacheItem(order);
+                        string key = $"SupplierID:{supplier.Id}";
+                        CacheItem cacheItem = new CacheItem(supplier);
                         _cache.Insert(key, cacheItem);
                     }
 
@@ -109,9 +110,9 @@ namespace RefresherSample
                             DatasetsNeedToRefresh.Add(dataSet, RefreshPreference.RefreshNow);
                         }
                         break;
-                    case "Orders":
+                    case "suppliers":
                         lastRefreshTime = userContexts[dataSet] as DateTime?;
-                        datasetHasUpdated = HasOrdersDatasetUpdated(dataSet, lastRefreshTime);
+                        datasetHasUpdated = HasSupplierDatasetUpdated(dataSet, lastRefreshTime);
                         if (datasetHasUpdated)
                         {
                             DatasetsNeedToRefresh.Add(dataSet, RefreshPreference.RefreshOnNextTimeOfDay);
@@ -135,7 +136,7 @@ namespace RefresherSample
             string[] keys = new string[objects.Count];
             for (int i = 0; i < keys.Length; i++)
             {
-                keys[i] = objects[i].GetType() == typeof(Product) ? $"ProductId:{(objects[i] as Product).Id}" : $"OrderID:{(objects[i] as Order).OrderID}";
+                keys[i] = objects[i].GetType() == typeof(Product) ? $"ProductId:{(objects[i] as Product).Id}" : $"SupplierId:{(objects[i] as Supplier).Id}";
             }
 
             return keys;
@@ -162,10 +163,10 @@ namespace RefresherSample
 
         }
 
-        private IList<object> FetchOrdersFromDataSouce()
+        private IList<object> FetchSuppliersFromDataSouce()
         {
-            string Query = "select * from dbo.Orders";
-            return ExecuteQuery(Query, "Orders");
+            string Query = "select * from Suppliers";
+            return ExecuteQuery(Query, "Suppliers");
 
         }
 
@@ -177,10 +178,10 @@ namespace RefresherSample
             return result;
         }
 
-        private bool HasOrdersDatasetUpdated(string dataSet, object dateTime)
+        private bool HasSupplierDatasetUpdated(string dataSet, object dateTime)
         {
             bool result = false;
-            string query = $"select count(*) from Orders where OrderDate > '{dateTime as DateTime?}' and RequiredDate > '{dateTime as DateTime?}'";
+            string query = $"select count(*) from Suppliers where CreationTime > '{dateTime as DateTime?}' and LastModify > '{dateTime as DateTime?}'";
             result = ExecuteAggregateQuery(query) > 0;
             return result;
         }
@@ -192,7 +193,7 @@ namespace RefresherSample
 
         }
 
-        private IList<object> FetchUpdatedOrders(object dateTime)
+        private IList<object> FetchUpdatedSuppliers(object dateTime)
         {
             string Query = $"select * from Products where CreationTime > '{dateTime as DateTime?}' and LastModify > '{dateTime as DateTime?}'";
             return ExecuteQuery(Query, "products");
@@ -244,16 +245,16 @@ namespace RefresherSample
             IList<object> dataList = new List<object>();
             while (sqlDataReader.Read())
             {
-                if (string.Compare(dataSet, "Orders", true) == 0)
+                if (string.Compare(dataSet, "suppliers", true) == 0)
                 {
-                    Order orders = new Order()
+                    Supplier supplier = new Supplier()
                     {
-                        OrderID = Convert.ToInt32(sqlDataReader["OrderID"]),
-                        ShipName = sqlDataReader["ShipName"].ToString(),
-                        ShipAddress = sqlDataReader["ShipAddress"].ToString(),
-                        ShipCity = sqlDataReader["ShipCity"].ToString()
+                        Id = Convert.ToInt32(sqlDataReader["SupplierID"]),
+                        CompanyName = sqlDataReader["CompanyName"].ToString(),
+                        ContactName = sqlDataReader["ContactName"].ToString(),
+                        Address = sqlDataReader["Address"].ToString()
                     };
-                    dataList.Add(orders);
+                    dataList.Add(supplier);
 
                 }
                 if (string.Compare(dataSet, "Products", true) == 0)
