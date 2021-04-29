@@ -4,7 +4,7 @@
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
-* [HOW TO CONFIGURE](#HOW TO CONFIGURE)
+* [How To Configure](#how-to-configure)
 * [Build and Run the sample](#build-and-run-the-sample)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
@@ -23,7 +23,7 @@ Before the sample application is executed make sure that:
     - By default this sample uses 'demoCache', make sure that cache is running.
 
 
-### HOW TO CONFIGURE
+### How To Configure
 
 There are 3 ways to load NCacheCachingProvider.
 
