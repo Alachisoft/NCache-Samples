@@ -18,33 +18,33 @@ This sample program demonstrates the usage of JCache APIs.
 
 Before the sample application is executed make sure that:
 
-    - config.properties have been changed according to the configurations.
-        - Change the cache name.
-    - By default this sample uses 'demoCache', make sure that cache is running.
+   - config.properties have been changed according to the configurations.
+       - Change the cache name.
+   - By default this sample uses 'demoCache', make sure that cache is running.
 
 
 ### How To Configure
 
 There are 3 ways to load NCacheCachingProvider.
 
-	1 - The META-INF/services/javax.cache.spi.CachingProvider service definition that is located in the ncache-client maven
+ 1 - The META-INF/services/javax.cache.spi.CachingProvider service definition that is located in the ncache-client maven
 	package assures that applications using the javax.cache.Caching bootstrap class use the Coherence JCache provider by default.
 
-	2 - The second way is to use the Caching.getCachingProvider(String) or Caching.getCachingProvider(String, ClassLoader)
+2 - The second way is to use the Caching.getCachingProvider(String) or Caching.getCachingProvider(String, ClassLoader)
 	methods to explicitly request the Coherence JCache provider implementation.  
 
-	3 - Third way is to override the default cache provider using the javax.cache.spi.cachingprovider system property 
+3 - Third way is to override the default cache provider using the javax.cache.spi.cachingprovider system property 
 	and specifying the fully qualified name of the JCache provider implementation class. 
 
-	NOTE : Service definition is located in the ncache-client maven package so that user can use ncache-provider without configuring it.
+NOTE : Service definition is located in the ncache-client maven package so that user can use ncache-provider without configuring it.
 
 Build and Run the sample
 =========================
-    Run the following commands: mvn clean package
-    Open your project in your favourite compiler and run the sample application.
-    OR cd to target and run this command:
-        cd target
-        java -cp * com.alachisoft.ncache.samples.JCacheSample
+- Run the following commands: mvn clean package
+- Open your project in your favourite compiler and run the sample application.
+- OR cd to target and run this command:
+    - cd target
+    - java -cp * com.alachisoft.ncache.samples.JCacheSample
         
 ### Additional Resources
 

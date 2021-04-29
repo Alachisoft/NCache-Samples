@@ -30,6 +30,7 @@ define it first under the <filter> tag and then provide a URL mapping for the
 filter using <filter-mapping> tag. The following filter configuration means that 
 the filter will be applied to all the URLs in a web application. 
 
+```
    <filter> 
     <filter-name>NCacheSessionProvider</filter-name> 
     <filter-class>com.alachisoft.ncache.web.session.NCacheSessionProvider</filter-class> 
@@ -45,21 +46,19 @@ the filter will be applied to all the URLs in a web application.
             <param-name>configPath</param-name>
             <param-value>config</param-value>
    </init-param>
-
+```
 
 ### Build and Run the sample
 
 Follow these steps to build the war file:
-	Run the following command: mvn package
-	Or open your project in your favourite IDE and build using maven.
-	guessgame.war will be created in the target folder.
-
-	  
-#### Application Deployment
+- Run the following command: 
+    - mvn package
+- Or open your project in your favourite IDE and build using maven.
+    - guessgame.war will be created in the target folder.
 
 Use appropriate sample depending upon the api supported by the web server.(i.e. javax.* or jakarta.*).
 For Example: TOMCAT 10 onwards please refer to our sessions_jakarta sample.
-
+	  
 #### TOMCAT
 
 Note: Following instructions are used for Tomcat version 9.0.26. Steps remain the same but 
