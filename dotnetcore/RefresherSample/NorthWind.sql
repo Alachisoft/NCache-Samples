@@ -222,7 +222,7 @@ CREATE TABLE "Suppliers" (
 	"Fax" nvarchar (24) NULL ,
 	"HomePage" "ntext" NULL ,
 	"CreationTime" "datetime" null DEFAULT (GETDATE()),
-	"LastModify" "datetime" null,
+	"LastModify" "datetime" null DEFAULT (GETDATE()),
 	CONSTRAINT "PK_Suppliers" PRIMARY KEY  CLUSTERED 
 	(
 		"SupplierID"
@@ -302,7 +302,7 @@ CREATE TABLE "Products" (
 	"ReorderLevel" "smallint" NULL CONSTRAINT "DF_Products_ReorderLevel" DEFAULT (0),
 	"Discontinued" "bit" NOT NULL CONSTRAINT "DF_Products_Discontinued" DEFAULT (0),
 	"CreationTime" "datetime" null DEFAULT (GETDATE()),
-	"LastModify" "datetime" null,
+	"LastModify" "datetime" null DEFAULT (GETDATE()),
 	CONSTRAINT "PK_Products" PRIMARY KEY  CLUSTERED 
 	(
 		"ProductID"
