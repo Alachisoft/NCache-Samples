@@ -154,7 +154,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-xcopy "C:\Users\amtul_qadeer\Documents\GitHub\NCache-Samples\legacy-api\dotnet\NCacheLINQ\packages\Alachisoft.NCache.SDK.5.0.0\additionalLib\Oracle.ManagedDataAccess.dll" "$(ProjectDir)\bin\$(ConfigurationName)\" /Y /I</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

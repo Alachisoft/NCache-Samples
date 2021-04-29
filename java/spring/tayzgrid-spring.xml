@@ -1,0 +1,7 @@
+<application-config enable-cache-exception="true" default-cache-name="default">
+    <caches>
+        <cache name="CustomerCollectionCache" tayzgrid-instance="mycache" priority="normal" expiration-type="absolute" expiration-period="10"/>
+        <cache name="CustomerEntityCache" tayzgrid-instance="mycache" priority="normal" expiration-type="absolute" expiration-period="10"/>
+        <cache name="default" tayzgrid-instance="mycache" priority="normal" expiration-type="sliding" expiration-period="15" />
+    </caches>
+</application-config>

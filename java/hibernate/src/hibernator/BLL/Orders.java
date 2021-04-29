@@ -11,15 +11,45 @@
 package hibernator.BLL;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+@Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "OrdersCache")
 public class Orders
 {
 
-    private int _orderID, _shippedName, _shipAddress, _shipCity, _shipRegion, _shipPostalCode;
+    @Id
+    @Column(name = "OrderID")    
+    private int _orderID;
+        
+    @Column(name = "CustomerID")    
     private String _customerID;
-    private Date _orderDate, _shippedDate;
+
+    @Column(name = "ShipName")    
+    private String _shippedName;
     
-    public Orders(int _orderID, int _shippedName, int _shipAddress, int _shipCity, int _shipRegion, int _shipPostalCode, String _customerID, Date _orderDate, Date _shippedDate)
+    @Column(name = "ShipAddress")    
+    private String _shipAddress;
+    
+    @Column(name = "ShipCity")    
+    private String _shipCity;
+        
+    @Column(name = "ShipRegion")    
+    private String _shipRegion;
+    
+    @Column(name = "ShipPostalCode")    
+    private String _shipPostalCode;
+                
+//    @Column(name = "OrderDate")
+//    private Date _orderDate;
+//
+//    @Column(name = "ShippedDate")
+//    private Date _shippedDate;
+    
+    public Orders(int _orderID, String _shippedName, String _shipAddress, String _shipCity, String _shipRegion, String _shipPostalCode, String _customerID, Date _orderDate, Date _shippedDate)
     {
         this._orderID = _orderID;
         this._shippedName = _shippedName;
@@ -28,8 +58,8 @@ public class Orders
         this._shipRegion = _shipRegion;
         this._shipPostalCode = _shipPostalCode;
         this._customerID = _customerID;
-        this._orderDate = _orderDate;
-        this._shippedDate = _shippedDate;
+//        this._orderDate = _orderDate;
+//        this._shippedDate = _shippedDate;
     }
 
     public Orders()
@@ -42,42 +72,42 @@ public class Orders
         this._customerID = _customerID;
     }
 
-    public void setOrderDate(Date _orderDate)
-    {
-        this._orderDate = _orderDate;
-    }
+//    public void setOrderDate(Date _orderDate)
+//    {
+//        this._orderDate = _orderDate;
+//    }
 
     public void setOrderID(int _orderID)
     {
         this._orderID = _orderID;
     }
 
-    public void setShipAddress(int _shipAddress)
+    public void setShipAddress(String _shipAddress)
     {
         this._shipAddress = _shipAddress;
     }
 
-    public void setShipCity(int _shipCity)
+    public void setShipCity(String _shipCity)
     {
         this._shipCity = _shipCity;
     }
 
-    public void setShipPostalCode(int _shipPostalCode)
+    public void setShipPostalCode(String _shipPostalCode)
     {
         this._shipPostalCode = _shipPostalCode;
     }
 
-    public void setShipRegion(int _shipRegion)
+    public void setShipRegion(String _shipRegion)
     {
         this._shipRegion = _shipRegion;
     }
 
-    public void setShippedDate(Date _shippedDate)
-    {
-        this._shippedDate = _shippedDate;
-    }
+//    public void setShippedDate(Date _shippedDate)
+//    {
+//        this._shippedDate = _shippedDate;
+//    }
 
-    public void setShippedName(int _shippedName)
+    public void setShippedName(String _shippedName)
     {
         this._shippedName = _shippedName;
     }
@@ -87,42 +117,42 @@ public class Orders
         return _customerID;
     }
 
-    public Date getOrderDate()
-    {
-        return _orderDate;
-    }
+//    public Date getOrderDate()
+//    {
+//        return _orderDate;
+//    }
 
     public int getOrderID()
     {
         return _orderID;
     }
 
-    public int getShipAddress()
+    public String getShipAddress()
     {
         return _shipAddress;
     }
 
-    public int getShipCity()
+    public String getShipCity()
     {
         return _shipCity;
     }
 
-    public int getShipPostalCode()
+    public String getShipPostalCode()
     {
         return _shipPostalCode;
     }
 
-    public int getShipRegion()
+    public String getShipRegion()
     {
         return _shipRegion;
     }
 
-    public Date getShippedDate()
-    {
-        return _shippedDate;
-    }
+//    public Date getShippedDate()
+//    {
+//        return _shippedDate;
+//    }
 
-    public int getShippedName()
+    public String getShippedName()
     {
         return _shippedName;
     }

@@ -19,10 +19,10 @@
 -- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `customer`;
+DROP TABLE IF EXISTS `customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customer` (
+CREATE TABLE `customers` (
   `CustomerID` varchar(255) NOT NULL,
   `Address` varchar(255) DEFAULT NULL,
   `City` varchar(255) DEFAULT NULL,
@@ -39,9 +39,9 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-LOCK TABLES `customer` WRITE;
+LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('ALFKI','Obere Str. 57','Berlin','Alfreds Futterkiste','Maria Anders','Germany','12209',NULL),('ANATR','Avda. de la Constituci¢n 2222','M‚xico D.F.','Ana Trujillo Emparedados y helados','Ana Trujillo','Mexico','05021',NULL),('ANTON','Mataderos  2312','M‚xico D.F.','Antonio Moreno Taquer¡a','Antonio Moreno','Mexico','05023',NULL),('AROUT','120 Hanover Sq.','London','Around the Horn','Thomas Hardy','UK','WA1 1DP',NULL),('BERGS','Berguvsv„gen  8','Lule†','Berglunds snabbk”p','Christina Berglund','Sweden','S-958 22',NULL),('BLAUS','Forsterstr. 57','Mannheim','Blauer See Delikatessen','Hanna Moos','Germany','68306',NULL),('BLONP','24, place Kl‚ber','Strasbourg','Blondesddsl pŠre et fils','Fr‚d‚rique Citeaux','France','67000',NULL),('BOLID','C/ Araquil, 67','Madrid','B¢lido Comidas preparadas','Mart¡n Sommer','Spain','28023',NULL),('BONAP','C/ Araquil, 67','Marseille','Bon app','Laurence Lebihan','France','13008',NULL),('BOTTM','23 Tsawassen Blvd.','Tsawassen','Bottom-Dollar Markets','Elizabeth Lincoln','Canada','T2F 8M4',NULL);
+INSERT INTO `customers` VALUES ('ALFKI','Obere Str. 57','Berlin','Alfreds Futterkiste','Maria Anders','Germany','12209',NULL),('ANATR','Avda. de la Constituci¢n 2222','M‚xico D.F.','Ana Trujillo Emparedados y helados','Ana Trujillo','Mexico','05021',NULL),('ANTON','Mataderos  2312','M‚xico D.F.','Antonio Moreno Taquer¡a','Antonio Moreno','Mexico','05023',NULL),('AROUT','120 Hanover Sq.','London','Around the Horn','Thomas Hardy','UK','WA1 1DP',NULL),('BERGS','Berguvsv„gen  8','Lule†','Berglunds snabbk”p','Christina Berglund','Sweden','S-958 22',NULL),('BLAUS','Forsterstr. 57','Mannheim','Blauer See Delikatessen','Hanna Moos','Germany','68306',NULL),('BLONP','24, place Kl‚ber','Strasbourg','Blondesddsl pŠre et fils','Fr‚d‚rique Citeaux','France','67000',NULL),('BOLID','C/ Araquil, 67','Madrid','B¢lido Comidas preparadas','Mart¡n Sommer','Spain','28023',NULL),('BONAP','C/ Araquil, 67','Marseille','Bon app','Laurence Lebihan','France','13008',NULL),('BOTTM','23 Tsawassen Blvd.','Tsawassen','Bottom-Dollar Markets','Elizabeth Lincoln','Canada','T2F 8M4',NULL);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 

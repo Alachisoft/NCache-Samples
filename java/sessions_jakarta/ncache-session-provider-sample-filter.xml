@@ -1,0 +1,13 @@
+<filter>
+	<filter-name>NCacheSessionProvider</filter-name>
+	<filter-class>com.alachisoft.ncache.web.session.NCacheSessionProvider</filter-class>
+	<init-param>
+			<description>configPath is used to load the client.ncconf</description>
+			<param-name>configPath</param-name>
+			<param-value>NCHOME/config/</param-value>
+	</init-param>
+    <filter-mapping>
+        <filter-name>NCacheSessionProvider</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</filter>

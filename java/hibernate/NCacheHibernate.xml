@@ -1,13 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
-<application-config application-id="myapp" enable-cache-exception="true" default-region-name="DefaultRegion" key-case-sensitivity="false">
-	<cache-regions>
-		<region name="SlidingExpirationRegion" cache-name="mycache" priority="default" expiration-type="sliding" expiration-period="8"/>
-		<region name="DefaultRegion" cache-name="mycache" priority="default" expiration-type="none" expiration-period="0" />
-	</cache-regions>
-	
-	<database-dependencies>
-	<!-- Database dependency not supported with mysql. Use Oracle or SQL Server for using this feature-->
-<!--		<dependency entity-name="hibernator.BLL.Customer" type="oledb" sql-statement="select ContactName from dbo.Customers where CustomerID =?" cache-key-format="depdency.customer:[pk]"/>-->
-	</database-dependencies>
-</application-config>
+  <application-config application-id="myapp1" enable-cache-exception="true" default-region-name="DefaultRegion" key-case-sensitivity="false">
+    <cache-regions>
+      <region name="hibernator.BLL.Customer:Customer" cache-name="demoCache" priority="BelowNormal" expiration-type="Absolute" expiration-period="8"/>
+      <region name="CustomRegion" cache-name="demoCache" priority="default" expiration-type="sliding" expiration-period="8"/>
+      <region name="DefaultRegion" cache-name="demoCache" priority="default" expiration-type="none" expiration-period="0"/>
+      <region name="default-update-timestamps-region" cache-name="demoCache" priority="default" expiration-type="none" expiration-period="0"/>
+    </cache-regions>
+ <database-dependencies>
+      <dependency entity-name="hibernator.BLL.Customers" type="oracle" sql-statement="select ContactName from Customer where CustomerID =&apos;?&apos;" cache-key-format="hibernator.BLL.Customers#[pk]" connection-string="Data Source=(DESCRIPTION =(ADDRESS =(PROTOCOL = TCP)(HOST = 127.0.0.1)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED) (SERVICE_NAME = orcl))); User Id=scott; Password=12345678"/>
+      <!--  <dependency entity-name="hibernator.BLL.Customers" type="oledb" sql-statement="select ContactName from dbo.Customers where CustomerID =?" cache-key-format="[pk]:customer" connection-string="Provider=SQLOLEDB;Server=localhost;Database=hibernatedb;Uid=diyatech_alachi;Pwd=islamabad;"/>  -->
+  </database-dependencies>
+  </application-config>
 </configuration>
