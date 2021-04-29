@@ -17,14 +17,16 @@ This sample program demonstrates the usage of JCache APIs.
 ### Prerequisites
 
 Before the sample application is executed make sure that:
-    config.properties have been changed according to the configurations.
-        Change the cache name
-    By default this sample uses 'demoCache', make sure that cache is running.
+
+    - config.properties have been changed according to the configurations.
+        - Change the cache name.
+    - By default this sample uses 'demoCache', make sure that cache is running.
 
 
 ### HOW TO CONFIGURE
 
-There are 3 ways to load NCacheCachingProvider
+There are 3 ways to load NCacheCachingProvider.
+
 	1 - The META-INF/services/javax.cache.spi.CachingProvider service definition that is located in the ncache-client maven
 	package assures that applications using the javax.cache.Caching bootstrap class use the Coherence JCache provider by default.
 
