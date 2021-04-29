@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RefresherSampleFramework")]
+[assembly: AssemblyTitle("RefresherSampleUsage")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RefresherSampleFramework")]
+[assembly: AssemblyProduct("RefresherSampleUsage")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9b9bba01-f54e-4e1a-b57e-ef7b7375f9e1")]
+[assembly: Guid("206b66ed-4be5-4bb0-8439-07f226917102")]
 
 // Version information for an assembly consists of the following four values:
 //

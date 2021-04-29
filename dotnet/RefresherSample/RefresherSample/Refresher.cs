@@ -20,9 +20,7 @@ namespace RefresherSample
             if (parameters != null && parameters.Count > 0)
                 _connectionString = parameters.ContainsKey("ConnectionString")
                     ? parameters["ConnectionString"] as string : string.Empty;
-            if (string.IsNullOrEmpty(cacheName))
-                throw new ArgumentException("Cache name cannot be null or empty");
-
+            
             _cache = CacheManager.GetCache(cacheName);
         }
 
@@ -166,14 +164,14 @@ namespace RefresherSample
         private IList<object> FetchSuppliersFromDataSouce()
         {
             string Query = "select * from Suppliers";
-            return ExecuteQuery(Query, "Suppliers");
+            return ExecuteQuery(Query, "suppliers");
 
         }
 
         private bool HasProductDatasetUpdated(string dataSet, object dateTime)
         {
             bool result = false;
-            string query = $"select count(*) from Products where CreationTime > '{dateTime as DateTime?}' and LastModify > '{dateTime as DateTime?}'";
+            string query = $"select count(*) from dbo.Products where LastModify > '{dateTime as DateTime?}'";
             result = ExecuteAggregateQuery(query) > 0;
             return result;
         }
@@ -181,22 +179,22 @@ namespace RefresherSample
         private bool HasSupplierDatasetUpdated(string dataSet, object dateTime)
         {
             bool result = false;
-            string query = $"select count(*) from Suppliers where CreationTime > '{dateTime as DateTime?}' and LastModify > '{dateTime as DateTime?}'";
+            string query = $"select count(*) from dbo.Suppliers where LastModify > '{dateTime as DateTime?}'";
             result = ExecuteAggregateQuery(query) > 0;
             return result;
         }
 
         private IList<object> FetchUpdatedProducts(object dateTime)
         {
-            string Query = $"select * from Products where CreationTime > '{dateTime as DateTime?}' and LastModify > '{dateTime as DateTime?}'";
+            string Query = $"select * from dbo.Products where LastModify > '{dateTime as DateTime?}'";
             return ExecuteQuery(Query, "products");
 
         }
 
         private IList<object> FetchUpdatedSuppliers(object dateTime)
         {
-            string Query = $"select * from Products where CreationTime > '{dateTime as DateTime?}' and LastModify > '{dateTime as DateTime?}'";
-            return ExecuteQuery(Query, "products");
+            string Query = $"select * from dbo.Suppliers where LastModify > '{dateTime as DateTime?}'";
+            return ExecuteQuery(Query, "suppliers");
 
         }
 
@@ -257,7 +255,7 @@ namespace RefresherSample
                     dataList.Add(supplier);
 
                 }
-                if (string.Compare(dataSet, "Products", true) == 0)
+                if (string.Compare(dataSet, "products", true) == 0)
                 {
                     Product product = new Product()
                     {
