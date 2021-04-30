@@ -1,0 +1,51 @@
+root { display: block; }
+body {
+    text-align: center;
+    vertical-align: middle;
+    font-family: Georgia,'Times New Roman',times,serif;
+}
+table.wrapper {
+    width: 70%;
+    margin-left: 15%;
+    background-color: #EFF5FB;
+    border: solid #81BEF7 3px;
+}
+table {
+    width: 100%;
+    background-color: #EFF5FB;
+}
+caption{
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-weight: bold;
+    height: 45px;
+    vertical-align: middle;
+    background-color: #81BEF7;
+}
+th{
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #F7BE81;
+    border-width: 2px;
+    height: 30px;
+}
+td{
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 12px;
+}
+p.error{
+    color: red;
+    font-weight: bold;
+}
+p.success {
+    color: blue;
+    font-weight: bold;
+}
+
+p.hint{
+    color: blue;
+}
+
+p {
+    vertical-align: middle;
+}
