@@ -157,7 +157,7 @@ namespace Alachisoft.NCache.Samples
                     dataList.Add(order);
 
                 }
-                if (string.Compare(dataSet, "Products", true) == 0)
+                if (string.Compare(dataSet, "products", true) == 0)
                 {
                     Product product = new Product()
                     {
