@@ -1,4 +1,4 @@
-# REFRESHER SAMPLE
+# Cache Loader and REFRESHER SAMPLE
 
 ### Table of contents
 

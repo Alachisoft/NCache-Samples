@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace RefresherSample
+namespace LoaderAndRefresherSample
 {
-    public class Refresher : ICacheLoader
+    public class LoaderRefresher : ICacheLoader
     {
         private string _connectionString;
         private static ICache _cache;

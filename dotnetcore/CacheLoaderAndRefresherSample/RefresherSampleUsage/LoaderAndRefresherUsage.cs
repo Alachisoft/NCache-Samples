@@ -19,7 +19,7 @@ namespace Alachisoft.NCache.Samples
     /// <summary>
     /// Class that provides the functionality of the sample
     /// </summary>
-    public class RefresherUsage
+    public class LoaderAndRefresherUsage
     {
         private static ICache _cache;
 

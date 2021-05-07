@@ -12,7 +12,7 @@ namespace Alachisoft.NCache.Samples
         {
             try
             {
-                Alachisoft.NCache.Samples.RefresherUsage.Run();
+                Alachisoft.NCache.Samples.LoaderAndRefresherUsage.Run();
             }
             catch (Exception exception)
             {
