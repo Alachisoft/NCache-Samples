@@ -1,99 +1,140 @@
 package com.alachisoft.ncache.springbootsample.bookstore;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.lang.NonNull;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@org.hibernate.annotations.NamedQuery(name = "Book.findBookByIsbn",
+query = "select b from Book b where b.isbn = ?1")
 public class Book implements Serializable {
-    @JsonProperty("isbn")
-    private long _isbn;
-    @JsonProperty("title")
-    private String _title;
-    @JsonProperty("subtitle")
-    private String _subTitle;
-    @JsonProperty("author")
-    private String _author;
-    @JsonProperty("published")
-    private Date _publishedDate;
-    @JsonProperty("publisher")
-    private String _publisher;
-    @JsonProperty("pages")
-    private long _pages;
-    @JsonProperty("description")
-    private String _description;
-    @JsonProperty("website")
-    private String _webURL;
 
-    public long getISBN() {
-        return _isbn;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private long isbn;
+
+    private String title;
+
+    public Book(){}
+
+    public long getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(long _isbn) {
-        this._isbn = _isbn;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setIsbn(long isbn) {
+        this.isbn = isbn;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Book(long isbn, String title, String subTitle,
+                String author, Date publishedDate, String publisher,
+                long pages, String description, String webURL) {
+        this.isbn = isbn;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.author = author;
+        this.publishedDate = publishedDate;
+        this.publisher = publisher;
+        this.pages = pages;
+        this.description = description;
+        this.webURL = webURL;
+    }
+
+    private String subTitle;
+
+    private String author;
+
+    private Date publishedDate;
+
+    private String publisher;
+
+    private long pages;
+
+    @Column(length=3000)
+    private String description;
+
+    private String webURL;
+
+    public long getISBN() {
+        return isbn;
+    }
+
+    public void setISBN(long isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
-        return _title;
+        return title;
     }
 
-    public void setTitle(String _title) {
-        this._title = _title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSubTitle() {
-        return _subTitle;
+        return subTitle;
     }
 
-    public void setSubTitle(String _subTitle) {
-        this._subTitle = _subTitle;
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
     }
 
     public String getAuthor() {
-        return _author;
+        return author;
     }
 
-    public void setAuthor(String _author) {
-        this._author = _author;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public Date getPublishedDate() {
-        return _publishedDate;
+        return publishedDate;
     }
 
-    public void setPublishedDate(Date _publishedDate) {
-        this._publishedDate = _publishedDate;
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
     public String getPublisher() {
-        return _publisher;
+        return publisher;
     }
 
-    public void setPublisher(String _publisher) {
-        this._publisher = _publisher;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
     public long getPages() {
-        return _pages;
+        return pages;
     }
 
-    public void setPages(long _pages) {
-        this._pages = _pages;
+    public void setPages(long pages) {
+        this.pages = pages;
     }
 
     public String getDescription() {
-        return _description;
+        return description;
     }
 
-    public void setDescription(String _description) {
-        this._description = _description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getWebURL() {
-        return _webURL;
+        return webURL;
     }
 
-    public void setWebURL(String _webURL) {
-        this._webURL = _webURL;
+    public void setWebURL(String webURL) {
+        this.webURL = webURL;
     }
 }

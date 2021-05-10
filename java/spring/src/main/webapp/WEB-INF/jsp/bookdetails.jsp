@@ -19,6 +19,7 @@
                 <th>ISBN</th>
                 <th>Book Title</th>
                 <th>Sub Title</th>
+                <th>Pages</th>
                 <th>Author</th>
                 <th>Publisher</th>
             </tr>
@@ -30,6 +31,7 @@
                 <td> <% out.println(book.getISBN()); %> </td>
                 <td> <% out.println(book.getTitle()); %> </td>
                 <td> <% out.println(book.getSubTitle()); %> </td>
+                <td> <% out.println(book.getPages()); %> </td>
                 <td> <% out.println(book.getAuthor()); %> </td>
                 <td> <% out.println(book.getPublisher()); %> </td>
             </tr>
