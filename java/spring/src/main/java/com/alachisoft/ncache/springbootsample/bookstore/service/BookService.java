@@ -25,7 +25,6 @@ public class BookService {
     @Autowired
     private BookRepository repo;
 
-    @Cacheable("books")
     public List<Book> listAll() {
         return repo.findAll();
     }
@@ -43,7 +42,7 @@ public class BookService {
         return repo.findById(id);
     }
 
-    @CachePut(value = "books", key = "#isbn")
+    @Cacheable(value = "books", key = "#isbn")
     public Book findBookByIsbn(long isbn) {
         Book book = repo.findBookByIsbn(isbn);
         return book;
