@@ -15,7 +15,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class BookController {
@@ -89,11 +88,5 @@ public class BookController {
         String errorMessage = "The book with ISBN: " + isbn + " is not available.";
         model.put("errorMessage", errorMessage);
         return new ModelAndView(new RedirectView("bookstore"));
-    }
-
-    @GetMapping("/books")
-    public Book findBook(@PathVariable long isbn) {
-        List<Book> books = booksService.listAll();
-        return (Book)books.stream().filter(b -> b.getISBN() == isbn);
     }
 }

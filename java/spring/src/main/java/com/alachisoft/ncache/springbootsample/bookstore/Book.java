@@ -1,7 +1,5 @@
 package com.alachisoft.ncache.springbootsample.bookstore;
 
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
