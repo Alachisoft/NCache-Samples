@@ -50,7 +50,7 @@ Before running this sample make sure that:
 - Open your project in your favourite compiler and run the sample application.
 - OR cd to **target**(where jars are copied) folder and run this command:
     - ``` cd target ```
-    - ``` java -cp * ncache.spring.jcache-0.0.1-SNAPSHOT.war ```
+    - ``` java -jar ncache.spring.jcache-0.0.1-SNAPSHOT.war ```
     
 - After running this sample application for the first time a table with a name book will be created in a
   database. Initially, the table will empty there won't be any data, so there are two ways to create a new book:
