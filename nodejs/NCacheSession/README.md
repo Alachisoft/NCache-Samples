@@ -1,4 +1,4 @@
-# DISTRIBUTED QUEUE
+# GUESS GAME with SESSION STORE PROVIDER
 
 ### Table of contents
 
@@ -11,23 +11,24 @@
 
 ### Introduction
 
-This sample program demonstrates how to use the NCache Distributed Queue API. 
-It shows how to initialize the cache instance and perform Queue Data Structure related tasks from NCache.
+It is a simple node.js application integrated with NCache Session Store Provider and provides a simple guessgame. 
+User is asked to guess a number between 1 and 100. 
+The guesses made by the user are stored in the cache and are displayed on the same web page.
 
 ### Prerequisites
 
 Before the sample application is executed make sure that:
 
+- NCache 5.2 or later is required
 - app.config.json have been changed according to the configurations. 
-	- Change the cache name
+	- change the cache name
 - By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
-
 - Run command 
 	- '''npm install'''
 - To Run the sample application, execute following command
-	- ''' node ./index.js''' 
+	- ''' node ./test/test-express.js'''
 
 ### Additional Resources
 

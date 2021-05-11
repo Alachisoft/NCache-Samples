@@ -1,3 +1,4 @@
+//@ts-check
 const {CacheManager,CacheItem,QueryCommand,ContinuousQuery,EventType,EventDataFilter,JsonDataType} = require('ncache-client');
 const QueryDataModificationListener = require('ncache-client/src/client/QueryDataModificationListener');
 const config = require('./app.config.json');
@@ -87,7 +88,7 @@ async function QueryKeysInCache(queryCommand) {
     const cacheReader = await searchService.executeReader(queryCommand);
     if (cacheReader.getFieldCount() > 0) {
         while (await cacheReader.read()) {
-            key = cacheReader.getString(0);
+            let key = cacheReader.getString(0);
             console.log("key: ",key);
 
             // A second call to fetch product details
@@ -131,25 +132,25 @@ async function  UnRegisterQuery(continuousQuery) {
 function QueryDataModified(_string, cQEventArg) {
      // Print output on console
      console.log("Continuous Query data modification event is received from cache.");
-    //  switch (cQEventArg.getEventType())
-    //  {
-    //     case EventType.ItemAdded:
-    //         console.log(`${_string} is added to cache`);
-    //         break;
-    //     case EventType.ItemRemoved:
-    //         console.log(`${_string} is removed from cache`);
-    //         break;
-    //     case EventType.ItemUpdated:
-    //         console.log(`${_string} is updated in cache`);
-    //         if (cQEventArg.getItem())
-    //         {
-    //             const product = cQEventArg.getItem();
-    //             PrintCustomerDetails(product);
-    //         }
-    //         break;
-    //     default:
-    //         break;
-    //  }
+     switch (cQEventArg.getEventType())
+     {
+        case EventType.ItemAdded:
+            console.log(`${_string} is added to cache`);
+            break;
+        case EventType.ItemRemoved:
+            console.log(`${_string} is removed from cache`);
+            break;
+        case EventType.ItemUpdated:
+            console.log(`${_string} is updated in cache`);
+            if (cQEventArg.getItem())
+            {
+                const product = cQEventArg.getItem();
+                this.PrintCustomerDetails(product);
+            }
+            break;
+        default:
+            break;
+     }
 }
 function CreateNewProduct() {
     return({Id : 1, Name : "Dairy Milk Cheese", ClassName : "ClassA", Category : "Edibles",UnitPrice:12});
