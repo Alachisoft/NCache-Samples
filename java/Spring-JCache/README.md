@@ -37,6 +37,10 @@ Before running this sample make sure that:
 ```
   cacheManager.createCache("demoCache", mutableConfiguration);
 ```
+- **application.properties** file changed according to configuration.
+    - **spring.datasource.url:** contains the database url, change database name IP address if needed.
+    - **spring.datasource.username:** contains datasource username.
+    - **spring.datasource.password:** contains datasource password.
 - ByDefault this sample uses 'demoCache', make sure cache is running.
 
 ### Build and Run the sample
@@ -47,6 +51,17 @@ Before running this sample make sure that:
 - OR cd to **target**(where jars are copied) folder and run this command:
     - ``` cd target ```
     - ``` java -cp * ncache.spring.jcache-0.0.1-SNAPSHOT.war ```
+    
+- After running this sample application for the first time a table with a name book will be created in a
+  database. Initially, the table will empty there won't be any data, so there are two ways to create a new book:
+    - either by creating a book one by one from the sample application by clicking on a Create new book button,
+      from this you can also check each book you have created is also cached in NCache by checking the cache count.
+    - A quick way to add books to the table is by running an SQL script(sqlDataScript.sql) shipped with the sample,
+      and you can find it in resources. After running the script refresh the application in the browser, and you will
+      see the data.
+    - After creating the items in the table you can cache any item either by searching them with ISBN or by updating
+      them. Both operations will cache the data in NCache, and the item will be removed after the expiration, or you
+      can also remove it by deleting the item by pressing the delete button.
 
 ### Additional Resources
 
