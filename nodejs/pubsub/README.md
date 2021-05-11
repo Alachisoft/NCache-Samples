@@ -31,14 +31,14 @@ Before the sample application is executed make sure that:
 
 - app.config.json have been changed according to the configurations. 
 	- Change the cache name
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     
-- Build Solution 
-- Run the NonDurableSubscriber.
-- Run the DurableSubscriber.
-- Run the Publisher.
+- Run command 
+	- '''npm install'''
+- To Run the sample application, execute following command
+	- ''' node ./index.js'''  
 
 
 ### Additional Resources

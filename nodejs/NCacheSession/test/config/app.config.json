@@ -1,7 +1,7 @@
 {
     "ncacheStore": {
         "ttl": 3600,
-        "cacheName":"myCache",
+        "cacheName":"demoCache",
         "disableTouch":false,
         "sessionTag":"sess"
     }

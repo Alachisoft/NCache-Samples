@@ -1,5 +1,5 @@
 {
     "cacheProperties" : {
-        "cacheName":"myPartitionedCache"
+        "cacheName":"demoCache"
     }
 }

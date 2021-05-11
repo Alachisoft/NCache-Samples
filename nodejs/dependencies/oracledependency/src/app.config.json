@@ -1,9 +1,9 @@
 {
     "cacheProperties" : {
-        "cacheName":"myPartitionedCache"
+        "cacheName":"demoCache"
     },
     "db":{
-        "sqlconnectionString": "Data Source=20.200.20.25;Database=Northwind;User ID=sa;password = 4Islamabad",
-        "oracleConnectionString": "jdbc:oracle:thin:SCOTT/diyatech@//20.200.20.54/orcl.diyatech.org.pk"
+        "sqlconnectionString": "Data Source=localhost;Database=Northwind;User ID=sa;password = xxxxxxxx",
+        "oracleConnectionString": "jdbc:oracle:thin:SCOTT/diyatech@//localhost/orcl.diyatech.org.pk"
       }
 }

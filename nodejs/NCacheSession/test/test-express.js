@@ -1,7 +1,7 @@
 (async () => {
     try {
         const path = require('path')
-        const config = require(path.join(__dirname,'config','config'));
+        const config = require(path.join(__dirname,'config','app.config'));
         const session = require('express-session');
         const ncacheStore = require('ncache-sessions')(session);
         const bodyParser = require('body-parser');
@@ -36,8 +36,8 @@
          app.get('*',(req,res) => {
              res.redirect('/');
          });
-         app.listen(3000, () => {
-             console.log(`Session Example app listening at http://localhost:${3000}`)
+         app.listen(5000, () => {
+             console.log(`Session Example app listening at http://localhost:${5000}`)
          });
     }
     catch(err) {

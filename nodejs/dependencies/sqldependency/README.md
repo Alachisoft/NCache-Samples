@@ -50,11 +50,14 @@ GRANT SEND ON SERVICE :: "NCacheSQLService-[IP-Address]"to[User Name];
 	- Change the cache name 
 	- conn-string to connect with database.
 	
-- By default this sample uses 'myPartitionedCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
-    
-- Run the sample application.
+   
+- Run command 
+	- '''npm install'''
+- To Run the sample application, execute following command
+	- ''' node ./index.js'''     
 
 ### Additional Resources
 
