@@ -1,6 +1,7 @@
-<%@ page import="java.util.Map" %>
-<%@ page import="com.alachisoft.ncache.springbootsample.bookstore.Book" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +13,9 @@
 <body>
 <br/><br/>
 <div class="container">
+    <div>
+        <a type="button" class="btn btn-primary btn-md" href="${pageContext.request.contextPath}/bookstore/new">Add New Book</a>
+    </div>
     <p>Following books are available in the book store.</p>
     <div class="container">
         <table class="table">
@@ -20,27 +24,25 @@
                 <th>ISBN</th>
                 <th>Book Title</th>
                 <th>Sub Title</th>
+                <th>Pages</th>
                 <th>Author</th>
                 <th>Publisher</th>
+                <th></th>
             </tr>
-            <%
-                Object result = request.getAttribute("availableBooks");
-                Map books = (Map)result;
-                for (Object bookDetails : books.entrySet()) {
-                    Map.Entry<Long, Book> entry = (Map.Entry<Long, Book>)bookDetails;
-                    Long isbn = entry.getKey();
-                    Book book = entry.getValue();
-            %>
-            <tr>
-                <td> <% out.println(isbn); %> </td>
-                <td> <% out.println(book.getTitle()); %> </td>
-                <td> <% out.println(book.getSubTitle()); %> </td>
-                <td> <% out.println(book.getAuthor()); %> </td>
-                <td> <% out.println(book.getPublisher()); %> </td>
-            </tr>
-            <%
-                }
-            %>
+            <c:forEach items="${availableBooks}" var="book">
+                <tr>
+                    <td>${book.isbn}</td>
+                    <td>${book.title}</td>
+                    <td>${book.subTitle}</td>
+                    <td>${book.pages}</td>
+                    <td>${book.author}</td>
+                    <td>${book.publisher}</td>
+                    <td><a type="button" class="btn btn-success"
+                           href="/bookstore/edit?id=${book.id}">Update</a>
+                        <a type="button" class="btn btn-warning"
+                           href="/bookstore/delete/?id=${book.id}">Delete</a></td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
