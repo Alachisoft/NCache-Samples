@@ -31,16 +31,16 @@
                  </tr>
                  <c:forEach items="${availableBooks}" var="book">
                      <tr>
-                         <td>${book.isbn}</td>
+                         <td>${book.id}</td>
                          <td>${book.title}</td>
                          <td>${book.subTitle}</td>
                          <td>${book.pages}</td>
                          <td>${book.author}</td>
                          <td>${book.publisher}</td>
                          <td><a type="button" class="btn btn-success"
-                                href="/bookstore/edit?id=${book.id}">Update</a>
+                                href="${pageContext.request.contextPath}/bookstore/edit?id=${book.id}">Update</a>
                              <a type="button" class="btn btn-warning"
-                                href="/bookstore/delete/?id=${book.id}">Delete</a></td>
+                                href="${pageContext.request.contextPath}/bookstore/delete/?id=${book.id}">Delete</a></td>
                      </tr>
                  </c:forEach>
              </tbody>

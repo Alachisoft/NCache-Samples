@@ -20,22 +20,17 @@ public class BookService {
         return repo.findAll();
     }
 
-    @CachePut(value = "books", key = "#book.getISBN()")
-    public void save(Book book) {
-        repo.save(book);
+    @CachePut(value = "books", key = "#book.id")
+    public Book save(Book book) {
+        return repo.save(book);
     }
 
-    @CachePut(value = "books", key = "#book.getISBN()")
-    public void update(Book book) { repo.save(book); }
+    @CachePut(value = "books", key = "#book.id")
+    public Book update(Book book) { return repo.save(book); }
 
     @Cacheable(value = "books", key = "#id")
-    public Book get(int id) {
+    public Book get(long id) {
         return repo.findById(id);
-    }
-
-    @Cacheable(value = "books", key = "#isbn")
-    public Book findBookByIsbn(long isbn) {
-        return repo.findBookByIsbn(isbn);
     }
 
     @CacheEvict(value = "books", allEntries = true)
