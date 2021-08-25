@@ -15,8 +15,12 @@ This sample program demonstrates how to use LINQ Queries with NCache.
 This sample provides you with 3 examples of LINQ Queries.
 There are two modules in this sample:
 - SampleData (Class library)
-	- This module some attributes of Products. The Product class and its
-		attributes are also implemented in this module.
+	- This module contains 3 classes:
+		- Customer
+		- Order
+		- Product
+		- Suppliers
+	- The attributes of these classes are also implemented in this module.
 - NCacheLINQ (Console application)
 	- Simple console application that presents you a menu to select the query you want to execute against the cache. This application uses 'demoCache' by default. You can specify any other from app.config. 
 	- Following LINQ Queries are implemented in this sample:
