@@ -32,6 +32,8 @@ namespace Alachisoft.NCache.Samples
                 Alachisoft.NCache.Samples.Tags.Run();
 
                 Alachisoft.NCache.Samples.NamedTags.Run();
+
+                Console.ReadKey();
             }
             catch (Exception ex)
             {

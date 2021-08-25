@@ -13,7 +13,7 @@
 
 This sample demonstrates the use of Groups, Tags and NamedTags feature of NCache. 
 	Group:
-		Add items with Group/Subgroup into the cache. and uses API to get the items using Group/Subgroup.
+		Add items with Group into the cache. and uses API to get the items using Group.
 	Tags:
 		Add items with Tags, and use different Tag API to fetch the tagged items from the cache.
 	NamedTags:
