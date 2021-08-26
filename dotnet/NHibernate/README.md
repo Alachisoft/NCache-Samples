@@ -12,14 +12,12 @@
 ### Introduction
 
 This sample program demonstrates how to use the NHibernate integration for NCache and Database Dependency. 
-This sample application explains integrating NHibernate (OR mapping tool) with NCache to cache the data and enabling database 
-dependency in NHibernate applications.
+This sample application explains integrating NHibernate (OR mapping tool) with NCache to cache the data and enabling database dependency in NHibernate applications.
 There are two modules in this sample.
 - NHibernator
 	- Simple Class library that maps the database table with .net objects using NHibernate assembly.
 - NHibernateTest
-	- Console Application that creates a Factory object presented in the above module to get the data. The objects that are used in these 
-operations are cached using NCache. You can see the count of the cache items in the stats window of 'demoCache' (default cache for this sample).
+	- Console Application that creates a Factory object presented in the above module to get the data. The objects that are used in these operations are cached using NCache. You can see the count of the cache items in the stats window of 'demoCache' (default cache for this sample).
 
 This sample uses SampleData project as a reference for model class "Customer".
 
