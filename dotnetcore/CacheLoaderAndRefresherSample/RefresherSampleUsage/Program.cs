@@ -6,17 +6,15 @@ namespace Alachisoft.NCache.Samples
     {
         static void Main(string[] args)
         {
-            static void Main(string[] args)
-            {
+
                 try
                 {
-                    Alachisoft.NCache.Samples.LoaderAndRefresherUsage.Run();
+                                    Alachisoft.NCache.Samples.LoaderAndRefresherUsage.Run();
                 }
                 catch (Exception exception)
                 {
                     Console.WriteLine(exception.Message);
                 }
-            }
         }
     }
 }
