@@ -26,9 +26,10 @@ Before the sample application is executed make sure that:
 - app.config have been changed according to the configurations. 
 	- change the cache name
 - To use this sample, you must first specify the indexes of the objects you want to query in the cache.
+          - Build the project to generate 'SampleData.dll'.
           - Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
           - Now select the 'Query Indexes' tab in the "Advanced Settings" of cache's details page.
-          - Add a query index by browsing 'sampledata.dll'. 
+          - Add a query index by browsing 'SampleData.dll'. 
           - Select the 'Products' class and click 'Add Selected Classes'.
           - Check the class and all of its attributes and click OK.
           - Save changes.

@@ -32,7 +32,8 @@ Before the sample application is executed make sure that:
 	- To enable Custom Dependency,
 		- Click the checkbox labelled "Enable Custom Dependency". Click on "Add Provider" button next to this checkbox.
 		- Provide a unique provider name ("CustomDependencyProvider", for example).Make sure the name matches with the one specified in the provider in the CustomDependencyImpl project.
-		- Click on "Browse" button for library field. Select library "CustomDependencyImpl.dll".
+		- Click on "Browse" button for library field. Select library "CustomDependencyImpl.dll". If "CustomerDependencyImp1.dll" is not present then you need to build the project.
+		- Click on "Browse" button for library field. Select library "CustomDependencyImpl.dll". 
 		- Select class "Alachisoft.NCache.Samples.Providers.CustomDependencyProvider" from the now populated drop down list.
 		- Specify connection string as 'connstring' parameter for database that specified in app.config. 
 	- Custom Dependency provider files need to be deployed.
