@@ -26,7 +26,7 @@ There are two modules in this sample:
 	- Following LINQ Queries are implemented in this sample:
 		- FROM product in products WHERE product.ProductID > 10 SELECT product;
 		- FROM product in products WHERE product.Category == 4 SELECT product;
-		- FROM product in products WHERE product.ProductID < 10 && product.Supplier == 1 SELECT product;
+		- FROM product in products WHERE product.ProductID < 10 && product.UnitPrice == 1 SELECT product;
 
 This sample uses SampleData project as a reference for model class "Product".
 
