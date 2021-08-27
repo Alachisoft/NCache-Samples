@@ -15,6 +15,7 @@ using Alachisoft.NCache.Sample.Data;
 using System.Configuration;
 using Alachisoft.NCache.Client;
 using Alachisoft.NCache.Runtime.Dependencies;
+using System.IO;
 
 namespace Alachisoft.NCache.Samples
 {
@@ -65,14 +66,15 @@ namespace Alachisoft.NCache.Samples
         /// </summary>
         private static void AddFileBasedDependency()
         {
-            string dependecyfile = Environment.GetEnvironmentVariable("NCHOME") + @"\Samples\dotnetcore\Dependencies\FileBasedDependency\DependencyFile\foobar.txt";
-
+            string basePath = Directory.GetCurrentDirectory().Split(new string[] { "\\FileDependency\\bin" }, StringSplitOptions.None)[0];
+            string dependencyfile = basePath + "\\DependencyFile\\foobar.txt";
+            dependencyfile = "\\\\pdc\\File Share\\DEV\\Zeeshan Majeed\\foobar.txt";
             // Generate a new instance of product 
             Product product = new Product { Id = 52, Name = "Filo Mix", Category = "Grains/Cereals", UnitPrice = 46 };
 
             // Adding item dependent on file 
             CacheItem cacheItem = new CacheItem(product);
-            cacheItem.Dependency = new FileDependency(dependecyfile);
+            cacheItem.Dependency = new FileDependency(dependencyfile);
             _cache.Add("Product:"+product.Id, cacheItem);
 
             Console.WriteLine("\nItem 'Product:52' added to cache with file dependency. ");
@@ -82,18 +84,18 @@ namespace Alachisoft.NCache.Samples
             // Following code modifies the file and then verifies the existence of item in cache.
 
             //// Modify file programmatically
-            //ModifyDependencyFile(dependecyfile);
-            
-            //////... and then check for its existence
-            //object item = _cache.Get<object>("Product:52");
-            //if (item == null)
-            //{
-            //    Console.WriteLine("Item has been removed due to file dependency.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("File based dependency did not work. Dependency file located at " + dependecyfile + " might be missing or file not changed within the given interval.");
-            //}
+            ModifyDependencyFile(dependencyfile);
+            Console.ReadKey();
+            ////... and then check for its existence
+            object item = _cache.Get<object>("Product:" + product.Id);
+            if (item == null)
+            {
+                Console.WriteLine("Item has been removed due to file dependency.");
+            }
+            else
+            {
+                Console.WriteLine("File based dependency did not work. Dependency file located at " + dependencyfile + " might be missing or file not changed within the given interval.");
+            }
 
             // Remove sample data from Cache to 
             _cache.Remove("Product:"+product.Id);
