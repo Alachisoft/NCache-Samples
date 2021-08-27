@@ -13,11 +13,11 @@
 
 This sample program demonstrates how to use the Object Query Language in NCache. 
 This sample provides you with 3 examples of OQL. Following Queries are implemented in this sample:
-- 'SELECT System.String WHERE this.Employee = "DavidBrown"' done through NamedTags.
-- 'SELECT Alachisoft.NCache.sample.data.Product WHERE this.productId = 1' done through object index definition. 
-- 'SELECT Alachisoft.NCache.sample.data.Product WHERE this.name = UninterruptedPowerSupply' done through NamedTags.
+- 'SELECT $Value$ FROM Alachisoft.NCache.Sample.Data.Product WHERE Supplier = "Tokyo Traders"' done through NamedTags.
+- 'SELECT $Value$ FROM Alachisoft.NCache.Sample.Data.Product WHERE UnitPrice > 100' done through object index definition. 
+- 'SELECT Name, Supplier FROM Alachisoft.NCache.Sample.Data.Product WHERE UnitPrice > 100' done through Projection.
 
-This sample uses SampleData project as a reference for model class "Product" and "Employee".
+This sample uses SampleData project as a reference for model class "Product".
 
 ### Prerequisites
 

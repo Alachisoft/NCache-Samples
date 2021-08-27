@@ -9,12 +9,11 @@
 // ===============================================================================
 
 using System;
-using System.Threading;
-using Alachisoft.NCache.Runtime;
 using Alachisoft.NCache.Sample.Data;
 using Alachisoft.NCache.Runtime.Dependencies;
 using System.Configuration;
 using Alachisoft.NCache.Client;
+using System.IO;
 
 namespace Alachisoft.NCache.Samples
 {
@@ -65,7 +64,8 @@ namespace Alachisoft.NCache.Samples
         /// </summary>
         private static void AddFileBasedDependency()
         {
-            string dependencyfile = Environment.GetEnvironmentVariable("NCHOME") + @"\Samples\dotnet\Dependencies\FileBasedDependency\DependencyFile\foobar.txt";
+            string basePath = Directory.GetCurrentDirectory().Split(new string[] { "\\FileDependency\\bin" }, StringSplitOptions.None)[0];
+            string dependencyfile = basePath + "\\DependencyFile\\foobar.txt";
 
             // Generate a new instance of product 
             Product product = new Product { Id = 52, Name = "Filo Mix", Category = "Grains/Cereals", UnitPrice = 46 };

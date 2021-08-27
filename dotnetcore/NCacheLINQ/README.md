@@ -26,7 +26,7 @@ There are two modules in this sample:
 	- Following LINQ Queries are implemented in this sample:
 		- FROM product in products WHERE product.ProductID > 10 SELECT product;
 		- FROM product in products WHERE product.Category == 4 SELECT product;
-		- FROM product in products WHERE product.ProductID < 10 && product.Supplier == 1 SELECT product;
+		- FROM product in products WHERE product.ProductID < 10 && product.UnitPrice == 1 SELECT product;
 
 This sample uses SampleData project as a reference for model class "Product".
 
@@ -38,9 +38,10 @@ Before the sample application is executed make sure that:
 - app.config have been changed according to the configurations. 
 	- change the cache name
 - To use this sample, you must first specify the indexes of the objects you want to query in the cache.
+		  - Build the project to generate 'SampleData.dll'.
           - Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
           - Now select the 'Query Indexes' tab in the "Advanced Settings" of cache's details page.
-          - Add a query index by browsing 'sampledata.dll'. 
+          - Add a query index by browsing 'SampleData.dll'. 
           - Select the 'Product' class and click 'Add Selected Classes'.
           - Check the class and all of its attributes and click OK.
           - Save changes.
