@@ -30,7 +30,7 @@ Before the sample application is executed make sure that:
 	```xml
     <ncContentOptimization>
     	<settings enableViewstateCaching="true" enableTrace="false">
-        	<cacheSettings cacheName="demoLocalCache" connectionRetryInterval="300">
+        	<cacheSettings cacheName="demoCache" connectionRetryInterval="300">
             	<expiration type="None" duration="100"/>
             </cacheSettings>
         </settings>

@@ -61,7 +61,7 @@ databases, you may have to make changes to the App.config file of the NHibernate
         - By default this sample uses 'demoCache', make sure that cache is running. 
 		- These settings for NHibernateTest program can be changed from the  'NCacheNHibernate.xml' file located at:
 ```
-<NCache Root>\Samples\dotnet\NHibernate\NHibernateTest
+<NCache Root>\Samples\dotnet\NHibernate\NHibernator
 ```
 - app.config have been changed according to the configurations. 
 
