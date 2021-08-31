@@ -65,7 +65,6 @@ databases, you may have to make changes to the App.config file of the NHibernate
 ```
 - app.config have been changed according to the configurations. 
 
-
 ### Build and Run the Sample
     
 - Run the sample application.

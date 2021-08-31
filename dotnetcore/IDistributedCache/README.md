@@ -11,12 +11,11 @@
 
 ### Introduction
 
-This sample illustrates the use of a distributed cache. This sample demonstrates the scenario described in the [Work with a distributed cache in ASP.NET Core].
+This sample illustrates the use of a distributed cache. This sample demonstrates the scenario described in the [Work with a distributed cache in ASP.NET Core](https://www.infoworld.com/article/3342120/how-to-use-ncache-in-aspnet-core.html).
 
 It uses a partitioned cache named, 'demoCache', which is registered on your machine upon the installation of NCache. 
 
 To start or re-register this cache later, you can use NCache Web Manager or NCache command line tools.
-
 
 ### Prerequisites
 
