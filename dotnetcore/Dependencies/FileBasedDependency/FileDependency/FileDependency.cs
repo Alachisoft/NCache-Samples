@@ -68,7 +68,8 @@ namespace Alachisoft.NCache.Samples
         {
             string basePath = Directory.GetCurrentDirectory().Split(new string[] { "\\FileDependency\\bin" }, StringSplitOptions.None)[0];
             string dependencyfile = basePath + "\\DependencyFile\\foobar.txt";
-            Console.WriteLine(basePath);
+
+            dependencyfile = "\\\\pdc\\File Share\\DEV\\Zeeshan Majeed\\foobar.txt";
             // Generate a new instance of product 
             Product product = new Product { Id = 52, Name = "Filo Mix", Category = "Grains/Cereals", UnitPrice = 46 };
 
@@ -83,11 +84,19 @@ namespace Alachisoft.NCache.Samples
             // Any change in the file will cause invalidation of cache item and thus the item will be removed from cache.
             // Following code modifies the file and then verifies the existence of item in cache.
 
+
+            // Modify file programmatically
+            ModifyDependencyFile(dependencyfile);
+
+            ////... and then check for its existence
+            object item = _cache.Get<object>("Product:52");
+
             //// Modify file programmatically
             ModifyDependencyFile(dependencyfile);
             Console.ReadKey();
             ////... and then check for its existence
-            object item = _cache.Get<object>("Product:" + product.Id);
+            item = _cache.Get<object>("Product:" + product.Id);
+
             if (item == null)
             {
                 Console.WriteLine("Item has been removed due to file dependency.");

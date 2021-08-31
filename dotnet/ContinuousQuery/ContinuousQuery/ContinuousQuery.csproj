@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Alachisoft.NCache.SDK">
-      <Version>5.2.0</Version>
+      <Version>5.2.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

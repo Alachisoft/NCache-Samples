@@ -158,9 +158,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="tls.ncconf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="tls.ncconf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\SampleData\SampleData\SampleData.csproj">

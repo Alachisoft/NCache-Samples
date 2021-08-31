@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLDependency", "SQLDependency\SQLDependency.csproj", "{4F88150F-4CC7-4A0B-8784-745F3FDCDAC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleData", "..\..\SampleData\SampleData\SampleData.csproj", "{CE303057-BBD4-455E-B7B5-DB8C330E8D7E}"
@@ -30,5 +32,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D95A8A6-2962-411B-98C9-728897059BBB}
 	EndGlobalSection
 EndGlobal
