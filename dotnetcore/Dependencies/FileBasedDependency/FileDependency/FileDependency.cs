@@ -68,7 +68,7 @@ namespace Alachisoft.NCache.Samples
         {
             string basePath = Directory.GetCurrentDirectory().Split(new string[] { "\\FileDependency\\bin" }, StringSplitOptions.None)[0];
             string dependencyfile = basePath + "\\DependencyFile\\foobar.txt";
-            dependencyfile = "\\\\pdc\\File Share\\DEV\\Zeeshan Majeed\\foobar.txt";
+            Console.WriteLine(basePath);
             // Generate a new instance of product 
             Product product = new Product { Id = 52, Name = "Filo Mix", Category = "Grains/Cereals", UnitPrice = 46 };
 
