@@ -43,6 +43,7 @@ Before the sample application is executed make sure that:
 		- Click the checkbox labelled "Enable Read Through". Click on "Add Provider" button next next to this checkbox.
 		- Provide a unique provider name ("SqlReadThruProvider", for example).
 		- Click on "Browse" button for library field. Select library "BackingSource.Providers.Sql.dll".
+		- If "BackingSource.Providers.Sql.dll" is not present, build the solution to generate the DLL file.
 		- Select class "Alachisoft.NCache.Samples.Providers.SqlReadThruProvider" from the now populated drop down list.
 		- Specify connection string as 'connstring' parameter for database that specified in app.config. 
 	- Similarly, to enable Write Thru backing source, follow the same steps as above. Choose "Alachisoft.NCache.Samples.Providers.SqlWriteThruProvider" from the class drop down list.

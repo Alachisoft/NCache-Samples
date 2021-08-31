@@ -158,8 +158,19 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Alachisoft.NCache.SDK">
-      <Version>5.2.0</Version>
+      <Version>5.2.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="client.ncconf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="config.ncconf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="tls.ncconf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

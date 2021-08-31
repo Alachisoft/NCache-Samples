@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCachingProviderDemo", "EFCachingProvider\EFCachingProvider.csproj", "{7B877A50-5008-4295-9A18-FED8B7009E09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCachingProvider", "EFCachingProvider\EFCachingProvider.csproj", "{7B877A50-5008-4295-9A18-FED8B7009E09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7A622A5-7AA8-4EFF-B1AC-CD3C93C0CAD7}
 	EndGlobalSection
 EndGlobal

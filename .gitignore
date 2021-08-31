@@ -5,7 +5,10 @@
 node_modules/
 
 # All ncconf files
-*/*/*/*.ncconf
+**/*.ncconf
+
+# Job Scheduling files
+**/*.xsd
 
 # User-specific files
 *.rsuser
