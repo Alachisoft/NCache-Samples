@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.2.0" />
+    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.2.0.1" />
     <PackageReference Include="Bogus" Version="29.0.2" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.7" />
