@@ -12,10 +12,4 @@
     <ProjectReference Include="..\SampleData\SampleData.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="tls.ncconf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

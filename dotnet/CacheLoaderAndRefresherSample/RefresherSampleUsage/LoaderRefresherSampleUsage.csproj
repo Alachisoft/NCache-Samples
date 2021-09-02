@@ -135,13 +135,8 @@
     <None Include="config.ncconf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="job_scheduling_data_2_0.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
-    <None Include="tls.ncconf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="tls.ncconf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleData\SampleData.csproj">
