@@ -142,6 +142,11 @@ function QueryDataModified(_string, cQEventArg) {
             break;
         case EventType.ItemUpdated:
             console.log(`${_string} is updated in cache`);
+            if (cQEventArg.getItem())
+            {
+                const product = cQEventArg.getItem();
+                this.PrintCustomerDetails(product);
+            }
             break;
         default:
             break;

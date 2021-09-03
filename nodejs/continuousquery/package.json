@@ -1,5 +1,5 @@
 {
-  "name": "continuousquery",
+  "name": "ContinuousQuery",
   "version": "1.0.0",
   "description": "* [Introduction](#introduction)\r * [Prerequisites](#prerequisites)\r * [Build and Run the sample](#build-and-run-the-sample)\r * [Additional Resources](#additional-resources)\r * [Technical Support](#technical-support)\r * [Copyrights](#copyrights)",
   "main": "index.js",
