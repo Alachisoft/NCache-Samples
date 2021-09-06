@@ -15,14 +15,18 @@ This sample program demonstrates how to use LINQ Queries with NCache.
 This sample provides you with 3 examples of LINQ Queries.
 There are two modules in this sample:
 - SampleData (Class library)
-	- This module some attributes of Products. The Product class and its
-		attributes are also implemented in this module.
+	- This module contains 3 classes:
+		- Customer
+		- Order
+		- Product
+		- Suppliers
+	- The attributes of these classes are also implemented in this module.
 - NCacheLINQ (Console application)
 	- Simple console application that presents you a menu to select the query you want to execute against the cache. This application uses 'demoCache' by default. You can specify any other from app.config. 
 	- Following LINQ Queries are implemented in this sample:
 		- FROM product in products WHERE product.ProductID > 10 SELECT product;
 		- FROM product in products WHERE product.Category == 4 SELECT product;
-		- FROM product in products WHERE product.ProductID < 10 && product.Supplier == 1 SELECT product;
+		- FROM product in products WHERE product.ProductID < 10 && product.UnitPrice == 1 SELECT product;
 
 This sample uses SampleData project as a reference for model class "Product".
 
@@ -34,9 +38,10 @@ Before the sample application is executed make sure that:
 - app.config have been changed according to the configurations. 
 	- change the cache name
 - To use this sample, you must first specify the indexes of the objects you want to query in the cache.
+		  - Build the project to generate 'SampleData.dll'.
           - Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
           - Now select the 'Query Indexes' tab in the "Advanced Settings" of cache's details page.
-          - Add a query index by browsing 'sampledata.dll'. 
+          - Add a query index by browsing 'SampleData.dll'. 
           - Select the 'Product' class and click 'Add Selected Classes'.
           - Check the class and all of its attributes and click OK.
           - Save changes.

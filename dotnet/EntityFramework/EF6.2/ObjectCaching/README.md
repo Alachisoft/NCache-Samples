@@ -29,7 +29,7 @@ Before the sample application is executed make sure that:
 	- Change connection string for the SQL database in app.config.
 - Make sure SQL service is running and server host Northwind sample database.
 - Verify that app-id is same as specified in efcaching.config in the configuration folder **[InstallDir]\config**.
-- By default this sample uses 'demoLocalCache', make sure that cache is running. 
+- By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
     

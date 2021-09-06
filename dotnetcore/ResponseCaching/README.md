@@ -35,7 +35,7 @@ Before the sample application is executed make sure that:
 	- Change the cache name
 		- By default this sample uses 'demoCache', make sure that cache is running. 
 	- Change the connection string
-		- By default this sample uses 'Mydbstring', make sure that connection string connect with sql server. 
+		- By default this sample uses 'DBServer1', make sure that connection string connect with sql server. 
 
 ### Build and Run the Sample
     

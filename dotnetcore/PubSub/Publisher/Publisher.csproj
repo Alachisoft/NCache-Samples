@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.2.0" />
+    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.2.0.1" />
   </ItemGroup>
 
   <ItemGroup>

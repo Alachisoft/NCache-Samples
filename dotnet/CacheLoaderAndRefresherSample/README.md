@@ -12,9 +12,7 @@
 ### Introduction
 
 NCache provides you with Cache Startup Loader, a facility of adding the specified data in the cache on cache startup. 
-It means every time the cache will be started the data will be loaded in the cache without the user, manually adding it. 
-NCache also provides support of Cache Refresher that refreshes this loaded data after a certain period of time to ensure 
-that the data loaded on startup does not go stale.
+It means every time the cache will be started the data will be loaded in the cache without the user, manually adding it. NCache also provides support of Cache Refresher that refreshes this loaded data after a certain period of time to ensure that the data loaded on startup does not go stale.
 
 This sample uses SampleData project as a reference for model class "Product" "Supplier".
 
@@ -24,26 +22,26 @@ Before the sample application is executed make sure that:
 
 - Execute the NorthWind.sql script attached with the sample.
 - This project is a ClassLibrary and should be deployed in the NCache WebManager to make it functional.
-- To deploy the RefresherSample.dll follow the following steps:
+- To deploy the LoaderAndRefresherSample.dll follow the following steps:
     - Open web manager, select the "View Details" option with the cache.
     - Stop the cache if running.
     - Scroll down to Advanced Settings.
     - Click on "CacheLoader / Refresher".
     - Click on the check box Enable Cache Loader and Refresher.
-    - Click on Browse and find the assemble RefresherSample.dll, it will be in bin/Debug/netstandard2.0.
+    - Click on Browse and find the assemble LoaderAndRefresherSample.dll, it will be in bin/Debug/netstandard2.0.
     - Select Refresher class in Class Name option.
     - Add parameters for database connection. 
         - ConnectionString: the connection string for the database.
     - Add dataset in DataSets options. The unique identifires for the different kind of data you want to fetch from database.
-    - Add the following datasets for the RefresherSample and configure their schedule to refresh:
+    - Add the following datasets for the LoaderAndRefresherSample and configure their schedule to refresh:
         - products
         - suppliers
-    - In the end deploy RefresherSample.dll by clicking on the Deploy Providers and select the dll.
+    - In the end deploy LoaderAndRefresherSample.dll and SampleData.dll by clicking on the Deploy Providers and selecting the dll's.
 - By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
-    
-- Run the sample application.
+
+- Build the project and run the sample application.
 - Now run the Sql UpdateScript shipped with sample.
 - Run the sample again after the configured scheduled refresh time and observe the output.
 

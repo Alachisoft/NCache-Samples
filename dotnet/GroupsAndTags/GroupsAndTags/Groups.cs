@@ -93,8 +93,6 @@ namespace Alachisoft.NCache.Samples
             AddGroupedDatatoCache(8, "VaccumCleaner", "SmallElectronics");
             AddGroupedDatatoCache(9, "Iron", "SmallElectronics");
 
-
-
             Console.WriteLine("Items added in cache.");
         }
 
@@ -114,8 +112,6 @@ namespace Alachisoft.NCache.Samples
             // add CacheItem object to cache
             _cache.Add(key, item);
         }
-
-
 
         /// <summary>
         /// This method fetches items from the cache using groups

@@ -1,5 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nhibernator", "NHibernator\nhibernator.csproj", "{A06C21EB-00E4-4319-9FED-CBE4C235D341}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateUsage", "NHibernateTest\NHibernateUsage.csproj", "{276358BC-82F3-45E2-B9BD-BA6C2EBF8DD3}"
@@ -34,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C9001A5-9277-4381-B3BF-3E1332BC9F9E}
 	EndGlobalSection
 EndGlobal

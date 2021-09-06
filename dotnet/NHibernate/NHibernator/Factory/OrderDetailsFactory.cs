@@ -3,10 +3,11 @@
 
 using System;
 using Alachisoft.NCache.Integrations.NHibernate.Cache;
-using Alachisoft.NCache.Integrations.NHibernate.Cache.NCacheProvider;
 using System.Collections;
 using nhibernator.BLL;
 using Iesi.Collections;
+using NHibernate;
+using NHibernate.Cfg;
 
 namespace nhibernator.DLL
 {
