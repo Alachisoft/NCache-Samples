@@ -108,7 +108,7 @@ public class NonDurableSubscriber {
 
         // Print output on console
         System.out.println();
-        System.out.println("Cache initialized succesfully.");
+        System.out.println("Cache " + cacheName + " initialized succesfully.");
     }
 
     /**

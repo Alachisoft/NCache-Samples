@@ -37,14 +37,14 @@ public class Publisher {
             }).start();
             new Thread(() -> {
                 try {
-                    runBulkPublisher("GarmentsOrders", GarmentsOrders.class);
+                    runBulkPublisher("GarmentsOrders", GarmentsOrder.class);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }).start();
             new Thread(() -> {
                 try {
-                    runAsyncPublisher("GarmentsOrders", GarmentsOrders.class);
+                    runAsyncPublisher("GarmentsOrders", GarmentsOrder.class);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -92,10 +92,11 @@ public class Publisher {
             // Publishes the message with expiry.
             Message message = new Message(order, new TimeSpan(0, 0, 15));
             _topic.publishAsync(message, DeliveryOption.All, true);
-            System.out.println("Messages for " + t.getName() + " OrderId: " + order.getOrderId() + " generated");
-        }
 
-        Thread.sleep(5 * 1000);//Sleep for 5 seconds.
+            System.out.println("Messages for " + t.getName() + " OrderId: " + order.getOrderId() + " generated");
+
+            Thread.sleep(5 * 1000);//Sleep for 5 seconds.
+        }
     }
 
     private static <T extends Orders> void runBulkPublisher(String topicName, Class<T> t) throws Exception {
@@ -129,7 +130,7 @@ public class Publisher {
 
             // if any exceptions are encountered, throw to client
             if(messageExceptionMap.size() > 0)
-                throw new Exception("Publist Bulk topics has encountered " + messageExceptionMap.size() + " exeptions");
+                throw new Exception("Publish Bulk topics has encountered " + messageExceptionMap.size() + " exeptions");
 
             System.out.println(messageList.size() + " Messages for " + t.getName() + " generated");
 
@@ -146,7 +147,7 @@ public class Publisher {
         {
             // Adds the message with expiry to bulk
             Message message = new Message(order, new TimeSpan(0, 0, 15));
-            messageList.put(message, DeliveryOption.All);
+            messageList.put(message, DeliveryOption.Any);
         }
         return messageList;
     }
@@ -157,7 +158,7 @@ public class Publisher {
      * @throws CacheException
      */
     private static void deleteTopics(String topicName) throws CacheException {
-        if(topicName == null) throw new IllegalArgumentException();
+        if(topicName == null) throw new IllegalArgumentException("topicName");
 
         // Deleting the topic.
         _cache.getMessagingService().deleteTopic(topicName);
@@ -189,10 +190,11 @@ public class Publisher {
             // Publishes the message with expiry.
             Message message = new Message(order, new TimeSpan(0, 0, 15));
             _topic.publish(message, DeliveryOption.All, true);
-            System.out.println("Messages for " + t.getName() + " OrderId: " + order.getOrderId() + " generated");
-        }
 
-        Thread.sleep(5 * 1000);//Sleep for 5 seconds.
+            System.out.println("Messages for " + t.getName() + " OrderId: " + order.getOrderId() + " generated");
+
+            Thread.sleep(5 * 1000);//Sleep for 5 seconds.
+        }
     }
 
 
@@ -224,7 +226,7 @@ public class Publisher {
 
         // Print output on console
         System.out.println();
-        System.out.println("Cache initialized succesfully.");
+        System.out.println("Cache " + cacheName + " initialized successfully.");
     }
 
     /**
