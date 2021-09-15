@@ -31,28 +31,30 @@
                  </tr>
                  <c:forEach items="${availableBooks}" var="book">
                      <tr>
-                         <td>${book.id}</td>
+                         <td>${book.isbn}</td>
                          <td>${book.title}</td>
                          <td>${book.subTitle}</td>
                          <td>${book.pages}</td>
                          <td>${book.author}</td>
                          <td>${book.publisher}</td>
                          <td><a type="button" class="btn btn-success"
-                                href="${pageContext.request.contextPath}/bookstore/edit?id=${book.id}">Update</a>
+                                href="${pageContext.request.contextPath}/bookstore/edit?id=${book.isbn}">Update</a>
                              <a type="button" class="btn btn-warning"
-                                href="${pageContext.request.contextPath}/bookstore/delete/?id=${book.id}">Delete</a></td>
+                                href="${pageContext.request.contextPath}/bookstore/delete/?id=${book.isbn}">Delete</a></td>
                      </tr>
                  </c:forEach>
              </tbody>
          </table>
          </div>
          <p>
-         <%
-            Object error = request.getAttribute("errorMessage");
-            if(error != null){
-                out.println(error);
-            }
-         %>
+             <b>
+             <%
+                Object error = request.getAttribute("errorMessage");
+                if(error != null){
+                    out.println((String) error);
+                }
+             %>
+            </b>
          </p>
 
          <div class="container">
@@ -62,7 +64,7 @@
                      <div class="row">
                          <div class="col-sm-3">
                              <label for="isbn">ISBN:</label>
-                             <input type="number" class="form-control" name="isbn" id="isbn">
+                             <input type="number" class="form-control" name="isbn" id="isbn" required="true">
                          </div>
                      </div>
                  </div>

@@ -7,26 +7,26 @@ import java.util.Date;
 @Entity
 public class Book implements Serializable {
 
+    //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long isbn;
 
     private String title;
 
     public Book(){}
 
-    public long getId() {
-        return id;
+    public long getIsbn() {
+        return isbn;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIsbn(long isbn) {
+        this.isbn = isbn;
     }
 
-    public Book(long id, String title, String subTitle,
+    public Book(long isbn, String title, String subTitle,
                 String author, Date publishedDate, String publisher,
                 long pages, String description, String webURL) {
-        this.id = id;
+        this.isbn = isbn;
         this.title = title;
         this.subTitle = subTitle;
         this.author = author;

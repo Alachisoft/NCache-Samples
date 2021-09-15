@@ -23,10 +23,10 @@
                 <div class="panel-body">
                     <form:form method="post" modelAttribute="book" action="/bookstore/save">
                         <fieldset class="form-group">
-                            <form:label path="id">ISBN</form:label>
-                            <form:input path="id" type="number" class="form-control"
+                            <form:label path="isbn">ISBN</form:label>
+                            <form:input path="isbn" type="number" class="form-control"
                                         required="required" />
-                            <form:errors path="id" cssClass="text-warning" />
+                            <form:errors path="isbn" cssClass="text-warning" />
                         </fieldset>
                         <fieldset class="form-group">
                             <form:label path="title">Title</form:label>

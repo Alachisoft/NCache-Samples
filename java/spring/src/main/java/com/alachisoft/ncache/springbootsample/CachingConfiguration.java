@@ -15,8 +15,6 @@ public class CachingConfiguration
     public CacheManager cacheManager()
     {
         SpringConfigurationManager springConfigurationManager = new SpringConfigurationManager();
-        URL resource = getClass().getClassLoader().getResource("ncache-spring.xml");
-        springConfigurationManager.setConfigFile(resource.getPath());
         NCacheCacheManager cacheManager = new NCacheCacheManager();
         cacheManager.setSpringConfigurationManager(springConfigurationManager);
         return cacheManager;
