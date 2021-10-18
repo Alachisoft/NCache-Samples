@@ -1,5 +1,5 @@
 <application-config default-cache-name="books">
     <caches>
-        <cache name="books" ncacheid-instance="democache" priority="normal" expiration-type="absolute" expiration-period="60"/>
+        <cache name="books" ncache-instance="democache" priority="normal" expiration-type="absolute" expiration-period="60"/>
     </caches>
 </application-config>

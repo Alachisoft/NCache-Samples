@@ -39,7 +39,7 @@ Before running this sample make sure that:
   - ``` java -jar ncache-spring-0.0.1-SNAPSHOT.war ```
   
 - After running this sample application for the first time a table with a name book will be created in a 
-  database. Initially, the table will empty there won't be any data, so there are two ways to create a new book:
+  database. Using the web browser, visit http://localhost:8080/bookstore/. Initially, the table will empty there won't be any data, so there are two ways to create a new book:
   - either by creating a book one by one from the sample application by clicking on a Create new book button, 
     from this you can also check each book you have created is also cached in NCache by checking the cache count.
   - A quick way to add books to the table is by running an SQL script(sqlDataScript.sql) shipped with the sample, 

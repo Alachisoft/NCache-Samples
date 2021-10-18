@@ -1,4 +1,3 @@
-<%@ page import="java.util.Map" %>
 <%@ page import="com.alachisoft.ncache.springbootsample.bookstore.Book" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,7 +27,7 @@
                 Book book = (Book) result;
             %>
             <tr>
-                <td> <% out.println(book.getISBN()); %> </td>
+                <td> <% out.println(book.getId()); %> </td>
                 <td> <% out.println(book.getTitle()); %> </td>
                 <td> <% out.println(book.getSubTitle()); %> </td>
                 <td> <% out.println(book.getPages()); %> </td>

@@ -5,14 +5,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@org.hibernate.annotations.NamedQuery(name = "Book.findBookByIsbn",
-query = "select b from Book b where b.isbn = ?1")
 public class Book implements Serializable {
 
+    //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
     private long isbn;
 
     private String title;
@@ -23,16 +19,8 @@ public class Book implements Serializable {
         return isbn;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setIsbn(long isbn) {
         this.isbn = isbn;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public Book(long isbn, String title, String subTitle,
@@ -63,14 +51,6 @@ public class Book implements Serializable {
     private String description;
 
     private String webURL;
-
-    public long getISBN() {
-        return isbn;
-    }
-
-    public void setISBN(long isbn) {
-        this.isbn = isbn;
-    }
 
     public String getTitle() {
         return title;

@@ -80,7 +80,7 @@ public class DurableSubscriber {
         //Creates durable subscription
         //subscriptionName: User defined name for subscription
         //Subscription Policy: If subscription policy is shared , it means subscription can hold multiple active subscribers
-        //If subscription policy is exclusive , it means subscription can hold one active client only.
+        //                     If subscription policy is exclusive , it means subscription can hold one active client only.
 
         return topic.createDurableSubscription(subscriptionName, policy, messageReceivedListener,
                 new TimeSpan(1, 0, 0));

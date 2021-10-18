@@ -15,7 +15,6 @@
         <module>BasicOperations</module>
         <module>BackingSource</module>
         <module>BasicOperationsWithJSON</module>
-        <module>BulkCustomDependency</module>
         <module>BulkOperations</module>
         <module>CacheItemVersioning</module>
         <module>CacheLoader</module>
@@ -47,6 +46,51 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources-to-target</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../</directory>
+                                    <includes>
+                                        <include>client.ncconf</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-to-module</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/../</directory>
+                                    <includes>
+                                        <include>client.ncconf</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.1.2</version>
                 <executions>
@@ -75,10 +119,6 @@
                 </executions>
                 <configuration>
                     <mainClass>com.alachisoft.ncache.samples.Main</mainClass>
-<!--                    <arguments>-->
-<!--                        <argument>foo</argument>-->
-<!--                        <argument>bar</argument>-->
-<!--                    </arguments>-->
                 </configuration>
             </plugin>
         </plugins>

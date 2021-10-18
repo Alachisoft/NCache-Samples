@@ -51,9 +51,9 @@ public class BookController {
     }
 
     @RequestMapping(value = "/bookstore/edit", method = RequestMethod.GET)
-    public String showEditBookPage(@RequestParam int id, ModelMap model) {
+    public String showEditBookPage(@RequestParam long id, ModelMap model) {
         Book book = booksService.get(id);
-        model.put("book", book);
+        model.addAttribute("book", book == null ? new Book() : book);
         return "newBook";
     }
 
@@ -75,7 +75,7 @@ public class BookController {
     @RequestMapping(value="/bookstore", method = RequestMethod.POST)
     public ModelAndView findBook(ModelMap model, @RequestParam long isbn){
 
-        Book book = booksService.findBookByIsbn(isbn);
+        Book book = booksService.get(isbn);
 
         if (book == null) {
             return returnError(model, isbn);

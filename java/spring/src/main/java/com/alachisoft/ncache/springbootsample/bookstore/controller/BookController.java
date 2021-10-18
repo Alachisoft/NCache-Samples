@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -51,9 +52,9 @@ public class BookController {
     }
 
     @RequestMapping(value = "/bookstore/edit", method = RequestMethod.GET)
-    public String showEditBookPage(@RequestParam int id, ModelMap model) {
+    public String showEditBookPage(@RequestParam long id, ModelMap model) {
         Book book = booksService.get(id);
-        model.put("book", book);
+        model.addAttribute("book", book == null ? new Book() : book);
         return "newBook";
     }
 
@@ -66,8 +67,9 @@ public class BookController {
         return "redirect:/bookstore";
     }
 
+    @Transactional
     @RequestMapping(value = "/bookstore/delete")
-    public String deleteBook(@RequestParam int id) {
+    public String deleteBook(@RequestParam long id) {
         booksService.delete(id);
         return "redirect:/bookstore";
     }
@@ -75,7 +77,7 @@ public class BookController {
     @RequestMapping(value="/bookstore", method = RequestMethod.POST)
     public ModelAndView findBook(ModelMap model, @RequestParam long isbn){
 
-        Book book = booksService.findBookByIsbn(isbn);
+        Book book = booksService.get(isbn);
 
         if (book == null) {
             return returnError(model, isbn);
@@ -87,6 +89,7 @@ public class BookController {
     private ModelAndView returnError(ModelMap model, long isbn) {
         String errorMessage = "The book with ISBN: " + isbn + " is not available.";
         model.put("errorMessage", errorMessage);
-        return new ModelAndView(new RedirectView("bookstore"));
+        //return new ModelAndView(new RedirectView("bookstore", true));
+        return homePage((Model) model);
     }
 }

@@ -33,7 +33,7 @@
         }
         %>
         <table class="wrapper">
-            <caption><p>Using NCache's Session Store Provider Implementation<p></caption>
+            <caption><p>Using NCache's Session Store Provider Implementation</p></caption>
             <tr>
                 <td>
                     <table>

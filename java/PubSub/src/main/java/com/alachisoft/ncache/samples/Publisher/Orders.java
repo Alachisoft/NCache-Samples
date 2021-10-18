@@ -10,7 +10,7 @@ public class Orders implements Serializable {
     private LocalDate orderDate;
     private LocalDate shippedDate;
 
-    public void setOrderDate(LocalDate orderDate) {
+    protected void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -50,8 +50,8 @@ class ElectronicOrder extends Orders implements Serializable {
     }
 }
 
-class GarmentsOrders extends Orders implements Serializable {
-    public GarmentsOrders()
+class GarmentsOrder extends Orders implements Serializable {
+    public GarmentsOrder()
     {
         UUID uuid = UUID.randomUUID();
         setOrderId("GarmentsOrder"+ uuid.toString());
