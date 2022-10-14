@@ -1,26 +1,28 @@
 ﻿// ===============================================================================
 // Alachisoft (R) NCache Sample Code.
-// NCache StreamingAPI sample
+// NCache Streaming API Sample
 // ===============================================================================
-// Copyright © Alachisoft.  All rights reserved.
+// Copyright © Alachisoft. All rights reserved.
 // THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
 // OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
 // LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 // FITNESS FOR A PARTICULAR PURPOSE.
 // ===============================================================================
 
-using System;
-using System.Configuration;
 using Alachisoft.NCache.Client;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 
 namespace Alachisoft.NCache.Samples
 {
     /// <summary>
-    /// Class that provides the functionality of the streaming api sample.
+    /// Class that demonstrate the functionality of the NCache Streaming API.
     /// </summary>
     public class Streaming
     {
-        private static ICache _cache;
+        private static int _bufferSize = 1024;//--- ONE(1) KB
 
         /// <summary>
         /// Executing this method will perform the operations of the sample using streaming api.
@@ -28,87 +30,128 @@ namespace Alachisoft.NCache.Samples
         /// </summary>
         public static void Run()
         {
-            string key = "StreamingObject:1";
-
-            // Generate a new byte buffer with some data.
-            byte[] buffer = GenerateByteBuffer();
+            var bufferSize = ConfigurationManager.AppSettings["BufferSize"];
+            if (string.IsNullOrEmpty(bufferSize) == false)
+                _bufferSize = Convert.ToInt32(bufferSize);
 
             // Initialize Cache 
-            InitializeCache();
+            using (var cache = InitializeCache())
+            {
+                var path = ConfigurationManager.AppSettings["DocsFolder"];
+                // Get all .PDF files from the given path
+                var files = Directory.GetFiles(path, "*.pdf");
 
-            // Write the byte buffer in cache using streaming.
-            WriteUsingStream(key, buffer);
+                IList<string> keys = new List<string>();
+                foreach (var file in files)
+                {
+                    // Read the content of the file to store it in cache
+                    using (FileStream fileStream = File.Open(file, FileMode.Open, FileAccess.Read))
+                    {
+                        // Use the FileName as cache key ...
+                        var key = Path.GetFileName(fileStream.Name);
 
-            // Read the data inserted using streaming api.
-            ReadUsingStream(key);
+                        // Write the given fileStream in cache
+                        StoreCacheStream(cache, key, fileStream);
 
-            // Dispose the cache once done
-            _cache.Dispose();
-        }
+                        keys.Add(key);
+                    }
+                }
 
-        /// <summary>
-        /// This method generates a new byte buffer with data.
-        /// </summary>
-        /// <returns> Returns a byte buffer with data.</returns>
-        private static byte[] GenerateByteBuffer()
-        {
-            byte[] byteBuffer = new byte[1024];
-            for (int i = 0; i < byteBuffer.Length; i++)
-                byteBuffer[i] = Convert.ToByte(i % 256);
-
-            return byteBuffer;
+                // Get the cached streams using NCache Streaming API
+                foreach (var key in keys)
+                {
+                    ReadCacheStream(cache, key);
+                }
+            }
         }
 
         /// <summary>
         /// This method initializes the cache.
         /// </summary>
-        private static void InitializeCache()
+        private static ICache InitializeCache()
         {
-            string cache = ConfigurationManager.AppSettings["CacheId"];
-
-            if (String.IsNullOrEmpty(cache))
+            string cacheName = ConfigurationManager.AppSettings["CacheName"];
+            if (String.IsNullOrEmpty(cacheName))
             {
-                Console.WriteLine("The Cache Name cannot be null or empty.");
-                return;
+                throw new Exception("The CacheName cannot be null or empty.");
             }
 
             // Initialize an instance of the cache to begin performing operations:
-            _cache = CacheManager.GetCache(cache);
+            var cache = CacheManager.GetCache(cacheName);
+            cache.Clear();
 
-            Console.WriteLine("Cache initialized successfully");
+            Console.WriteLine("Cache [" + cache.ToString() + "] initialized successfully.");
+            return cache;
         }
 
         /// <summary>
-        /// This methods inserts data in the cache using cache stream.
+        /// This method writes stream in cache using CacheStream.Write()
         /// </summary>
-        /// <param name="key"> The key against which stream will be written. </param>
-        /// <param name="writeBuffer"> data that will be written in the stream. </param>
-        private static void WriteUsingStream(string key, byte[] writeBuffer)
+        /// <param name="cache">The cache instance in which stream will be cached.</param>
+        /// <param name="key">The key against which stream will be written.</param>
+        /// <param name="fileStream">FileStream that will be stored in the cache.</param>
+        private static void StoreCacheStream(ICache cache, string key, FileStream fileStream)
         {
-            // Declaring NCacheStream
-            CacheStreamAttributes cacheStreamAttributes = new CacheStreamAttributes(StreamMode.Write);
-            CacheStream stream = _cache.GetCacheStream(key, cacheStreamAttributes);
-            stream.Write(writeBuffer, 0, writeBuffer.Length);
-            stream.Close();
+            var bytesCount = 0;
+            var buffer = new byte[_bufferSize];
 
-            Console.WriteLine("Stream written to cache.");
+            if (fileStream.CanRead)
+            {
+                CacheStreamAttributes cacheStreamAttributes = new CacheStreamAttributes(StreamMode.Write);
+                //cacheStreamAttributes.Group
+                //cacheStreamAttributes.Expiration
+                //cacheStreamAttributes.CacheItemPriority;
+
+                using (CacheStream caceheStream = cache.GetCacheStream(key, cacheStreamAttributes))
+                {
+                    if (fileStream.CanRead)
+                    {
+                        while (bytesCount < fileStream.Length)
+                        {
+                            var bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+                            //--- Now write/store these bytes in the cache ...
+                            caceheStream.Write(buffer, 0, bytesRead);
+
+                            bytesCount += bytesRead;
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine(key + " file content stored as CacheStream. Total bytes: " + bytesCount);
         }
 
         /// <summary>
-        /// This method fetches data from the cache using streams.
+        /// This method fetches stream from the cache using CacheStream.Read().
         /// </summary>
-        /// <param name="key"> The key of the stream that needs to be fetched from the cache. </param>
-        private static void ReadUsingStream(string key)
+        /// <param name="cache">The cache instance from which stream will be retrieve.</param>
+        /// <param name="key">The key of the stream that needs to be fetched from the cache.</param>
+        private static void ReadCacheStream(ICache cache, string key)
         {
-            byte[] readBuffer = new byte[1024];
-            CacheStreamAttributes cacheStreamAttributes = new CacheStreamAttributes(StreamMode.Read);
+            int readByteCount = 0;
+            byte[] readBuffer = new byte[_bufferSize];
+
             // StramMode.Read allows only simultaneous reads but no writes!
-            CacheStream stream = _cache.GetCacheStream(key, cacheStreamAttributes);
-            // Now you have stream perform operations on it just like any regular stream.
-            var readCount = stream.Read(readBuffer, 0, readBuffer.Length);
-            stream.Close();
+            // StramMode.ReadWithoutLock allows simultaneous reads and also let the stream be writeable!
+            CacheStreamAttributes cacheStreamAttributes = new CacheStreamAttributes(StreamMode.Read);
 
-            Console.WriteLine("Bytes read = " + readCount);
+            using (var cacheStream = cache.GetCacheStream(key, cacheStreamAttributes))
+            {
+                // Now you have stream perform operations on it just like any regular stream.
+                if (cacheStream.CanRead)
+                {
+                    while (readByteCount < cacheStream.Length)
+                    {
+                        var bytesRead = cacheStream.Read(readBuffer, 0, readBuffer.Length);
+
+                        readByteCount += bytesRead;
+                        //--- readBuffer is available for further processing/manipulation 
+                        //--- valid readBuffer contents (readBuffer[0] to readBuffer[bytesRead])
+                    }
+                }
+            }
+
+            Console.WriteLine(key + " file content read as CacheStream. Total bytes: " + readByteCount);
         }
     }
 }
