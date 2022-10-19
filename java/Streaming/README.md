@@ -12,7 +12,7 @@
 ### Introduction
 
 This sample program demonstrates how to use the NCache Stream API to perform operations. 
-Streaming allows to read data from cache in chunks just like any buffered stream.
+Streaming API allows to read & write data from cache in chunks just like any buffered stream.
 
 ### Prerequisites
 

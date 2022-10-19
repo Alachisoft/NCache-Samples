@@ -30,7 +30,7 @@ namespace Alachisoft.NCache.Samples
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.ToString());
             }
         }
     }
