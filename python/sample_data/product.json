@@ -2,7 +2,7 @@
 	"Objects":
 	[
 		{
-			"$Index_Class$": "SampleData.Product",
+			"$Index_Class$": "SampleData.Product.Product",
 			"id" : "1001",
 			"name" : "Tea",
 			"unit_price": 50,
