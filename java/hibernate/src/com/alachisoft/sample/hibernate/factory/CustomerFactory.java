@@ -55,7 +55,7 @@ public class CustomerFactory
 
             tx.rollback();
             session.clear();
-            session.disconnect();
+            session.close();
             throw ex;
         }
         return customers;
@@ -231,7 +231,7 @@ public class CustomerFactory
     public void SessionDisconnect()
     {
         session.clear();
-        session.disconnect();
+       session.close();
     }
 
     /// <summary>
