@@ -20,7 +20,7 @@
             <artifactId>sampledata</artifactId>
             <version>${project.version}</version>
 <!--            <scope>system</scope>-->
-<!--            <systemPath>${basedir}/../SampleData/target/sampledata-5.2.0.jar</systemPath>-->
+<!--           <systemPath>${basedir}/../SampleData/target/sampledata-${project.version}.jar</systemPath>-->
         </dependency>
         <dependency>
             <groupId>com.alachisoft.ncache</groupId>
