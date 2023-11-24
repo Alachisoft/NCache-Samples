@@ -66,7 +66,7 @@ public class OrdersFactory
         {
             tx.rollback();
             session.clear();
-            session.disconnect();
+            session.close();
             throw ex;
         }
         return orders;
