@@ -1,0 +1,12 @@
+{
+	"Objects":
+	[
+		{
+			"$Index_Class$": "SampleData.Product",
+			"id" : "1001",
+			"name" : "Tea",
+			"unit_price": 50,
+			"units_available" : 20
+		}
+	]
+}
