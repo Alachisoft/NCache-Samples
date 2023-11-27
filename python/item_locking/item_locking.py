@@ -1,9 +1,8 @@
-import ncache
 from ncache.client.CacheManager import CacheManager
 from ncache.client.CacheItem import CacheItem
 from ncache.client.LockHandle import LockHandle
-from SampleData.Product import Product
 from ncache.runtime.util.TimeSpan import TimeSpan
+from sample_data.product import Product
 
 
 def initialize_cache():

@@ -2,7 +2,7 @@ from ncache.client.CacheManager import CacheManager
 from ncache.client.CacheItem import CacheItem
 from ncache.runtime.caching.NamedTagsDictionary import NamedTagsDictionary
 from ncache.client.QueryCommand import QueryCommand
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 def initialize_cache():
@@ -25,7 +25,7 @@ def add_items(cache, named_tags):
 
 
 def get_items(cache):
-    query = "SELECT * FROM SampleData.Product.Product WHERE Category = ?"
+    query = "SELECT * FROM sample_data.product.Product WHERE Category = ?"
     query_command = QueryCommand(query)
     parameters = {"Category": "Dairy"}
     query_command.set_parameters(parameters)
