@@ -2,7 +2,7 @@ import time
 from ncache.client.CacheManager import CacheManager
 from ncache.client.enum.EventType import EventType
 from ncache.client.enum.EventDataFilter import EventDataFilter
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 class Events:

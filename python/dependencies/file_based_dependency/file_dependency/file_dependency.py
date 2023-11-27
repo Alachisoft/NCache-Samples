@@ -4,7 +4,7 @@ from datetime import datetime
 from ncache.client.CacheManager import CacheManager
 from ncache.client.CacheItem import CacheItem
 from ncache.runtime.dependencies.FileDependency import FileDependency
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 class FileBasedDependency:
@@ -27,7 +27,7 @@ class FileBasedDependency:
 
     @staticmethod
     def add_file_based_dependency():
-        dependency_file = os.path.join(os.path.abspath(os.path.join(os.getcwd(), os.pardir)), "DependencyFile", "foobar.txt")
+        dependency_file = os.path.join(os.path.abspath(os.path.join(os.getcwd(), os.pardir)), "dependency_file", "foobar.txt")
         product = Product(id="1001", name="Tea", unit_price=50, units_available=20)
         cache_item = CacheItem(product)
         cache_item.set_dependency(FileDependency(dependency_file))

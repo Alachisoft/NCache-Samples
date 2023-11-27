@@ -1,6 +1,6 @@
 from ncache.client.CacheManager import CacheManager
 from ncache.client.CacheItem import CacheItem
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 def initialize_cache():
@@ -46,6 +46,9 @@ def update_items_in_group(cache):
     item.set_group("Dairy")
     cache.insert(key, item)
     print("\nItem is updated in cache.")
+    fetched_product = cache.get(key, Product)
+    print("\nThe updated item is:")
+    print(fetched_product)
 
 
 def remove_items_by_group(cache):

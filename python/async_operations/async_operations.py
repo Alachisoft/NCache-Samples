@@ -1,6 +1,6 @@
-from ncache.client.CacheManager import CacheManager
-from SampleData.Product import Product
 import asyncio
+from ncache.client.CacheManager import CacheManager
+from sample_data.product import Product
 
 
 def initialize_cache():

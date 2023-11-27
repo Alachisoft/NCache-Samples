@@ -3,7 +3,7 @@ from ncache.client.CacheManager import CacheManager
 from ncache.client.enum.DeliveryOption import DeliveryOption
 from ncache.runtime.caching.Message import Message
 from ncache.runtime.util.TimeSpan import TimeSpan
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 class Publisher:

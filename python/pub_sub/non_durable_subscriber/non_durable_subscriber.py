@@ -1,4 +1,3 @@
-import ncache
 from ncache.client.CacheManager import CacheManager
 from ncache.client.enum.TopicSearchOptions import TopicSearchOptions
 

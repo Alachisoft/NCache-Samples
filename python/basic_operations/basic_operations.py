@@ -1,6 +1,6 @@
 from ncache.client.CacheManager import CacheManager
 from ncache.client.CacheItem import CacheItem
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 def initialize_cache():

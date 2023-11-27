@@ -4,7 +4,7 @@ from ncache.client.QueryCommand import QueryCommand
 from ncache.client.ContinuousQuery import ContinuousQuery
 from ncache.client.enum.EventType import EventType
 from ncache.client.enum.EventDataFilter import EventDataFilter
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 class ContinuousQuerySample:
@@ -40,6 +40,7 @@ class ContinuousQuerySample:
         # Delete the existing object
         ContinuousQuerySample.delete_object_from_cache(key)
 
+        # Sleep for a while to allow events to be processed
         time.sleep(5)
 
         # Unregister query
@@ -62,7 +63,7 @@ class ContinuousQuerySample:
 
     @staticmethod
     def build_query_command():
-        query = "SELECT * FROM SampleData.Product.Product WHERE id = ?"
+        query = "SELECT * FROM sample_data.product.Product WHERE id = ?"
         query_command = QueryCommand(query)
         parameters = {"id": "1001"}
         query_command.set_parameters(parameters)

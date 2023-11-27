@@ -2,7 +2,7 @@ import time
 from ncache.client.CacheManager import CacheManager
 from ncache.client.CacheItem import CacheItem
 from ncache.runtime.dependencies.KeyDependency import KeyDependency
-from SampleData.Product import Product
+from sample_data.product import Product
 
 
 class KeyBasedDependency:
