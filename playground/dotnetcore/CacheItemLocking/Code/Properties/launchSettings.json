@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CacheItemLocking": {
+      "commandName": "Project",
+      "commandLineArgs": "demoCache"
+    }
+  }
+}
