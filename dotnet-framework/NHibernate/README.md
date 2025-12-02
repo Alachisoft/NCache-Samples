@@ -42,8 +42,8 @@ Before building this sample, the connection string needs to be changed in `App.C
 	...
     <appSettings>
 		...
-        <!-- Replace <db-conn-string> with your database connection string. -->
-        <add key="ConnectionString" value="<db-conn-string>" />
+        <!-- Replace db-conn-string with your database connection string. -->
+        <add key="ConnectionString" value="db-conn-string" />
     </appSettings>
 </configuration>
 ```

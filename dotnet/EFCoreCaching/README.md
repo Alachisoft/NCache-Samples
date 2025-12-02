@@ -91,12 +91,12 @@ The connection string needs to be placed in the `App.config` in the project root
 ```xml
 <appSettings>
 	<add key="CacheName" value="demoCache"/>
-    <!-- Replace <db-conn-string> with your database connection string.
+    <!-- Replace db-conn-string with your database connection string.
          Examples:
          - Integrated Security (SQL Express): Server=.\SQLEXPRESS;Database=EFCoreCacheDb;Integrated Security=True;
          - SQL Auth: Server=MYSERVER;Database=EFCoreCacheDb;User Id=myuser;Password=mypassword;
     -->
-	<add key="ConnString" value="<db-conn-string>" />
+	<add key="ConnString" value="db-conn-string" />
 </appSettings>
 ```
 
