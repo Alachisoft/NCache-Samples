@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "InventoryService": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52962;http://localhost:52963"
+    }
+  }
+}

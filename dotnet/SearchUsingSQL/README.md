@@ -24,7 +24,7 @@ This sample uses SampleData project as a reference for model class "Product" and
 Before the sample application is executed make sure that:
 
 - app.config have been changed according to the configurations. 
-	- change the cache name
+          - change the cache name
 - To use this sample, you must first specify the indexes of the objects you want to query in the cache.
           - Start NCache Web Manager and create a clustered cache with the name specified in app.config. 
           - Now select the 'Query Indexes' tab in the "Advanced Settings" of cache's details page.
@@ -32,7 +32,7 @@ Before the sample application is executed make sure that:
           - Select the 'Products' class and click 'Add Selected Classes'.
           - Check the class and all of its attributes and click OK.
           - Save changes.
-
+          
 - By default this sample uses 'demoCache', make sure that cache is running. 
 
 ### Build and Run the Sample
@@ -58,4 +58,5 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2021 Alachisoft 
+[C] Copyright 2021 Alachisoft
+

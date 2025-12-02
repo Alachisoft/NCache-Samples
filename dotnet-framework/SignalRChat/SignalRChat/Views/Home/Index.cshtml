@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Chat";
+}
+
+<h2>SignalR Chat</h2>
+
+<div>
+    <input type="text" id="userInput" placeholder="Your name" />
+    <input type="text" id="messageInput" placeholder="Enter message" />
+    <button id="sendBtn">Send</button>
+</div>
+
+<ul id="messagesList"></ul>
+
+@section scripts {
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include SignalR -->
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <!-- Auto-generated hub script -->
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        $(function () {
+            // Reference the auto-generated proxy for the hub
+            var chat = $.connection.chatHub;
+
+            // Function to receive messages from server
+            chat.client.broadcastMessage = function (user, message) {
+                var encodedMsg = $('<li />').text(user + ": " + message);
+                $('#messagesList').append(encodedMsg);
+            };
+
+            // Start connection
+            $.connection.hub.start().done(function () {
+                $('#sendBtn').click(function () {
+                    var user = $('#userInput').val();
+                    var message = $('#messageInput').val();
+                    chat.server.sendMessage(user, message);
+                    $('#messageInput').val('').focus();
+                });
+            });
+        });
+    </script>
+}

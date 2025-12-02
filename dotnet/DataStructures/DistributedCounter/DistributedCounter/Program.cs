@@ -9,29 +9,112 @@
 // ===============================================================================
 
 using System;
+using System.Configuration;
+using Alachisoft.NCache.Client;
+using Alachisoft.NCache.Client.DataTypes;
+using Alachisoft.NCache.Client.DataTypes.Counter;
+using Alachisoft.NCache.Runtime.Caching;
 
-namespace Alachisoft.NCache.Samples
+// ===============================================================================
+// Distributed Counter is a powerful data structure provided by NCache for
+// high-concurrency scenarios where multiple clients or application servers need
+// to increment, decrement, or read a shared numeric value atomically and with low
+// latency. Some possible use cases of distributed counters include:
+//   1. Counting page views or clicks on a website
+//   2. Tracking inventory levels in an e-commerce application    
+//   3. Implementing rate limiting for APIs or services
+//   4. Managing distributed locks or semaphores
+//   5. Real-time analytics and monitoring
+// Distributed counters are designed to be highly available and fault-tolerant,
+// ===============================================================================
+
+// Connect to a running cache and get cache handle for it 
+ICache? cache = GetCache();
+
+// Name of the distributed counter to be used in sample
+string counterName = "DistributedCounter:11001";
+
+// Creating or getting counter
+ICounter counter = GetOrCreateCounter(counterName);
+
+// Setting counter value
+long counterValue = counter.SetValue(10);
+Console.WriteLine("Counter value set to {0}", counterValue);
+
+// Incrementing counter value
+counterValue = counter.Increment();
+Console.WriteLine("Counter value incremented by 1");
+Console.WriteLine("New Counter value is {0}", counterValue);
+
+// Decrementing counter value
+counterValue = counter.Decrement();
+Console.WriteLine("Counter value decremented by 1");
+Console.WriteLine("New Counter value is {0}", counterValue);
+
+// Incrementing counter value by 5
+counterValue = counter.IncrementBy(5);
+Console.WriteLine("Counter value incremented by {0}", 5);
+Console.WriteLine("New Counter value is {0}", counterValue);
+
+// Decrementing counter by value
+counterValue = counter.DecrementBy(2);
+Console.WriteLine("Counter value decremented by {0}", 2);
+Console.WriteLine("New Counter value is {0}", counterValue);
+
+// Removing the distributed counter from cache
+cache?.DataTypeManager.Remove(counterName);
+
+// Dispose the cache once done
+cache?.Dispose();
+
+/// ------------------------------------------------------------------------------
+/// <summary>
+/// Method to connect to a running cache and return cache handle for it 
+/// </summary>
+/// <returns>Cache handle for the connected cache</returns>
+ICache? GetCache()
 {
-    /// ******************************************************************************
-    /// <summary>
-    /// A sample program that shows the usage of Data Structures in NCache
-    /// 
-    /// Requirements:
-    ///     1. A running NCache cache
-    ///     2. Cache ID in app.config
-    /// </summary>
-    class Program
+    string? cacheName = ConfigurationManager.AppSettings["CacheName"];
+
+    if (String.IsNullOrEmpty(cacheName))
     {
-        static void Main(string[] args)
-        {
-            try
-            {
-                Alachisoft.NCache.Samples.DistributedCounter.Run();
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-        }
+        Console.WriteLine("The CacheName cannot be null or empty.");
+        return null;
     }
+
+    // Connecting to a running cache and return a cache handle for it
+    cache = CacheManager.GetCache(cacheName);
+
+    // Printing output on console
+    Console.WriteLine(string.Format("\nCache '{0}' is connected.", cacheName));
+    return cache;
+}
+
+/// ------------------------------------------------------------------------------
+/// <summary>
+/// Method to retrieve the distributed counter from Cache,
+/// if the counter does not exist, it is created and returned
+/// </summary>
+/// <param name="counterName">Name of counter to be used to make counter</param>
+/// <returns>Instance of ICounter</returns>
+ICounter GetOrCreateCounter(string counterName)
+{
+    // Retrieving the counter from cache
+    ICounter counter = cache.DataTypeManager.GetCounter(counterName);
+
+    // Checking if counter exists or not
+    if (counter == null)
+    {
+        // Creating attributes with expiration for counter
+        DataTypeAttributes attributes = new DataTypeAttributes
+        {
+            Expiration = new Expiration(ExpirationType.Absolute, TimeSpan.FromMinutes(1))
+        };
+
+        // Creating distributed counter with absolute expiration
+        // to modify cache properties of the counter,
+        // provide an instance of DataTypeAttributes in the second parameter
+        counter = cache.DataTypeManager.CreateCounter(counterName, attributes);
+    }
+    return counter;
 }

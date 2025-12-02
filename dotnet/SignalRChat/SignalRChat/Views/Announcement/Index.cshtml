@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Announcement";
+}
+
+<h2>SignalR + NCache Chat</h2>
+
+<form id="chatForm">
+    <input type="text" id="userInput" name="user" placeholder="User" required />
+    <input type="text" id="messageInput" name="message" placeholder="Message" required />
+    <button type="submit">Send</button>
+</form>
+
+<hr />
+<ul id="messagesList"></ul>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script>
+        // 1️⃣ Setup SignalR connection
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/messages")
+            .build();
+
+        // 2️⃣ Handle incoming messages
+        connection.on("ReceiveMessage", (user, message) => {
+            const li = document.createElement("li");
+            li.textContent = `${user}: ${message}`;
+            document.getElementById("messagesList").appendChild(li);
+        });
+
+        // 3️⃣ Start connection
+        connection.start()
+            .then(() => console.log("Connected to SignalR Hub"))
+            .catch(err => console.error(err));
+
+        // 4️⃣ Handle form submission (send message through hub)
+        document.getElementById("chatForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const user = document.getElementById("userInput").value;
+            const message = document.getElementById("messageInput").value;
+
+            // Locally display your message immediately
+            const li = document.createElement("li");
+            li.textContent = `${user}: ${message}`;
+            document.getElementById("messagesList").appendChild(li);
+
+            // Send message via hub (not via controller)
+            await connection.invoke("SendMessage", user, message);
+
+            document.getElementById("messageInput").value = "";
+        });
+    </script>
+}

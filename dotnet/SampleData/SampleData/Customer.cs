@@ -1,6 +1,4 @@
-﻿using System;
-
-// ===============================================================================
+﻿// ===============================================================================
 // Alachisoft (R) NCache Sample Code.
 // ===============================================================================
 // Copyright © Alachisoft.  All rights reserved.
@@ -18,88 +16,49 @@ namespace Alachisoft.NCache.Sample.Data
     [Serializable]
     public class Customer
     {
-        public Customer()
-        { }
-
         /// <summary>
-        /// Unique Id of the customer
+        /// Unique CustomerID of the customer
         /// </summary>
-        public string CustomerID
-        {
-            get;
-            set;
-        }
+        public string CustomerID { set; get; }
 
         /// <summary>
         /// Contact name of the customer
         /// </summary>
-        public virtual string ContactName 
-        {
-            set;
-            get;
-        }
+        public string ContactName { set; get; }
 
         /// <summary>
         /// Company the customer works for
         /// </summary>
-        public virtual string CompanyName
-        {
-            set;
-            get;
-        }
+        public string CompanyName { set; get; }
 
         /// <summary>
         /// Contact number of the customer
         /// </summary>
-        public virtual string ContactNo
-        {
-            set;
-            get;
-        }
+        public string ContactNo { set; get; }
 
         /// <summary>
         /// Residential address of the customer
         /// </summary>
-        public virtual string Address
-        {
-            set;
-            get;
-        }
+        public string Address { set; get; }
 
         /// <summary>
         /// Residence city of the customer
         /// </summary>
-        public virtual string City
-        {
-            set;
-            get;
-        }
+        public string City { set; get; }
 
         /// <summary>
         /// Nationality of the customer
         /// </summary>
-        public virtual string Country
-        {
-            set;
-            get;
-        } 
+        public string Country { set; get; }
 
         /// <summary>
         /// Postal code of the customer
         /// </summary>
-        public virtual string PostalCode
-        {
-            set;
-            get;
-        }
+        public string PostalCode { set; get; }
 
         /// <summary>
         /// Fax number of the customer
         /// </summary>
-        public virtual string Fax
-        {
-            set;
-            get;
-        }
+        public string Fax { set; get; }
     }
 }

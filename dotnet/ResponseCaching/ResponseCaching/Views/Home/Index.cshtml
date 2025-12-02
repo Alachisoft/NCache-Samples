@@ -1,0 +1,45 @@
+﻿@using ResponseCaching.Models
+@model ResponseCaching.Models.ProductModel
+
+@{
+    ViewData["Title"] = "Products List";
+}
+
+        <distributed-cache-ncache name="prodList" expires-sliding="new TimeSpan(0,10,0)"
+             depends-on="SELECT ProductID, ProductName, QuantityPerUnit, UnitPrice FROM dbo.Products WHERE UnitPrice <= 1000" 
+                       dependency-type="SQLServer"  >
+
+            <h1>ResponseCaching Sample</h1>
+
+            <br /><div class="row float-lg-right"><h9 style=" color:green">This page generated at @DateTime.Now.ToString()</h9></div><br />
+            <br />
+            <h2>Products List</h2>
+            <br />
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product ProductID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ foreach (var item in Model.Products)
+                        {
+                            <tr> 
+                                <td scope="row">@item.ProductId</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.UnitPrice</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Home", new { ProductID = @item.ProductId })">Edit</a>/
+                                    <a href="@Url.Action("Details", "Home", new { ProductID = @item.ProductId })">View</a>
+                                </td>
+                            </tr>
+                        } }
+                </tbody>
+
+            </table>
+            <div class="clearfix"></div>
+
+        </distributed-cache-ncache>
