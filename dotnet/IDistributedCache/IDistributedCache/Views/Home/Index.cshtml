@@ -1,0 +1,35 @@
+﻿@model SampleApp.ViewModels.HomeViewModel
+
+<h1>IDistributedCaching Demonstration</h1>
+
+<br/>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <a class="pull-right btn btn-info me-2" asp-action="Index">GET TIME</a>
+        <a class="pull-right btn btn-success me-2" asp-action="SetCachedTime">SET TIME</a>
+        <a class="pull-right btn btn-danger me-2" asp-action="RemoveCachedTime">REMOVE TIME</a>
+    </div>
+    <br/>
+    <div class="panel-body">
+        <p>The current time is: @DateTime.Now.ToString("hh:mm:ss tt")</p>
+        <p>The absolute cached time is: @Model.CachedTime</p>
+    </div>
+</div>
+
+<br/>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Instructions</h3>
+    </div>
+    <div class="panel-body">
+        <p>When the app starts, the current time is cached (key = <code>@ViewData["time_key"]</code>) with a @ViewData["expiry_time"] second absolute expiration.</p>
+        <p>Each time <b>GET TIME</b> button is pressed, the cache is checked for the cached time. If the cached time hasn't expired, the time is displayed.</p>
+        <p>The cached time can be updated immediately to the current time by selecting the <b>SET TIME</b> button.</p>
+        <p>Upon selecting <b>REMOVE TIME</b> button, cached time is removed from the cache.</p>
+        <p>If @ViewData["expiry_time"] seconds have elapsed since the object was cached, the page displays <code>Cached time not set or expired</code>.</p>
+    </div>
+    <p class="alert alert-warning" role="alert">
+        <b>WARNING!</b> even though the expiration time is up, the item will only be removed once the <b>Clean Interval</b> (default: 15 seconds) is up! Only then the expired items are removed from cache.
+    </p>
+</div>

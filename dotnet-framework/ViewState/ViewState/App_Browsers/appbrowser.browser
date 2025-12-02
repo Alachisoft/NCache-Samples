@@ -1,0 +1,40 @@
+﻿<!--
+    You can find existing browser definitions at
+    <windir>\Microsoft.NET\Framework\<ver>\CONFIG\Browsers
+-->
+<browsers>
+  <!--<browser id="NewBrowser" parentID="Mozilla">
+    <identification>
+      <userAgent match="Unique User Agent Regular Expression" />
+    </identification>
+
+    <capture>
+      <userAgent match="NewBrowser (?'version'\d+\.\d+)" />
+    </capture>
+
+    <capabilities>
+      <capability name="browser" value="My New Browser" />
+      <capability name="version" value="${version}" />
+    </capabilities>
+  </browser>
+
+  <browser refID="Mozilla">
+    <capabilities>
+      <capability name="xml" value="true" />
+    </capabilities>
+  </browser>
+
+
+  This browser adapter enables NCache ViewState optimization for all ASP.NET WebForms pages.
+  It maps the default Page control to NCache’s PageAdapter, which intercepts ViewState 
+  processing and redirects it to the NCache ViewState provider instead of storing it 
+  inside the __VIEWSTATE hidden field. 
+  This significantly reduces page size, improves performance, and supports web farm scenarios.
+-->
+    <browser refID="Default">
+	    <controlAdapters>
+		    <adapter controlType="System.Web.UI.Page"
+				    adapterType="Alachisoft.NCache.Adapters.PageAdapter" />
+	    </controlAdapters>
+    </browser>
+</browsers>

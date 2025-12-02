@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GameNetCore": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63145;http://localhost:63146"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributedDictionary", "DistributedDictionary\DistributedDictionary.csproj", "{FA160512-8F1C-45AE-ACD1-6E17AF4AD760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleData", "..\..\SampleData\SampleData\SampleData.csproj", "{3E7DEDAE-496D-4908-9E22-D7B7254D192E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA160512-8F1C-45AE-ACD1-6E17AF4AD760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA160512-8F1C-45AE-ACD1-6E17AF4AD760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA160512-8F1C-45AE-ACD1-6E17AF4AD760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA160512-8F1C-45AE-ACD1-6E17AF4AD760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E7DEDAE-496D-4908-9E22-D7B7254D192E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E7DEDAE-496D-4908-9E22-D7B7254D192E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E7DEDAE-496D-4908-9E22-D7B7254D192E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E7DEDAE-496D-4908-9E22-D7B7254D192E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20927F15-213B-4A98-BE8A-0CA699DD81B1}
+	EndGlobalSection
+EndGlobal

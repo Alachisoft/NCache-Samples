@@ -1,56 +1,104 @@
-# CACHE ITEM VERSIONING
+# CACHE ITEM VERSIONING SAMPLE
 
-### Table of contents
+## Table of contents
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
 * [Build and Run the sample](#build-and-run-the-sample)
+* [Notes](#notes)
+* [References](#references)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
 * [Copyrights](#copyrights)
 
-### Introduction
+## Introduction
 
-Cache item versioning enables optimistic locking to makes possible the concurrency checks on cacheitems. 
-CacheItemVersion is a property associated with every cache item. It is basically a numeric value that is 
-used to represent the version of the cached item which changes with every update to an item. This property 
-allows you to track whether any change occurred in an item or not. When you fetch an item from cache, you also 
-fetch its current version form cache.
+This .NET 8.0 console sample demonstrates how to use NCache item versioning to implement optimistic concurrency for cached objects. Each cached item carries a numeric `CacheItemVersion` that increments on every successful update; by fetching an item together with its version you can detect concurrent modifications and avoid lost updates. The sample shows common patterns: reading an item and its version, performing a conditional update that succeeds only if the version matches, handling version conflicts (for example by retrying or reporting an error), and removing items safely.
 
-This sample program demonstrates how to use Optimistic locking in NCache through item versioning. 
-It shows how to Add, Get, Update and Delete object(s) using cache item version from NCache.
+The project includes step‑by‑step examples of `Add`, `Get`, `Update` (conditional on version) and `Remove` operations using NCache APIs so you can see how version checks are applied in real code.
 
-This sample uses SampleData project as a reference for model class "Customer".
+This sample uses SampleData project as a reference for model class `Customer`.
 
-### Prerequisites
+## Prerequisites
 
-Before the sample application is executed make sure that:
+Before the sample application is executed, make sure that:
 
-- app.config have been changed according to the configurations. 
-	- Change the cache name
-- By default this sample uses 'demoCache', make sure that cache is running. 
+- .NET 8.0 SDK or Visual Studio (recommended) installed.
+- NCache is installed and running in an accessible location.
+  - If not, visit the following link to get started:\
+  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+- Ensure that `demoCache` (or another cache of your choice) is running.
+  - This is created during installation, otherwise you can create a new cache via this link:\
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html/
+- NuGet package required: Alachisoft.NCache.SDK (>= 5.3.6.1). The package reference is already included in the project file.
+- SampleData project (which contains the `Customer` model) must be present in the directory as this sample.
 
-### Build and Run the Sample
-    
-- Run the sample application.
+## Build and Run the Sample
 
-### Additional Resources
+Before building this sample, if you need to change the cache name, open `App.config` from the project root directory and change the `CacheName` value:
 
-##### Documentation
-The complete online documentation for NCache is available at:
+```xml
+<appSettings>
+  <add key="CacheName" value="demoCache"/>
+</appSettings>
+```
+
+From Visual Studio (Recommended):
+- Open `CacheItemVersioning.sln`.
+- Let NuGet packages restore.
+- Build and run.
+
+From command line (optional):
+```bash
+# Replace <path-to-sample> with the sample location on your machine,
+# e.g. d:\ncache-samples\CacheItemVersioning
+cd "<path-to-sample>"
+dotnet restore
+dotnet build
+dotnet run
+```
+
+## Notes
+
+- Ensure the sample solution references SampleData before building:
+   - In Visual Studio: Right-click the solution → Add → Existing Project → `SampleData\SampleData\SampleData.csproj`
+   - Command line: add the project reference or edit the solution file to include the SampleData project.
+- If NuGet packages are not restored properly:
+	- Visual Studio: Right‑click the solution → Restore NuGet Packages.
+	- Command line: run `dotnet restore` in the sample folder (see Build and Run section).
+	- If using nuget.exe: run `nuget restore CacheItemVersioning.sln`.
+
+## References
+
+Reference documentation is available at:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/using-cache-item-versioning.html
+
+## Additional Resources
+
+### Samples & Playground
+
+For more samples of NCache features on various platforms:\
+https://github.com/Alachisoft/NCache-Samples/
+
+You can also visit NCache Playground for an interactive feature demo:\
+https://www.alachisoft.com/nclive/
+
+### Documentation
+
+The complete online documentation for NCache is available at:\
 http://www.alachisoft.com/resources/docs/#ncache
 
-##### Programmers' Guide
-The complete programmers guide of NCache is available at:
+### Programmer's Guide
+The complete programmer's guide of NCache is available at:\
 http://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
-### Technical Support
+## Technical Support
 
-Alachisoft [C] provides various sources of technical support. 
+Alachisoft&copy; provides various sources of technical support. 
 
 - Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
-### Copyrights
+## Copyrights
 
-[C] Copyright 2021 Alachisoft 
+Copyright 2025 Alachisoft&copy;

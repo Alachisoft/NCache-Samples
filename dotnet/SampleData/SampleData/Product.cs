@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-
-// ===============================================================================
+﻿// ===============================================================================
 // Alachisoft (R) NCache Sample Code
 // ===============================================================================
 // Copyright © Alachisoft.  All rights reserved.
@@ -11,6 +8,8 @@ using System.Text;
 // FITNESS FOR A PARTICULAR PURPOSE.
 // ===============================================================================
 
+using System.Text;
+
 namespace Alachisoft.NCache.Sample.Data
 {
     /// <summary>
@@ -19,70 +18,43 @@ namespace Alachisoft.NCache.Sample.Data
     [Serializable]
     public class Product
     {
-        public Product() { }
-
         /// <summary>
-        /// Unique id assigned to each product
+        /// Unique ProductID assigned to each product
         /// </summary>
-        public virtual int Id
-        {
-            set;
-            get;
-        }
+        public int ProductID { set; get; }
 
         /// <summary>
         /// Price of one unit of this product
         /// </summary>
-        public Decimal UnitPrice
-        {
-            get;
-            set;
-        }
+        public Decimal UnitPrice { set; get; }
 
         /// <summary>
         /// Name of the product
         /// </summary>
-        public virtual string Name
-        {
-            set;
-            get;
-        }
+        public string ProductName { set; get; }
 
-        /// <summary>
-        /// Class to which the product belongs
-        /// </summary>
-        public virtual string ClassName
-        {
-            set;
-            get;
-        }
+        public string ClassName { set; get; }
 
-        /// <summary>
-        /// Category of the product
-        /// </summary>
-        public virtual string Category
-        {
-            set;
-            get;
-        }
 
         /// <summary>
         /// Quantity per unit of the product
         /// </summary>
-        public string QuantityPerUnit
-        {
-            get;
-            set;
-        }
+        public string QuantityPerUnit { set; get; }
 
         /// <summary>
         /// Unit in stock of the product
         /// </summary>
-        public int UnitsAvailable
-        {
-            get;
-            set;
-        }
+        public short UnitsInStock { set; get; }
+
+        /// <summary>
+        /// Units available of the product
+        /// </summary>
+        public int UnitsAvailable { set; get; }
+
+        /// <summary>
+        /// Category of the product
+        /// </summary>
+        public string Category { set; get; }
 
         /// <summary>
         /// This method returns the information about this product in string format.
@@ -92,21 +64,15 @@ namespace Alachisoft.NCache.Sample.Data
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("[");
-
             builder.Append("Name ");
-            builder.Append(Name);
-
+            builder.Append(ProductName);
             builder.Append(", Quantity/Unit ");
             builder.Append(QuantityPerUnit);
-
             builder.Append(", UnitPrice ");
             builder.Append(UnitPrice);
-
-            builder.Append(", UnitsAvailable ");
-            builder.Append(UnitsAvailable);
-
+            builder.Append(", UnitsInStock ");
+            builder.Append(UnitsInStock);
             builder.Append("]");
-
             return builder.ToString();
         }
     }
