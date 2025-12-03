@@ -42,7 +42,7 @@ Before the sample application is executed, make sure that:
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html/
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
 - NuGet package required (The package references are already included in the project file).
 	- `Alachisoft.NCache.SDK`
 	- `AspNet.SessionState.NCache`

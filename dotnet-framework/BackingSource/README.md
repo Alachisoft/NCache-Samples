@@ -31,7 +31,7 @@ Before the sample application is executed, make sure that:
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html/
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
 - Ensure that `ReadThruProviderName` and `WriteThruProviderName` are set according to the provider names in configuration (see Configuration).
 - NuGet packages required (references already included in the project):
 	- `Alachisoft.NCache.SDK`
