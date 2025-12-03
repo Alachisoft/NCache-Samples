@@ -39,7 +39,7 @@ Before the sample application is executed, make sure that:
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html/
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
 - Database server (Microsoft SQL Server or SQL Server Express) installed.
   - Ensure the server is reachable, running and accessible (connection string with credentials is available).
   - Broker service must be enabled in database. The following link contains instructions:\

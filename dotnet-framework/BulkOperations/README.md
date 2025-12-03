@@ -27,7 +27,7 @@ Before the sample application is executed make sure that:
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html/
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
 - NuGet package required: Alachisoft.NCache.SDK (>= 5.3.6.1). The package reference is already included in the project file.
 - SampleData project (which contains the "Customer" model) must be present in the directory as this sample.
 
