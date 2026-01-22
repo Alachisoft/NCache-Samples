@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BasicCacheOperations": {
+      "commandName": "Project",
+      "commandLineArgs": "demoCache"
+    }
+  }
+}

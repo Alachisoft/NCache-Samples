@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GroupingCachedData": {
+      "commandName": "Project",
+      "commandLineArgs": "demoCache"
+    }
+  }
+}

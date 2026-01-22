@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PubSubMessaging": {
+      "commandName": "Project",
+      "commandLineArgs": "demoCache"
+    }
+  }
+}
