@@ -1,0 +1,9 @@
+<!--Sample Configuration file-->
+
+<configuration>
+<application-config application-id="myapp" enable-cache-exception="true" default-region-name="default" key-case-sensitivity="false">
+	<cache-regions>
+		<region name="default" cache-name="demoCache" priority="default" expiration-type="none" expiration-period="0" use-async="false"  />
+	</cache-regions>
+</application-config>
+</configuration>
