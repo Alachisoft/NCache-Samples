@@ -1,129 +1,186 @@
+/*
+ * ===============================================================================
+ * Alachisoft (R) NCache Sample Code.
+ * NCache Basic Operations sample
+ * ===============================================================================
+ * Copyright © Alachisoft.  All rights reserved.
+ * THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+ * OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * ===============================================================================
+ */
+
 package com.alachisoft.ncache.samples.NonDurableSubscriber;
-// ===============================================================================
-// Alachisoft (R) NCache Sample Code.
-// ===============================================================================
-// Copyright © Alachisoft.  All rights reserved.
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
-// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
-// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE.
-// ===============================================================================
-
-
-import com.alachisoft.ncache.samples.EventListeners.OnMessageReceivedListener;
-import com.alachisoft.ncache.samples.EventListeners.PatternBasedMessageReceivedListener;
 import com.alachisoft.ncache.client.Cache;
 import com.alachisoft.ncache.client.CacheManager;
+import com.alachisoft.ncache.runtime.caching.SubscriptionPolicy;
 import com.alachisoft.ncache.runtime.caching.Topic;
 import com.alachisoft.ncache.runtime.caching.TopicSubscription;
 import com.alachisoft.ncache.runtime.caching.messaging.TopicSearchOptions;
-
-import java.io.*;
+import com.alachisoft.ncache.samples.DurableSubscriber.DurableSubscriber;
+import com.alachisoft.ncache.samples.EventListeners.MessageReceivedListenerImpl;
+import com.alachisoft.ncache.samples.EventListeners.PatternBasedMessageReceivedListener;
+import com.alachisoft.ncache.samples.Utilities.TopicUtil;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
+
+/*
+ * ===============================================================================
+ * Non-Durable Subscribers receive messages only while they are active and
+ * connected. If a subscriber disconnects or the application stops, it will miss
+ * any messages published during its downtime.
+ * Use non-durable subscriptions for real-time, transient data streams such as
+ * live dashboards or chat notifications.
+ * ===============================================================================
+ */
 
 public class NonDurableSubscriber {
     private static Cache _cache;
 
-    public static void run()
-    {
-        try
-        {
-            getPropsAndInitCache();
 
-            TopicSubscription electronicsSubscription = runSubscriber("ElectronicsOrders");
-            TopicSubscription garmentsSubscription = runSubscriber("GarmentsOrders");
+    public static void main(String[] args) throws Exception {
+        // Connect to a running cache and get cache handle for it
+        _cache = getCache();
 
-            //Following patterns can be used;
-            //* -	 represents zero or more characters. For example, ‘bl*’ finds TOPICs ‘black’, ‘blue’, and ‘blob’ etc.
-            //? -	 represents one character. For example, ‘h?t’ finds ‘hot’, ‘hat’, and ‘hit’ etc.
-            //[]-	 represents any single character within the brackets. For example, ‘h[oa]t’ finds hot and hat, but not hit.
+        if (_cache == null) {
+            System.out.println("Cache could not be initialized.");
+            return;
+        }
 
-            TopicSubscription allOrdersSubscription = runPatternBasedSubscriber("*Orders");
+        // Create Non Durable Subscriptions
+        TopicSubscription electronicsSharedSubs = CreateNonDurableSubscription("ElectronicsOrders",
+                "ElectronicsSubscription", SubscriptionPolicy.Shared);
+        TopicSubscription garmentsExclusiveSubs = CreateNonDurableSubscription("GarmentsOrders",
+                "GarmentsSubscription", SubscriptionPolicy.Exclusive);
 
-            System.out.println("Press any key to stop subscribers...");
-            System.in.read();
+        //Following patterns can be used;
+        //* -	 represents zero or more characters. For example, ‘bl*’ finds TOPICs ‘black’, ‘blue’, and ‘blob’ etc.
+        //? -	 represents one character. For example, ‘h?t’ finds ‘hot’, ‘hat’, and ‘hit’ etc.
+        //[]-	 represents any single character within the brackets. For example, ‘h[oa]t’ finds hot and hat, but not hit.
 
-            electronicsSubscription.unSubscribe();
-            garmentsSubscription.unSubscribe();
-            allOrdersSubscription.unSubscribe();
+        TopicSubscription allOrdersSubscription = CreatePatternSubscription("*Orders");
 
-        }catch (Exception ex)
-        {
-            ex.printStackTrace();
+        System.out.println("Press any key to stop subscribers...");
+        System.in.read();
+
+        // Unsubscribe Non Durable Subscriptions
+        electronicsSharedSubs.unSubscribe();
+        garmentsExclusiveSubs.unSubscribe();
+        assert allOrdersSubscription != null;
+        allOrdersSubscription.unSubscribe();
+
+        // Closing the cache handle
+        _cache.close();
+    }
+
+    // ------------------------------------------------------------------------------
+    /**
+     * Method to connect to a running cache and return a cache handle for it.
+     *
+     * @return Cache handle for the connected cache.
+     */
+    private static Cache getCache() throws Exception {
+        // Getting cache name from configuration file
+        String cacheName = getConfigValue("CacheName");
+
+        // Validating cache name
+        if (cacheName == null || cacheName.isEmpty()) {
+            System.out.println("The CacheName cannot be null or empty.");
+            return null;
+        }
+
+        // Trying to connect to the cache
+        try {
+            // Connecting to a running cache and return a cache handle for it
+            Cache cache = CacheManager.getCache(cacheName);
+
+            // Printing output on console
+            System.out.printf("Cache '%s' is connected.%n", cacheName);
+
+            // Returning cache handle
+            return cache;
+        } catch(Exception e) {
+            System.out.println("Unable to connect to cache: " + e.getMessage());
+            return null;
         }
     }
 
-    private static TopicSubscription runPatternBasedSubscriber(String pattern) throws Exception {
-        //Create Subscription on all the topics that matches the pattern.
-        Topic patternTopic = _cache.getMessagingService().getTopic(pattern, TopicSearchOptions.ByPattern);
-        PatternBasedMessageReceivedListener subscriberCallbacks = new PatternBasedMessageReceivedListener();
 
-        // Subscribes to the topic.
-        if(patternTopic != null)
-            return patternTopic.createSubscription(subscriberCallbacks);
+    // ------------------------------------------------------------------------------
+    /**
+     * Method to create NonDurable Subscription on a topic.
+     *
+     * @param topicName        Name of the topic.
+     * @param subscriptionName Name of the subscription.
+     * @param policy           Subscription policy.
+     * @return NonDurable Topic Subscription.
+     */
+    private static TopicSubscription CreateNonDurableSubscription(String topicName, String subscriptionName,
+                                                                  SubscriptionPolicy policy) throws Exception {
 
-        return null;
-    }
+        // Create Subscription on the specified topic.
+        Topic topic = TopicUtil.getOrCreateTopic(_cache, topicName);
 
-    private static TopicSubscription runSubscriber(String topicName) throws Exception {
-        // Initialize cache
-        getPropsAndInitCache();
-
-        Topic topic = _cache.getMessagingService().getTopic(topicName);
-
-        OnMessageReceivedListener messageReceivedListener = new OnMessageReceivedListener();
-
-        if(topic == null)
-            topic = _cache.getMessagingService().createTopic(topicName);
+        // Create message listener
+        MessageReceivedListenerImpl messageReceivedListener = new MessageReceivedListenerImpl();
 
         // Subscribes to the topic.
         return topic.createSubscription(messageReceivedListener);
     }
 
-    private static void getPropsAndInitCache() throws Exception {
-        // Initialize connection
-        Properties _properties = getProperties();
-        // Initialize cache
-        String cacheName= _properties.getProperty("CacheID");
-        //  initialize cache before any operations
-        initializeCache(cacheName);
-    }
-
+    // ------------------------------------------------------------------------------
     /**
-     * Class that provides the functionality of the sample
+     * Method to create NonDurable Subscription on topics matching a pattern.
+     *
+     * @param pattern Pattern to match topic names.
+     * @return NonDurable Topic Subscription.
      */
-    private static void initializeCache(String cacheName) throws Exception {
-        if(cacheName == null){
-            System.out.println("The CacheID cannot be null.");
-            return;
-        }
+    private static TopicSubscription CreatePatternSubscription(String pattern) throws Exception {
 
-        if(cacheName.isEmpty()){
-            System.out.println("The CacheID cannot be empty.");
-            return;
-        }
+        //Create Subscription on all the topics that matches the pattern.
+        Topic patternTopic = _cache.getMessagingService().getTopic(pattern, TopicSearchOptions.ByPattern);
 
-        // Initialize an instance of the cache to begin performing operations:
-        _cache = CacheManager.getCache(cacheName);
+        // Create pattern based message listener
+        PatternBasedMessageReceivedListener patternBasedMessageReceivedListener =
+                new PatternBasedMessageReceivedListener();
 
-        // Print output on console
-        System.out.println();
-        System.out.println("Cache initialized succesfully.");
+        // Subscribes to the topic.
+        if(patternTopic != null)
+            return patternTopic.createSubscription(patternBasedMessageReceivedListener);
+
+        return null;
     }
 
+
+    // ------------------------------------------------------------------------------
     /**
-     This method returns property file
+     * Reads value from config.properties
      */
-    private static Properties getProperties() throws IOException
-    {
-        String path = "config.properties";
-        InputStream inputStream = NonDurableSubscriber.class.getClassLoader().getResourceAsStream(path);
-        Properties properties=new Properties();
-        if (inputStream != null) {
-            properties.load(inputStream);
-        } else {
-            throw new FileNotFoundException("property file '" + path + "' not found in the classpath");
+    private static String getConfigValue(String key) {
+        try {
+            // Getting input stream to read properties file
+            InputStream stream = DurableSubscriber.class
+                    .getClassLoader()
+                    .getResourceAsStream("config.properties");
+
+            if (stream == null) {
+                System.out.println("config.properties not found.");
+                return null;
+            }
+
+            // Loading properties from the input stream
+            Properties props = new Properties();
+            props.load(stream);
+
+            // Returning value for the provided key
+            return props.getProperty(key);
+
+        } catch (IOException e) {
+            return null;
         }
-        return properties;
     }
+    
+
 }

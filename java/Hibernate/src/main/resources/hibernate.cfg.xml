@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection -->
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.url">
+            jdbc:sqlserver://localhost:1433;databaseName=NHibernate;encrypt=true;
+            trustServerCertificate=true
+        </property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password">4Islamabad</property>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.SQLServer2012Dialect
+        </property>
+
+
+
+        <!-- Hibernate settings -->
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">false</property>
+        <property name="hibernate.use_sql_comments">false</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Second level cache -->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.region.factory_class">com.alachisoft.ncache.NCacheRegionFactory</property>
+        <property name="ncache.application_id">myapp</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+
+        <!-- Optional: enable query caching for specific regions -->
+        <!-- <property name="hibernate.cache.region_prefix">nhibernate_sample</property> -->
+
+        <!-- Mappings (optional if using annotations) -->
+        <!-- <mapping class="nhibernatesample.entities.Customer"/> -->
+        <!-- <mapping class="nhibernatesample.entities.Order"/> -->
+        <!-- <mapping class="nhibernatesample.entities.Product"/> -->
+        <!-- <mapping class="nhibernatesample.entities.Supplier"/> -->
+
+    </session-factory>
+</hibernate-configuration>

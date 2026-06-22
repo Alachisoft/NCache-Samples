@@ -1,32 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>ncache.samples</groupId>
-        <artifactId>base</artifactId>
-        <version>5</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+  <groupId>com.alachisoft.ncache.sample</groupId>
+  <artifactId>SearchUsingSQL</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-    <artifactId>SearchUsingSQL</artifactId>
-    <version>${revision}</version>
-    <packaging>jar</packaging>
+  <name>SearchUsingSQL</name>
+  <url>http://maven.apache.org</url>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <mainClass>com.alachisoft.ncache.sample.SearchUsingSQL</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>ncache.samples</groupId>
-            <artifactId>sampledata</artifactId>
-            <version>${project.version}</version>
-<!--            <scope>system</scope>-->
-<!--           <systemPath>${basedir}/../SampleData/target/sampledata-${project.version}.jar</systemPath>-->
-        </dependency>
-        <dependency>
-            <groupId>com.alachisoft.ncache</groupId>
-            <artifactId>ncache-client</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-
+  <dependencies>
+      <dependency>
+          <groupId>com.alachisoft.ncache</groupId>
+          <artifactId>ncache-client</artifactId>
+          <version>5.3.6</version>
+      </dependency>
+      <dependency>
+          <groupId>com.alachisoft.ncache.samples.data</groupId>
+          <artifactId>SampleData</artifactId>
+          <version>1.0-SNAPSHOT</version>
+      </dependency>
+  </dependencies>
 </project>
