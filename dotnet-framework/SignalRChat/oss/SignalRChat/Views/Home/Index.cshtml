@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Chat";
+}
+
+<h2>SignalR + NCache Chat</h2>
+<h3>Your Connection ID:</h3> <div id="connectionIdDisplay"></div>
+<hr />
+<h3>Group Actions</h3>
+<input type="text" id="groupNameInput" placeholder="Group Name" />
+<button id="joinGroupBtn">Join Group</button>
+<button id="leaveGroupBtn">Leave Group</button>
+<hr />
+<h3>Messaging</h3>
+<input type="text" id="messageInput" name="message" placeholder="Message" required />
+<input type="text" id="targetUserInput" placeholder="Target Connection ID" />
+<input type="text" id="targetGroupInput" placeholder="Target Group" />
+<button id="sendToUserBtn">Send to Connection</button>
+<button id="sendToGroupBtn">Send To Group</button>
+<button id="sendToAllBtn">Send To All</button>
+<hr />
+<h2>Messages Received from this User</h2> <ul id="messagesList"></ul>
+
+@section scripts {
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include SignalR -->
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <!-- Auto-generated hub script -->
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        $(function () {
+
+            var chat = $.connection.chatHub;
+            var currentConnectionId = "";
+            // Receive message
+            chat.client.receiveMessage = function (user, message) {
+
+                console.log("Successfully Received");
+                var li = $('<li />').text(user + ": " + message);
+                $('#messagesList').append(li);
+            };
+
+
+            // Start connection
+            $.connection.hub.start().done(function () {
+                console.log("Successfully Connected");
+                $('#connectionIdDisplay').text($.connection.hub.id);
+                currentConnectionId = $.connection.hub.id;
+                // Send to ALL
+                $('#sendToAllBtn').click(function () {
+                    var message = $('#messageInput').val();
+                    chat.server.sendMessageToAll(currentConnectionId, message);
+                });
+
+                // Send to specific connection
+                $('#sendToUserBtn').click(function () {
+                    var message = $('#messageInput').val();
+                    var targetUser = $('#targetUserInput').val();
+
+                    chat.server.sendMessageToSpecificConnection(targetUser, currentConnectionId, message);
+                });
+
+                // Send to GROUP
+                $('#sendToGroupBtn').click(function () {
+                    var message = $('#messageInput').val();
+                    var group = $('#targetGroupInput').val();
+
+                    chat.server.sendMessageToSpecificGroup(group, currentConnectionId, message);
+                });
+
+                // Join group
+                $('#joinGroupBtn').click(function () {
+                    var group = $('#groupNameInput').val();
+                    chat.server.joinGroup(group);
+                });
+
+                // Leave group
+                $('#leaveGroupBtn').click(function () {
+                    var group = $('#groupNameInput').val();
+                    chat.server.leaveGroup(group);
+                });
+            });
+        });
+    </script>
+}
