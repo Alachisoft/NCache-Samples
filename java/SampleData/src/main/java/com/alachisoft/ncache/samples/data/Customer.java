@@ -1,185 +1,233 @@
-// ===============================================================================
-// Alachisoft (R) NCache Sample Code.
-// NCache Customer Class used by java.com.alachisoft.ncache.samples
-// ===============================================================================
-// Copyright © Alachisoft.  All rights reserved.
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
-// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
-// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE.
-// ===============================================================================
+/*
+ * ===============================================================================
+ * Alachisoft (R) NCache Sample Code.
+ * NCache Basic Operations sample
+ * ===============================================================================
+ * Copyright © Alachisoft.  All rights reserved.
+ * THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+ * OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * ===============================================================================
+ */
 
 package com.alachisoft.ncache.samples.data;
 
 import java.io.Serializable;
 
-public class Customer implements Serializable
-{
+/**
+ * Model class representing a Customer entity.
+ */
+public class Customer implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Unique CustomerID of the customer.
+     */
     private String customerID;
+
+    /**
+     * Contact name of the customer.
+     */
     private String contactName;
+
+    /**
+     * Company the customer works for.
+     */
     private String companyName;
+
+    /**
+     * Contact number of the customer.
+     */
     private String contactNo;
-    private String ContactTitle;
+
+    /**
+     * Residential address of the customer.
+     */
     private String address;
+
+    /**
+     * Residence city of the customer.
+     */
     private String city;
+
+    /**
+     * Nationality of the customer.
+     */
     private String country;
-    private String region;
-    private String phone;
 
-    public String getContactTitle() {
-        return ContactTitle;
-    }
-
-    public void setContactTitle(String contactTitle) {
-        ContactTitle = contactTitle;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
+    /**
+     * Postal code of the customer.
+     */
     private String postalCode;
+
+    /**
+     * Fax number of the customer.
+     */
     private String fax;
 
-    public Customer()
-    {
-    }
+    // -------------------- Getters and Setters --------------------
 
     /**
-     Unique Id of the customer
+     * Returns the unique identifier for this customer.
+     *
+     * @return the customerID
      */
-    public String getCustomerID()
-    {
+    public String getCustomerID() {
         return customerID;
     }
-    public void setCustomerID(String value)
-    {
-        customerID = value;
+
+    /**
+     * Sets the unique identifier for this customer.
+     *
+     * @param customerID the customerID to set
+     */
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
     }
 
     /**
-     Contact name of the customer
+     * Returns the contact name of the customer.
+     *
+     * @return the contactName
      */
-    public String getContactName()
-    {
+    public String getContactName() {
         return contactName;
     }
-    public void setContactName(String value)
-    {
-        contactName = value;
+
+    /**
+     * Sets the contact name of the customer.
+     *
+     * @param contactName the contactName to set
+     */
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
     /**
-     Company the customer works for
+     * Returns the company name associated with the customer.
+     *
+     * @return the companyName
      */
-    public String getCompanyName()
-    {
+    public String getCompanyName() {
         return companyName;
     }
-    public void setCompanyName(String value)
-    {
-        companyName = value;
+
+    /**
+     * Sets the company name associated with the customer.
+     *
+     * @param companyName the companyName to set
+     */
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     /**
-     Contact number of the customer
+     * Returns the contact number of the customer.
+     *
+     * @return the contactNo
      */
-    public String getContactNo()
-    {
+    public String getContactNo() {
         return contactNo;
     }
-    public void setContactNo(String value)
-    {
-        contactNo = value;
+
+    /**
+     * Sets the contact number of the customer.
+     *
+     * @param contactNo the contactNo to set
+     */
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     /**
-     Residential address of the customer
+     * Returns the residential address of the customer.
+     *
+     * @return the address
      */
-    public String getAddress()
-    {
+    public String getAddress() {
         return address;
     }
-    public void setAddress(String value)
-    {
-        address = value;
+
+    /**
+     * Sets the residential address of the customer.
+     *
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**
-     Residence city of the customer
+     * Returns the city where the customer resides.
+     *
+     * @return the city
      */
-    public String getCity()
-    {
+    public String getCity() {
         return city;
     }
-    public void setCity(String value)
-    {
-        city = value;
+
+    /**
+     * Sets the city where the customer resides.
+     *
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
     }
 
     /**
-     Nationality of the customer
+     * Returns the country (nationality) of the customer.
+     *
+     * @return the country
      */
-    public String getCountry()
-    {
+    public String getCountry() {
         return country;
     }
-    public void setCountry(String value)
-    {
-        country = value;
+
+    /**
+     * Sets the country (nationality) of the customer.
+     *
+     * @param country the country to set
+     */
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     /**
-     Postal code of the customer
+     * Returns the postal code of the customer.
+     *
+     * @return the postalCode
      */
-    public String getPostalCode()
-    {
+    public String getPostalCode() {
         return postalCode;
     }
-    public void setPostalCode(String value)
-    {
-        postalCode = value;
+
+    /**
+     * Sets the postal code of the customer.
+     *
+     * @param postalCode the postalCode to set
+     */
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     /**
-     Fax number of the customer
+     * Returns the fax number of the customer.
+     *
+     * @return the fax
      */
-    public String getFax()
-    {
+    public String getFax() {
         return fax;
     }
-    public void setFax(String value)
-    {
-        fax = value;
-    }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerID='" + customerID + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", contactNo='" + contactNo + '\'' +
-                ", ContactTitle='" + ContactTitle + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
-                ", region='" + region + '\'' +
-                ", phone='" + phone + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", fax='" + fax + '\'' +
-                '}';
+    /**
+     * Sets the fax number of the customer.
+     *
+     * @param fax the fax to set
+     */
+    public void setFax(String fax) {
+        this.fax = fax;
     }
 }

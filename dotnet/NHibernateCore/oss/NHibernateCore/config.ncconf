@@ -1,0 +1,14 @@
+<configuration>
+  <cache-config cache-name="mycache" alias="" config-id="147de838-263d-4fd6-bd91-edcbf6cf950f" config-version="0" store-type="distributed-cache">
+    <cache-settings inproc="True" data-format="Object" serialization="Json">
+      <logging enable-logs="True" trace-errors="True" trace-debug="False" log-path=""/>
+      <performance-counters enable-counters="True" snmp-port="0"/>
+      <compression enable-compression="False" threshold="100kb"/>
+      <cleanup interval="15sec"/>
+      <storage type="heap" cache-size="1024mb"/>
+      <eviction-policy enabled-eviction="True" default-priority="normal" policy="priority" eviction-ratio="5%"/>
+      <cache-topology topology="local-cache"/>
+      <client-death-detection enable="False" grace-interval="60sec"/>
+    </cache-settings>
+  </cache-config>
+</configuration>

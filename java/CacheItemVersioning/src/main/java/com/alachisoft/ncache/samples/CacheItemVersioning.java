@@ -1,121 +1,280 @@
-// ===============================================================================
-// Alachisoft (R) NCache Sample Code.
-// NCache Cache Item Versioning sample
-// ===============================================================================
-// Copyright © Alachisoft.  All rights reserved.
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
-// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
-// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-// FITNESS FOR A PARTICULAR PURPOSE.
-// ===============================================================================
+/*
+ * ===============================================================================
+ * Alachisoft (R) NCache Sample Code.
+ * NCache Basic Operations sample
+ * ===============================================================================
+ * Copyright © Alachisoft.  All rights reserved.
+ * THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+ * OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+ * LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * ===============================================================================
+ */
+
 package com.alachisoft.ncache.samples;
 
 import com.alachisoft.ncache.client.Cache;
+import com.alachisoft.ncache.client.CacheItem;
 import com.alachisoft.ncache.client.CacheItemVersion;
 import com.alachisoft.ncache.client.CacheManager;
-import com.alachisoft.ncache.client.LockHandle;
-import com.alachisoft.ncache.runtime.caching.WriteThruOptions;
+import com.alachisoft.ncache.runtime.exceptions.CacheException;
 import com.alachisoft.ncache.samples.data.Customer;
 
-import java.io.*;
+import java.io.InputStream;
 import java.util.Properties;
+
+/*
+ * ===============================================================================
+ * Cache item versioning allows you to track changes to cache items over time by
+ * associating a version number with each item. This version number is incremented
+ * each time the item is updated in the cache. Some use cases of this include:
+ *   1. Concurrency Control: Ensuring that updates to cache items are based on
+ *      the most recent version, preventing lost updates.
+ *   2. Change Tracking: Keeping track of changes made to cache items over time.
+ *   3. Data Synchronization: Synchronizing cache items with external data sources
+ *      by comparing version numbers.
+ *   4. Conflict Resolution: Resolving conflicts when multiple clients attempt to
+ *      update the same cache item simultaneously.
+ *   5. Auditing: Maintaining a history of changes made to cache items for
+ *      auditing purposes.
+ * ===============================================================================
+ */
 
 public class CacheItemVersioning {
 
-    public static void run() throws Exception {
-        //Initialize cache
-        Properties properties = getProperties();
-        String cacheName = properties.getProperty("CacheID");
-        Cache cache = CacheManager.getCache(cacheName);
-        cache.clear();
+    // Cache handle for the connected cache
+    private static Cache _cache;
 
-        //Cache item versioning makes possible the concurrency checks on cacheitems.
-        //Scenario:
-        //User X and Y has fetched data from cache
-        //User Y makes changes to some cache items and write back the changes to cache
-        //Now the version of cache items with User X are obsolete and it can determine
-        //so by using cache item versioning.
+    public static void main(String[] args) throws Exception {
+        // Connect to a running cache and get cache handle for it
+        _cache = getCache();
 
-        Customer customer = new Customer();
-        customer.setContactName("Scott Prince");
-        customer.setAddress("95-A Barnes Road Wallingford, CT");
-        customer.setContactNo("25632-5646");
-
-        CacheItemVersion version1 = cache.add("Customer:ScottPrince", customer);
-
-        //updaing the customer object in cache;
-        customer.setCity("Calafornia");
-        CacheItemVersion version2 = cache.insert("Customer:ScottPrince", customer);
-
-        if (version1 != version2) {
-            System.out.println("Item has changed since last time it was fetched.");
-            System.out.println();
+        // Validating cache handle
+        if (_cache == null) {
+            System.out.println("Cache could not be initialized.");
+            return;
         }
 
-        //GetItNewer
-        //Retrives item from cache based on CacheItemVersion
-        //Get item only is version superior to version2
-        Customer customer2 = cache.getIfNewer("Customer:ScottPrince",
-                version2, Customer.class /*Version to be compared from cache */);
+        // Creating instance of Customer and key to use in this sample
+        Customer customer = createNewCustomer();
+        String key = getKey(customer);
 
-        if (customer2 == null) {
-            System.out.println("Latest version of item is already available");
-        } else {
-            System.out.println("Current Version of Customer:ScottPrince is: " + version2.getVersion());
-            printCustomerDetails(customer2);
-        }
+        // Adding item in cache and fetching the cache item version
+        CacheItemVersion itemVersion = addToCache(key, customer);
 
-        //Remove
-        customer.setContactName("Mr. Scott n Price");
-        CacheItemVersion version3 = cache.insert("Customer:ScottPrince", customer);
+        // Updating item in cache if cache item version matches and getting latest cache item version
+        CacheItemVersion latestVersion = updateInCache(key, customer, itemVersion);
 
-        Customer customerRemoved = cache.remove("Customer:ScottPrince", new LockHandle(), version3,
-                new WriteThruOptions(), Customer.class);
+        // Fetching item from cache using old version.
+        getItemWithVersion(key, itemVersion);
 
-        if (customerRemoved == null) {
-            System.out.println("Remove failed. The newer version of item exists in cache.");
-        } else {
-            System.out.println("Following Customer is removed from cache:");
-            printCustomerDetails(customerRemoved);
-        }
+        // Creating a copy of the latest version
+        CacheItemVersion latestVersionCopy = new CacheItemVersion(latestVersion.getVersion());
 
-        //Always manipulate the latest item as follows.
+        // Fetching item from cache using latest version.
+        getItemWithVersion(key, latestVersionCopy);
 
-        CacheItemVersion version4 = cache.insert("Customer:ScottPrince", customer);
-        customer2 = cache.getIfNewer("Customer:ScottPrince", version4, Customer.class);
+        // Removing item from cache using latest version
+        removeWithVersion(key, latestVersion);
 
-        if (customer2 == null) {
-            System.out.println("Item version available is latest!");
-        } else {
-            System.out.println("Latest available Item version is fetched from cache");
-        }
-
-        //Must dispose cache
-        cache.clear();
-
-        System.exit(0);
+        // Closing the cache handle
+        _cache.close();
     }
 
-    public static void printCustomerDetails(Customer customer) {
-        System.out.println();
+    // --------------------------------------------------------------------------
+    /**
+     * Method to connect to a running cache and return cache handle for it
+     *
+     * @return Cache handle for the connected cache
+     */
+    private static Cache getCache() throws Exception {
+        // Getting cache name from configuration file
+        String cacheName = getConfigValue("CacheName");
+
+        // Validating cache name
+        if (cacheName == null || cacheName.isEmpty()) {
+            System.out.println("The CacheName cannot be null or empty.");
+            return null;
+        }
+
+        // Trying to connect to the cache
+        try {
+            // Connecting to a running cache and return a cache handle for it
+            Cache cache = CacheManager.getCache(cacheName);
+
+            // Printing output on console
+            System.out.printf("Cache '%s' is connected.%n", cacheName);
+
+            // Returning cache handle
+            return cache;
+        } catch(Exception e) {
+            System.out.println("Unable to connect to cache: " + e.getMessage());
+            return null;
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    /**
+     * Method to generate instance of Customer to be used in this sample
+     *
+     * @return Instance of Customer
+     */
+    private static Customer createNewCustomer() {
+        // Creating an instance of Customer
+        Customer customer = new Customer();
+
+        // Setting customer details
+        customer.setCustomerID("SCOPR");
+        customer.setContactName("Scott Prince");
+        customer.setCompanyName("Lonesome Pine Restaurant");
+        customer.setContactNo("25632-5646");
+        customer.setAddress("95-A Barnes Road Wallingford, CT");
+
+        // Returning customer instance
+        return customer;
+    }
+
+    // --------------------------------------------------------------------------
+    /**
+     * Method to generate a string key for specified customer
+     *
+     * @param customer Instance of Customer to generate a key
+     * @return Key for the specified customer
+     */
+    private static String getKey(Customer customer) {
+        // Generating and returning key for specified customer
+        return String.format("Customer:%s", customer.getCustomerID());
+    }
+
+    // --------------------------------------------------------------------------
+    /**
+     * Method to add object in the cache and return cache item version
+     *
+     * @param key Key to be added in cache
+     * @param customer Instance of Customer that will be inserted in the cache
+     * @return Cache item version
+     */
+    private static CacheItemVersion addToCache(String key, Customer customer) throws CacheException {
+        // Adding item in cache
+        CacheItemVersion cacheItemVersion = _cache.add(key, customer);
+
+        // Printing output on console
+        System.out.println("Item is added to cache.");
+
+        // Returning cache item version
+        return cacheItemVersion;
+    }
+
+    // --------------------------------------------------------------------------
+    /**
+     * Method to update object in the cache if cache item version matches
+     *
+     * @param key Key to be updated in cache
+     * @param customer Instance of Customer that will be updated in the cache
+     * @param currentVersion Instance of CacheItemVersion to verify item is updated in cache
+     * @return Updated cache item version
+     */
+    private static CacheItemVersion updateInCache(String key, Customer customer, CacheItemVersion currentVersion) throws CacheException {
+        // Changing the customer details
+        customer.setCompanyName("Gourmet Lanchonettes");
+
+        // Creating a CacheItem from customer instance and assigning current Item Version
+        CacheItem cacheItem = new CacheItem(customer);
+        cacheItem.setCacheItemVersion(currentVersion);
+
+        // Updating item in cache if current version matches with the version in cache
+        CacheItemVersion newVersion = _cache.insert(key, cacheItem);
+
+        // Checking if item version has changed
+        if (currentVersion.getVersion() != newVersion.getVersion()) {
+            // Printing output on console
+            System.out.println("Item has changed since last time it was fetched.");
+        }
+
+        // Returning updated cache item version
+        return newVersion;
+    }
+
+    // --------------------------------------------------------------------------
+    /**
+     * Method to fetch and display object from cache if the provided cache item version matches latest in cache
+     *
+     * @param key Key of item
+     * @param version Instance of CacheItemVersion
+     */
+    private static void getItemWithVersion(String key, final CacheItemVersion version) throws CacheException {
+        // Fetching item from cache if cache item version is newer than provided version
+        Customer customer = _cache.getIfNewer(key, version, Customer.class);
+
+        // Checking if item is null
+        if (customer == null) {
+            // This means item version provided is the latest in cache
+            System.out.println("Specified item version is latest.");
+        } else {
+            // This means item version provided is obsolete and item is fetched from cache
+            System.out.println("Specified item version is obsolete. Fetched item from cache:");
+
+            // Printing customer details on console
+            printCustomerDetails(customer);
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    /**
+     * Method to delete an object in the cache using cache item version
+     *
+     * @param key String key to be removed from cache
+     * @param cacheItemVersion Instance of CacheItemVersion to remove item from cache if item version is same in cache
+     */
+    private static void removeWithVersion(String key, CacheItemVersion cacheItemVersion) throws CacheException {
+        // Removing object from cache if cache item version matches in cache
+        _cache.remove(key, null, cacheItemVersion, null, Customer.class);
+
+        // Printing output on console
+        System.out.println("Customer is removed from cache.");
+    }
+
+    // --------------------------------------------------------------------------
+    /**
+     * Method to print details of customer type
+     *
+     * @param customer Customer instance whose attributes are to be printed
+     */
+    private static void printCustomerDetails(Customer customer) {
+        // Printing customer details on console
         System.out.println("Customer Details are as follows: ");
-        System.out.println("Name: " + customer.getContactName());
+        System.out.println("ContactName: " + customer.getContactName());
+        System.out.println("CompanyName: " + customer.getCompanyName());
         System.out.println("Contact No: " + customer.getContactNo());
         System.out.println("Address: " + customer.getAddress());
+        System.out.println();
     }
 
+    // ------------------------------------------------------------------------------
     /**
-     * This method returns property file
+     * Method to read configuration value from config.properties file
      */
-    private static Properties getProperties() throws IOException {
-        String path = "config.properties";
-        InputStream inputStream = CacheItemVersioning.class.getClassLoader().getResourceAsStream(path);
-        Properties properties = new Properties();
-        if (inputStream != null) {
-            properties.load(inputStream);
-        } else {
-            throw new FileNotFoundException("property file '" + path + "' not found in the classpath");
+    private static String getConfigValue(String property) {
+        try {
+            // Loading config.properties file from resources folder into stream
+            InputStream stream = CacheItemVersioning.class
+                    .getClassLoader()
+                    .getResourceAsStream("config.properties");
+
+            // Validating stream
+            if (stream == null) {
+                System.out.println("config.properties not found.");
+                return null;
+            }
+
+            // Loading properties from stream
+            Properties props = new Properties();
+            props.load(stream);
+
+            // Returning value for specified property
+            return props.getProperty(property);
+        } catch (Exception e) {
+            return null;
         }
-        return properties;
     }
 }

@@ -9,3 +9,4 @@ public class PatternBasedMessageReceivedListener implements MessageReceivedListe
         System.out.println("Message Recieved on pattern based subscription for " + messageEventArgs.getTopicName());
     }
 }
+

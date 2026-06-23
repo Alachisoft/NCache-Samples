@@ -13,6 +13,7 @@ This sample contains the following model classes
 - Customer
 - Product
 - Order
+- Supplier
 
 The model classes in this project are used by different NCache samples.
 
@@ -35,4 +36,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2021 Alachisoft 
+[C] Copyright 2026 Alachisoft 

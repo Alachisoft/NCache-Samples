@@ -1,61 +1,145 @@
-# CACHE ITEM VERSIONING
+# CACHE ITEM VERSIONING SAMPLE
 
-### Table of contents
+## Table of contents
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
 * [Build and Run the sample](#build-and-run-the-sample)
+* [Notes](#notes)
+* [References](#references)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
 * [Copyrights](#copyrights)
 
-### Introduction
+## Introduction
 
-Cache item versioning enables optimistic locking to makes possible the concurrency checks on cacheitems. 
-CacheItemVersion is a property associated with every cache item. It is basically a numeric value that is 
-used to represent the version of the cached item which changes with every update to an item. This property 
-allows you to track whether any change occurred in an item or not. When you fetch an item from cache, you also 
-fetch its current version form cache.
+This Java (JDK 21) Maven console sample demonstrates how to use NCache item versioning to implement optimistic concurrency for cached objects. Each cached item carries a numeric CacheItemVersion that increments on every successful update; by fetching an item together with its version you can detect concurrent modifications and avoid lost updates. The sample shows common patterns: reading an item and its version, performing a conditional update that succeeds only if the version matches, handling version conflicts (for example by retrying or reporting an error), and removing items safely.
 
-This sample program demonstrates how to use the Cache Item Version to perform CRUD operations. 
-It shows how to Add, Get, Update and Delete an object(s) using cache an item version from NCache.
+The project includes step‑by‑step examples of Add, Get, Update (conditional on version) and Remove operations using NCache APIs so you can see how version checks are applied in real code.
 
-This sample uses SampleData project as a reference for model class "Customer".
+This sample uses SampleData project as a reference for model class `Customer`.
 
-### Prerequisites
+## Prerequisites
 
-Before the sample application executed make sure that:
+Before building the sample application, make sure that:
 
-- **config.properties** have been changed according to the configurations. 
-	- Change the cache name
-- By default, this sample uses 'demoCache', make sure cache is running. 
+- JDK 21 (required) is installed and configured. Verify using:
+  ```bash
+  java --version
+  ```
+- NCache is installed and running in an accessible location.
+  - If not, visit the following link to get started:\
+  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+- Ensure that `demoCache` (or another cache of your choice) is running.
+  - This is created during installation, otherwise you can create a new cache via this link:\
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
+- Maven dependency required: `ncache-client` (version 5.3.6 or later).
+- `SampleData` Maven project (contains the `Customer` model) is available locally.
+  - It is located at: `../SampleData/` relative to this sample.
+- Terminal commands are listed in each section but you can use any JAVA IDE (e.g. IntelliJ IDEA, NetBeans, Eclipse, VSCode, etc.) to achieve the same goal.
 
+## Build and Run the Sample
 
-### Build and Run the Sample
-- Run the following commands:
-    ``` mvn clean package ```
-- Open your project in your favourite compiler and run the sample application.
-- OR cd to target and run this command: 
-	- ``` cd target ```
-    - ``` java -cp * com.alachisoft.ncache.samples.Main ```
+This sample is a Maven wrapped Java application which means that there is no need to manually setup Maven in your environment. Maven wrapper will install all required Maven dependencies automatically. Before packaging the sample, ensure the following:
 
-### Additional Resources
+### Setting up SampleData dependency
 
-##### Documentation
-The complete online documentation for NCache is available at:
+ The `SampleData` Maven project (located at `../SampleData/`) needs to be installed in your environment first. To do this:
+- Open a command prompt and navigate to the `SampleData` project location where the `pom.xml` file is located.
+- Run the following commands to install the project:
+    - For Windows:
+      ```bash
+      .\mvnw.cmd clean
+      .\mvnw.cmd install
+      ```
+    - For Linux/macOS:
+      - First grant execution permissions to the wrapper script:
+      ```bash
+      chmod +x mvnw
+      ```
+      - Then execute the following:
+      ```bash
+      ./mvnw clean
+      ./mvnw install
+      ```
+
+### Configuring Cache Name
+
+By default, the cache name is set to `demoCache`. This is the cache created after installing NCache. If you have a different cache and need to change the cache name:
+- Open `src/main/resources/app.properties` in any text editor.
+- Replace `demoCache` with your desired cache name:
+    ```bash
+    CacheName=demoCache
+    ```
+
+### Running the Sample
+
+To run the sample application, open a command prompt and navigate to the sample project location where the `pom.xml` file is located. Then execute the following commands:
+
+- For Windows:
+    ```bash
+    .\mvnw.cmd clean install
+    .\mvnw.cmd exec:java
+    ```
+- For Linux/macOS:
+  - First grant execution permissions to the wrapper script:
+
+    ```bash
+    chmod +x mvnw
+    ```
+  - Run the following commands to execute the sample:
+    ```bash
+    ./mvnw clean install
+    ./mvnw exec:java
+    ```
+    
+## Notes
+
+- If Maven dependencies are not loaded or configured properly:
+    - For Windows:
+    ```bash
+    .\mvnw.cmd clean
+    .\mvnw.cmd dependency:resolve
+    .\mvnw.cmd install
+    ```
+    - For Linux/macOS:
+    ```bash
+    ./mvnw clean
+    ./mvnw dependency:resolve
+    ./mvnw install
+    ```
+
+## References
+
+Reference documentation is available at:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/using-cache-item-versioning.html
+
+## Additional Resources
+
+### Samples & Playground
+
+For more samples of NCache features on various platforms:\
+https://github.com/Alachisoft/NCache-Samples/
+
+You can also visit NCache Playground for an interactive feature demo:\
+https://www.alachisoft.com/nclive/
+
+### Documentation
+
+The complete online documentation for NCache is available at:\
 http://www.alachisoft.com/resources/docs/#ncache
 
-##### Programmers' Guide
-The complete programmers guide of NCache is available at:
+### Programmer's Guide
+The complete programmer's guide of NCache is available at:\
 http://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
-### Technical Support
+## Technical Support
 
-Alachisoft [C] provides various sources of technical support. 
+Alachisoft&copy; provides various sources of technical support. 
 
 - Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
-### Copyrights
+## Copyrights
 
-[C] Copyright 2021 Alachisoft 
+Copyright 2026 Alachisoft&copy;

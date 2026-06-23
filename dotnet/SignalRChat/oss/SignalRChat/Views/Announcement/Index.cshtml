@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Announcement";
+}
+
+<h2>SignalR + NCache Chat</h2>
+
+<h3>Your Connection ID:</h3>
+<div id="connectionIdDisplay"></div>
+
+<hr />
+
+<h3>Group Actions</h3>
+<input type="text" id="groupNameInput" placeholder="Group Name" />
+<button id="joinGroupBtn">Join Group</button>
+<button id="leaveGroupBtn">Leave Group</button>
+
+<hr />
+
+<h3>Messaging</h3>
+
+<input type="text" id="messageInput" name="message" placeholder="Message" required />
+<input type="text" id="targetUserInput" placeholder="Target Connection ID" />
+<input type="text" id="targetGroupInput" placeholder="Target Group" />
+
+<button id="sendToUserBtn">Send to Connection</button>
+<button id="sendToGroupBtn">Send To Group</button>
+<button id="sendToAllBtn">Send To All</button>
+
+<hr />
+
+<h2>Messages Received from this User</h2>
+
+<ul id="messagesList"></ul>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script>
+        let currentConnectionId = "";
+
+        // 1️⃣ Setup SignalR connection
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/messages")
+            .build();
+
+        // 2️⃣ Handle incoming messages
+        connection.on("ReceiveMessage", (user, message) => {
+            const li = document.createElement("li");
+            li.textContent = `${user}: ${message}`;
+            console.log(li);
+            document.getElementById("messagesList").appendChild(li);
+        });
+
+        // 3️⃣ Start connection
+        connection.start().then(() => {
+            currentConnectionId = connection.connectionId;
+
+            //Setup current connectionId
+            document.getElementById("connectionIdDisplay").textContent = currentConnectionId;
+        })
+        .catch(err => console.error(err));
+
+        document.getElementById("joinGroupBtn").addEventListener("click", async () => {
+            const groupName = document.getElementById("groupNameInput").value;
+
+            await connection.invoke("JoinGroup", groupName);
+        });
+
+        document.getElementById("leaveGroupBtn").addEventListener("click", async () => {
+            const groupName = document.getElementById("groupNameInput").value;
+
+            await connection.invoke("LeaveGroup", groupName);
+        });
+        // Send to ALL
+        document.getElementById("sendToAllBtn").addEventListener("click", async () => {
+            const message = document.getElementById("messageInput").value;
+
+            await connection.invoke("SendMessageToAll", currentConnectionId, message);
+        });
+
+        // Send to Connection
+        document.getElementById("sendToUserBtn").addEventListener("click", async () => {
+            const message = document.getElementById("messageInput").value;
+            const targetUser = document.getElementById("targetUserInput").value;
+
+            await connection.invoke("SendMessageToSpecificConnection", targetUser, currentConnectionId, message );
+        });
+
+        // Send to GROUP
+        document.getElementById("sendToGroupBtn").addEventListener("click", async () => {
+            const message = document.getElementById("messageInput").value;
+            const targetGroup = document.getElementById("targetGroupInput").value;
+
+            await connection.invoke("SendMessageToSpecificGroup", targetGroup, currentConnectionId, message );
+        });
+    </script>
+}
