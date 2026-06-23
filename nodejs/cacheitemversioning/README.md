@@ -54,4 +54,4 @@ Alachisoft [C] provides various sources of technical support.
 
 ### Copyrights
 
-[C] Copyright 2021 Alachisoft 
+[C] Copyright 2026 Alachisoft 
