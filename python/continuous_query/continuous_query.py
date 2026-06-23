@@ -7,6 +7,7 @@ from ncache.client.enum.EventDataFilter import EventDataFilter
 from sample_data.product import Product
 
 
+
 class ContinuousQuerySample:
     cache = None
 

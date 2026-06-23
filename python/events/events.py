@@ -5,6 +5,7 @@ from ncache.client.enum.EventDataFilter import EventDataFilter
 from sample_data.product import Product
 
 
+
 class Events:
     cache = None
     event_descriptor = None

@@ -4,6 +4,7 @@ from ncache.client.enum.SubscriptionPolicy import SubscriptionPolicy
 from ncache.runtime.util.TimeSpan import TimeSpan
 
 
+
 class DurableSubscriber:
     cache = None
 

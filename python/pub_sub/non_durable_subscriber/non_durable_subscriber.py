@@ -2,6 +2,7 @@ from ncache.client.CacheManager import CacheManager
 from ncache.client.enum.TopicSearchOptions import TopicSearchOptions
 
 
+
 class NonDurableSubscriber:
     cache = None
 

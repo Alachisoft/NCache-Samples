@@ -5,6 +5,7 @@ from ncache.runtime.util.TimeSpan import TimeSpan
 from sample_data.product import Product
 
 
+
 def initialize_cache():
     cache_name = "demoCache"
     cache = CacheManager.get_cache(cache_name)

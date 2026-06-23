@@ -5,6 +5,7 @@ from ncache.client.QueryCommand import QueryCommand
 from sample_data.product import Product
 
 
+
 def initialize_cache():
     cache_name = "demoCache"
     cache = CacheManager.get_cache(cache_name)
