@@ -259,6 +259,7 @@ A sample JSON representation is available at `sample_data/product.json`.
 
 ---
 
+
 ## Resources
 
 - [NCache Documentation](https://www.alachisoft.com/resources/docs/)
