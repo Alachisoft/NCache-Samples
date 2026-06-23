@@ -5,6 +5,7 @@ from ncache.client.enum.TagSearchOptions import TagSearchOptions
 from sample_data.product import Product
 
 
+
 def initialize_cache():
     cache_name = "demoCache"
     cache = CacheManager.get_cache(cache_name)

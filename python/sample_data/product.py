@@ -7,3 +7,4 @@ class Product:
 
     def __str__(self):
         return (f"\nID: {self.id}\nName: {self.name}\nUnit Price: {self.unit_price}\nUnits Available: {self.units_available}")
+

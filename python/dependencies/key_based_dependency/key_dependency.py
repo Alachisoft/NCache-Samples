@@ -5,6 +5,7 @@ from ncache.runtime.dependencies.KeyDependency import KeyDependency
 from sample_data.product import Product
 
 
+
 class KeyBasedDependency:
     cache = None
 
