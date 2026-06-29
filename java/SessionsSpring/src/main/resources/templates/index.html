@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Spring Session NCache</title>
+</head>
+<body>
+
+<h1>NCache Spring Session Demo</h1>
+
+<!--
+    Registration and login section.
+    Displayed only when the user is not authenticated.
+-->
+<div th:if="${authUser == null}">
+
+    <h2>Register</h2>
+    <!--
+        Registration form.
+        Submits user credentials to the session registration endpoint.
+    -->
+    <form method="post" th:action="@{/session/register}">
+        <input type="text"
+               name="username"
+               placeholder="Username"
+               required />
+
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               required />
+
+        <button type="submit">Register</button>
+    </form>
+
+    <h2>Login</h2>
+    <!--
+        Login form.
+        The last attempted username is populated from the session
+    -->
+    <form method="post" th:action="@{/session/login}">
+        <input type="text"
+               name="username"
+               placeholder="Username"
+               th:value="${lastUsername}"
+               required />
+
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               required />
+
+        <button type="submit">Login</button>
+    </form>
+
+    <hr/>
+
+</div>
+
+<!--
+    Login failure message.
+-->
+<div th:if="${loginFailed == true}">
+    <p>
+        <strong>Incorrect username/password</strong>
+    </p>
+</div>
+
+<!--
+    Authenticated user section.
+-->
+<div th:if="${authUser != null}">
+    <p>
+        Logged in as:
+        <strong th:text="${authUser}">User</strong>
+    </p>
+
+    <!--
+        Logout form.
+        Clears authentication-related session attributes.
+    -->
+    <form method="post" th:action="@{/session/logout}">
+        <button type="submit">Logout</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application-config default-cache-name="demoCache">
+    <caches>
+        <cache name="demoCache" ncacheid-instance="demoCache" priority="normal" expiration-type="absolute" expiration-period="300"/>
+    </caches>
+</application-config>

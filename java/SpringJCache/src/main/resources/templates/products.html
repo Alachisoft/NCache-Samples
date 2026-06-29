@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>NCache with Spring JCache Demo</title>
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<!--
+    Product creation section.
+-->
+<h2>Add Product</h2>
+<form th:action="@{/products/add}" th:object="${product}" method="post">
+    <label>ID:</label>
+    <input type="number" th:field="*{productID}" /><br/>
+
+    <label>Name:</label>
+    <input type="text" th:field="*{productName}" /><br/>
+
+    <label>Price:</label>
+    <input type="number" th:field="*{unitPrice}" /><br/>
+
+    <button type="submit">Add</button>
+</form>
+
+<hr/>
+
+<!--
+    Product retrieval section.
+-->
+<h2>Get Product</h2>
+<form th:action="@{/products/get}" method="get">
+    <label>ID:</label>
+    <input type="number" name="id"/>
+    <button type="submit">Get</button>
+</form>
+
+<!--
+    Error message displayed when the requested product
+    does not exist in the cache.
+-->
+<div th:if="${error == true}">
+    <h3>Product not found</h3>
+</div>
+
+<!--
+    Result section.
+-->
+<div th:if="${result != null}">
+    <h3>Result</h3>
+    <p>ID: <span th:text="${result.productID}"></span></p>
+    <p>Name: <span th:text="${result.productName}"></span></p>
+    <p>Price: <span th:text="${result.unitPrice}"></span></p>
+</div>
+
+<hr/>
+
+<!--
+    Product deletion section.
+-->
+<h2>Delete Product</h2>
+<form th:action="@{/products/delete}" method="post">
+    <label>ID:</label>
+    <input type="number" name="id"/>
+    <button type="submit">Delete</button>
+</form>
+
+</body>
+</html>
