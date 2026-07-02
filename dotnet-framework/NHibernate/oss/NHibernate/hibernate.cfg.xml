@@ -6,5 +6,5 @@
 		<property name="cache.use_second_level_cache">true</property>
 		
 
-	</session-factory>
+	<property name="cache.use_query_cache">true</property></session-factory>
 </hibernate-configuration>
