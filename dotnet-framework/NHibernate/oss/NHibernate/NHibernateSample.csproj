@@ -50,6 +50,9 @@
     <Reference Include="Alachisoft.NCache.Instrumentation, Version=5.3.0.0, Culture=neutral, PublicKeyToken=1448e8d1123e9096, processorArchitecture=MSIL">
       <HintPath>..\packages\Alachisoft.NCache.Opensource.SDK.5.3.6.2\lib\net40\Alachisoft.NCache.Instrumentation.dll</HintPath>
     </Reference>
+    <Reference Include="Alachisoft.NCache.Integrations.NHibernate.Cache, Version=5.3.6.1, Culture=neutral, PublicKeyToken=cff5926ed6a53769, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.NCache.Opensource.5.3.6.1\lib\netstandard2.0\Alachisoft.NCache.Integrations.NHibernate.Cache.dll</HintPath>
+    </Reference>
     <Reference Include="Alachisoft.NCache.Management, Version=5.3.0.0, Culture=neutral, PublicKeyToken=1448e8d1123e9096, processorArchitecture=MSIL">
       <HintPath>..\packages\Alachisoft.NCache.Opensource.SDK.5.3.6.2\lib\net40\Alachisoft.NCache.Management.dll</HintPath>
     </Reference>
@@ -283,16 +286,10 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\ncache-integrations\NCache\Integration\Alachisoft.NCache.Client.Extension\Alachisoft.NCache.Client.Extension\Alachisoft.NCache.Client.Extension.csproj">
-      <Project>{920133ca-cc45-d041-f5c3-58fb09bcb2bc}</Project>
-      <Name>Alachisoft.NCache.Client.Extension</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\..\ncache-integrations\NCache\Integration\NHibernate\src\NHibernateNCache.Net.csproj">
-      <Project>{ee806f63-23b3-6452-522f-3d15f7ef73ab}</Project>
-      <Name>NHibernateNCache.Net</Name>
-    </ProjectReference>
+    <Content Include="log4net.xml" />
+    <Content Include="NCacheNHibernate.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
