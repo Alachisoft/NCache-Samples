@@ -2,14 +2,14 @@
 
 ## Table of contents
 
-* [Introduction](#introduction)
-* [Prerequisites](#prerequisites)
-* [Build and Run the sample](#build-and-run-the-sample)
-* [Notes](#notes)
-* [References](#references)
-* [Additional Resources](#additional-resources)
-* [Technical Support](#technical-support)
-* [Copyrights](#copyrights)
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Build and Run the sample](#build-and-run-the-sample)
+- [Notes](#notes)
+- [References](#references)
+- [Additional Resources](#additional-resources)
+- [Technical Support](#technical-support)
+- [Copyrights](#copyrights)
 
 ## Introduction
 
@@ -18,14 +18,17 @@ This sample is a .NET Framework 4.8.1 application that demonstrates how to integ
 The Home Page provides an enhanced real-time communication interface built using SignalR. It includes connection management, group-based messaging, and targeted message delivery.
 
 ### Connection Initialization
-When the application starts, the client establishes a SignalR connection with the server.
-Each connected client is assigned a unique Connection ID, which is displayed on the UI.
-Opening the same URL in multiple tabs creates independent client connections, each with its own Connection ID.
+
+When the application starts, the client establishes a SignalR connection with the server. Each connected client is assigned a unique Connection ID, which is displayed on the UI. Opening the same URL in multiple tabs creates independent client connections, each with its own Connection ID.
+
 ### Group Management
-Users can join or leave groups dynamically.\
+
+Users can join or leave groups dynamically.
 Available actions:
+
 - Join Group – Adds the current connection to a specified group.
 - Leave Group – Removes the current connection from the specified group.
+
 ### Messaging Features
 
 The application supports multiple messaging modes:
@@ -35,16 +38,20 @@ The application supports multiple messaging modes:
 - Send to Group - Sends a message to all clients within a specified group.
 
 ### Message Flow
+
 - The client enters a message and selects the desired sending mode.
+
 - The message is sent to the SignalR Hub.
+
 - The Hub processes the request and routes the message based on:
+
     - All clients
     - A specific connection
     - A specific group
-
 - Messages are delivered to recipients in real time.
 
-![SignalR Chat Page](../../../../docs/assets/sample-images/SignalRChat-Sample-framework-oss.png)
+
+![SignalR Chat Page](../../../docs/assets/sample-images/SignalRChat-Sample-framework-oss.png)
 
 ## Prerequisites
 
@@ -52,16 +59,16 @@ Before the sample application is executed, make sure that:
 
 - .NET Framework 4.8.1 Developer Kit or Visual Studio (recommended) installed.
 - NCache is installed and running in an accessible location.
-  - If not, visit the following link to get started:\
-  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+    - If not, visit the following link to get started:
+        [https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html](https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html)
 - Ensure that `demoCache` (or another cache of your choice) is running.
-  - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
+    - This is created during installation, otherwise you can create a new cache via this link:
+        [https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html](https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html)
 - Ensure SignalR applications use `SignalRChatApp` as the event key.
-	- By default, the event key `SignalRChatApp` is configured in `Web.config`. Adjust as needed.
+    - By default, the event key `SignalRChatApp` is configured in `Web.config`. Adjust as needed.
 - NuGet packages required (references already included in the project):
-	- `Alachisoft.NCache.Opensource.SDK`
-	- `AspNetCore.SignalR.NCache.Opensource`
+    - `Alachisoft.NCache.Opensource.SDK`
+    - `AspNetCore.SignalR.NCache.Opensource`
 
 ## Build and Run the Sample
 
@@ -77,57 +84,67 @@ Before building this sample, if you need to change the cache name and event key,
 ```
 
 From Visual Studio (Recommended):
+
 - Open `SignalRChat.sln`.
 - Let NuGet packages restore.
 - Build and run.
 
 From command line (optional):
+
 ```bash
 # Replace <path-to-sample> with the sample location on your machine,
-# e.g. d:\ncache-samples\SignalRChat
+# e.g. d:ncache-samplesSignalRChat
 cd "<path-to-sample>"
 nuget restore SignalRChat.sln
 msbuild SignalRChat.sln /p:Configuration=Debug
-SignalRChat\bin\Debug\SignalRChat.exe
+SignalRChatbinDebugSignalRChat.exe
 ```
 
 ## Notes
 
 - If NuGet packages are not restored properly:
-	- Visual Studio: Right‑click the solution → Restore NuGet Packages.
-	- Command line: run `nuget restore SignalRChat.sln` in the sample folder (see Build and Run section).
+    - Visual Studio: Right‑click the solution → Restore NuGet Packages.
+    - Command line: run `nuget restore SignalRChat.sln` in the sample folder (see Build and Run section).
+
+## How It Works
+
+- Open the website in two different browsers (or browser instances).
+- Send a message from one browser.
+- If the message is received in the other browser, the signalr backplane is working correctly.
+
 
 ## References
 
-Reference documentation is available at:\
-https://www.alachisoft.com/resources/docs/ncache/prog-guide/ncache-extension-signalr.html?tabs=net
+Reference documentation is available at:
+[https://www.alachisoft.com/resources/docs/ncache/prog-guide/ncache-extension-signalr.html?tabs=net](https://www.alachisoft.com/resources/docs/ncache/prog-guide/ncache-extension-signalr.html?tabs=net)
 
 ## Additional Resources
 
 ### Samples & Playground
 
-For more samples of NCache features on various platforms:\
-https://github.com/Alachisoft/NCache-Samples/
+For more samples of NCache features on various platforms:
+[https://github.com/Alachisoft/NCache-Samples/](https://github.com/Alachisoft/NCache-Samples/)
 
-You can also visit NCache Playground for an interactive feature demo:\
-https://www.alachisoft.com/nclive/
+You can also visit NCache Playground for an interactive feature demo:
+[https://www.alachisoft.com/nclive/](https://www.alachisoft.com/nclive/)
 
 ### Documentation
 
-The complete online documentation for NCache is available at:\
-http://www.alachisoft.com/resources/docs/#ncache
+The complete online documentation for NCache is available at:
+[http://www.alachisoft.com/resources/docs/#ncache](http://www.alachisoft.com/resources/docs/#ncache)
 
 ### Programmer's Guide
-The complete programmer's guide of NCache is available at:\
-http://www.alachisoft.com/resources/docs/ncache/prog-guide/
+
+The complete programmer's guide of NCache is available at:
+[http://www.alachisoft.com/resources/docs/ncache/prog-guide/](http://www.alachisoft.com/resources/docs/ncache/prog-guide/)
 
 ## Technical Support
 
-Alachisoft&copy; provides various sources of technical support. 
+Alachisoft© provides various sources of technical support.
 
-- Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
+- Please refer to [http://www.alachisoft.com/support.html](http://www.alachisoft.com/support.html) to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
 ## Copyrights
 
-Copyright 2026 Alachisoft&copy;
+Copyright 2026 Alachisoft©
