@@ -44,8 +44,7 @@ The application supports multiple messaging modes:
 
 - Messages are delivered to recipients in real time.
 
-
-![SignalR Chat Page](../../../../docs/assets/sample-images/SignalRChat-Sample-dotnet-oss.png)
+![SignalR Chat Page](../../../docs/assets/sample-images/SignalRChat-Sample-dotnet-oss.png)
 
 ## Prerequisites
 
@@ -132,4 +131,4 @@ Alachisoft&copy; provides various sources of technical support.
 
 ## Copyrights
 
-Copyright 2026 Alachisoft&copy;
+Copyright 2026 Alachisoft &copy;
