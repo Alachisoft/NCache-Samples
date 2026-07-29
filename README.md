@@ -8,6 +8,8 @@ This repository contains source code samples for **[NCache](https://www.alachiso
 
 These samples help developers get started with NCache by providing practical examples of implementing caching solutions for different scenarios. Each sample includes complete source code with detailed instructions for setup and execution.
 
+Test change.
+
 ## Platforms
 
 - .NET Core Samples (`/dotnet`)
