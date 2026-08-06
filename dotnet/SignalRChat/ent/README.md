@@ -24,7 +24,7 @@ The Home Page dislays a simple chat page with Username and Message fields and a 
 
 On starting the single page web application, the index page displays the heading along with textboxes where Username and Message, respectively, can be written. Next to them is a `Send` button to deliver the message to other users.
 
-![SignalR Chat Page](../../../../docs/assets/sample-images/SignalRChat-Sample-dotnet-ent.png)
+![SignalR Chat Page](../../../docs/assets/sample-images/SignalRChat-Sample-dotnet-ent.png)
 
 ## Prerequisites
 

@@ -18,10 +18,12 @@ This sample is a .NET 8.0 MVC web application that demonstrates how to use NCach
 The Home page displays a simple interface with buttons, current and cached time and instructions along with a warning. The working of the webpage and buttons is as follows:
 - On page load: Retrieves the cached time from NCache using `IDistributedCache.GetAsync`
   - If the cached value exists, time is decoded and displayed on the page.
-  - If no cached value exists or it has expired, "**Cached time not set or expired**" is displayed.
-- `GET TIME`: Refreshes the page and retrieves the latest cached value.
-- `SET TIME`: Stores the current time in NCache using `IDistributedCache.SetAsync` with a 20-second absolute expiration, then refreshes the page.
-- `REMOVE TIME`: Removes the cached time from NCache and refreshes the page.
+  - Otherwise "Cached time not set or expired" is displayed.
+- `GET TIME`: Refreshes the page.
+- `SET TIME`: Current time is stored in NCache using `IDistributedCache.SetAsync` with a 20-second absolute expiration and the page is refreshed.
+- `REMOVE TIME`: Cached time is removed and the page is refreshed.
+
+![Web Application](../../../docs/assets/sample-images/IDistributedCache-Sample-DotNet-OSS.png)
 
 ## Prerequisites
 

@@ -28,7 +28,7 @@ Session Sharing enables both apps to maintain the same session, the same guess h
 
 On starting the single page web application, the index page showcases the game description and attempts history. It provides the option to input a number in order to provide a guess by filling the textbox with a valid number and clicking `Guess!`.
 
-![Session Sharing Page](../../../../docs/assets/sample-images/SessionSharing-Sample-dotnet-ent.png)
+![Session Sharing Page](../../../docs/assets/sample-images/SessionSharing-Sample-dotnet-ent.png)
 
 ## Prerequisites
 
