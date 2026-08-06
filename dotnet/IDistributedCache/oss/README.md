@@ -23,7 +23,7 @@ The Home page displays a simple interface with buttons, current and cached time 
 - `SET TIME`: Current time is stored in NCache using `IDistributedCache.SetAsync` with a 20-second absolute expiration and the page is refreshed.
 - `REMOVE TIME`: Cached time is removed and the page is refreshed.
 
-![Web Application](../../../../docs/assets/sample-images/IDistributedCache-Sample-DotNet-OSS.png)
+![Web Application](../../../docs/assets/sample-images/IDistributedCache-Sample-DotNet-OSS.png)
 
 ## Prerequisites
 
