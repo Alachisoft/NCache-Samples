@@ -17,15 +17,15 @@ This sample is a .NET 8.0 MVC application that demonstrates how to use NCache as
 
 On starting the single page web application, the index page displays a grid for various `Product` records with pagination. First time calling this page, data will be fetched from the database and then cached. On subsequent calls, data will be fetched from NCache, reducing database traffic.
 
-![Product Grid Page](../../../../docs/assets/sample-images/ResponseCaching-ProductList-Sample-dotnet-ent.png)
+![Product Grid Page](../../../docs/assets/sample-images/ResponseCaching-ProductList-Sample-dotnet-ent.png)
 
 When a user clicks `View` against a `Product`, the product details page is displayed. The full HTML of this page is also cached in NCache for quick retrieval for future page requests.
 
-![Product View Page](../../../../docs/assets/sample-images/ResponseCaching-ViewProduct-Sample-dotnet-ent.png)
+![Product View Page](../../../docs/assets/sample-images/ResponseCaching-ViewProduct-Sample-dotnet-ent.png)
 
 When a user clicks `Edit` against a `Product`, the product details page is displayed. The full HTML of this page is also cached in NCache for quick retrieval for subscaquent page requests.After submitting changes, the data is updated via the repository and the SQL Server triggers the SQL dependency linked to the cached Index page. NCache automatically invalidates the stale cached response. The user is then redirected to a success page.
 
-![Product Edit Page](../../../../docs/assets/sample-images/ResponseCaching-EditProduct-Sample-dotnet-ent.png)
+![Product Edit Page](../../../docs/assets/sample-images/ResponseCaching-EditProduct-Sample-dotnet-ent.png)
 
 Before running the sample, the database must be set up and populated (see `Build and Run the sample` → `Database Setup` → `Populating the database` section).
 
