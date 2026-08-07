@@ -1,34 +1,34 @@
 # DISTRIBUTED QUEUE SAMPLE
 
-## Table of contents
+## Table of Contents
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
-* [Build and Run the sample](#build-and-run-the-sample)
-* [Notes](#notes)
+* [Build and Run the Sample](#build-and-run-the-sample)
+* [Troubleshooting](#troubleshooting)
 * [References](#references)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
 * [Copyrights](#copyrights)
 
 ## Introduction
+NCache Distributed Queue allows multiple application instances to share and process queued data while preserving FIFO (First-In-First-Out) ordering.
+This .NET 8.0 console sample demonstrates how to use the NCache Distributed Queue data structure to store and process `Customer` objects in a distributed, thread-safe FIFO (First-In-First-Out) queue. The sample covers creating or retrieving a queue with expiration, registering and unregistering enqueue/dequeue event callbacks, adding items, and performing common queue operations including peek, dequeue, display, clear, and cleanup.
 
-This .NET 8.0 console sample demonstrates using NCache Distributed Queue data structure to store and process demo `Customer` objects in a distributed, thread‑safe queue. It shows creating or retrieving a queue with expiration, registering/unregistering event callbacks for enqueue/dequeue, enqueuing sample items, and performing peek, dequeue, display, clear, and cleanup operations.
-
-This sample uses SampleData project as a reference for model class `Customer`.
+This sample uses the SampleData project as a reference for the `Customer` model class.
 
 ## Prerequisites
 
-Before the sample application is executed, make sure that:
+Before running the sample, ensure that:
 
-- .NET 8.0 SDK or Visual Studio (recommended) installed.
+- .NET 8.0 SDK and Visual Studio (recommended) are installed.
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
-  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+  https://www.alachisoft.com/resources/docs/ncache/getting-started/
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
-- NuGet package required: Alachisoft.NCache.SDK (>= 5.3.6.1). The package reference is already included in the project file.
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
+- NuGet package required: **Alachisoft.NCache.SDK (>= 5.3.6.1)**. The package reference is already included in the project file.
 - SampleData project (which contains the `Customer` model) must be present in the directory as this sample.
 
 ## Build and Run the Sample
@@ -56,19 +56,31 @@ If you need to change the cache name, open `App.config` from the project root di
 </appSettings>
 ```
 
-## Notes
+## Troubleshooting
+
+### Missing SampleData Project
 
 - Ensure the sample solution references SampleData before building:
-   - In Visual Studio: Right-click the solution → Add → Existing Project → `SampleData\SampleData\SampleData.csproj`
-   - Command line: add the project reference or edit the solution file to include the SampleData project.
+   - **Visual Studio**: Right-click the solution → Add → Existing Project → `SampleData\SampleData\SampleData.csproj`
+   - **Command line**: Add the project reference or edit the solution file to include the SampleData project.
+
+### NuGet Packages Are Not Restored
+
 - If NuGet packages are not restored properly:
-	- Visual Studio: Right‑click the solution → Restore NuGet Packages.
-	- Command line: run `dotnet restore` in the sample folder (see Build and Run section).
-	- If using nuget.exe: run `nuget restore DistributedQueue.sln`.
+	- **Visual Studio**: Right‑click the solution → Restore NuGet Packages.
+	- **Command line**: Run `dotnet restore` in the sample folder (see [Build and Run](#build-and-run-the-sample) section).
+	- **nuget.exe**: Run `nuget restore DistributedQueue.sln`.
+
+### Cannot Connect to Cache
+
+- Verify the NCache service is running.
+- Verify that the configured cache (for example, `demoCache`) exists and is running.
+- Verify that the cache name in `App.config` matches the running cache.
+- Verify that [firewall rules](https://www.alachisoft.com/resources/docs/ncache/install-guide/firewalls-ports.html) allow communication with the cache server.
 
 ## References
 
-Reference documentation is available at:\
+For more information about Distributed Queue, see:\
 https://www.alachisoft.com/resources/docs/ncache/prog-guide/queue-datatype.html
 
 ## Additional Resources
@@ -84,19 +96,21 @@ https://www.alachisoft.com/nclive/
 ### Documentation
 
 The complete online documentation for NCache is available at:\
-http://www.alachisoft.com/resources/docs/#ncache
+https://www.alachisoft.com/resources/docs/
 
-### Programmer's Guide
-The complete programmer's guide of NCache is available at:\
-http://www.alachisoft.com/resources/docs/ncache/prog-guide/
+### Developer's Guide
+
+The complete developer's guide of NCache is available at:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
 ## Technical Support
 
 Alachisoft&copy; provides various sources of technical support. 
 
-- Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
+- Please refer to https://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
 ## Copyrights
 
 Copyright 2026 Alachisoft&copy;
+
