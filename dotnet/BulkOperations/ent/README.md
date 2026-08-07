@@ -1,11 +1,11 @@
 # BULK OPERATIONS SAMPLE
 
-## Table of contents
+## Table of Contents
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
-* [Build and Run the sample](#build-and-run-the-sample)
-* [Notes](#notes)
+* [Build and Run the Sample](#build-and-run-the-sample)
+* [Troubleshooting](#troubleshooting)
 * [References](#references)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
@@ -13,22 +13,24 @@
 
 ## Introduction
 
-This sample is a .NET 8.0 console application which demonstrates the use of NCache bulk APIs to perform CRUD operations in the cache on multiple items in a single call. It shows how to connect to a running cache and use `AddBulk`, `GetBulk`, `InsertBulk` and `RemoveBulk` operations from NCache. At the end, the cache handler will be disposed.
+Bulk cache operations allow multiple items to be added, retrieved, updated, or removed in a single cache call. By reducing the number of network trips between the client and the cache server, they improve performance and are ideal for processing large sets of cache data efficiently.
 
-This sample uses SampleData project as a reference for model class `Customer`.
+This sample is a .NET 8.0 console application which demonstrates the use of NCache bulk APIs to perform CRUD operations in the cache on multiple items in a single call. It shows how to [connect to a running cache](https://www.alachisoft.com/resources/docs/ncache/prog-guide/connect-to-cache.html) and use [AddBulk](https://www.alachisoft.com/resources/docs/ncache/dotnet-api-ref/Alachisoft.NCache.Client.ICache.AddBulk.html), [GetBulk](https://www.alachisoft.com/resources/docs/ncache/dotnet-api-ref/Alachisoft.NCache.Client.ICache.GetBulk.html), [InsertBulk](https://www.alachisoft.com/resources/docs/ncache/dotnet-api-ref/Alachisoft.NCache.Client.ICache.InsertBulk.html) and [RemoveBulk](https://www.alachisoft.com/resources/docs/ncache/dotnet-api-ref/Alachisoft.NCache.Client.ICache.RemoveBulk.html) operations from NCache. The sample disposes of the cache instance before the application exits to release resources.
+
+This sample references the `SampleData` project, which contains the `Customer` model used throughout the sample.
 
 ## Prerequisites
 
-Before the sample application is executed, make sure that:
+Before running the sample, ensure that:
 
-- .NET 8.0 SDK or Visual Studio (recommended) installed.
+- .NET 8.0 SDK and Visual Studio (recommended) are installed.
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
-  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+  https://www.alachisoft.com/resources/docs/ncache/getting-started/
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
-- NuGet package required: Alachisoft.NCache.SDK (>= 5.3.6.1). The package reference is already included in the project file.
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
+- NuGet package required: **Alachisoft.NCache.SDK (>= 5.3.6.1)**. The package reference is already included in the project file.
 - SampleData project (which contains the `Customer` model) must be present in the directory as this sample.
 
 ## Build and Run the Sample
@@ -56,20 +58,31 @@ dotnet build
 dotnet run
 ```
 
-## Notes
+## Troubleshooting
+
+### Missing SampleData Project
 
 - Ensure the sample solution references SampleData before building:
-   - In Visual Studio: Right-click the solution → Add → Existing Project → `SampleData\SampleData\SampleData.csproj`
-   - Command line: add the project reference or edit the solution file to include the SampleData project.
+   - **Visual Studio**: Right-click the solution → Add → Existing Project → `SampleData\SampleData\SampleData.csproj`
+   - **Command line**: Add the project reference or edit the solution file to include the SampleData project.
+
+### NuGet Packages Are Not Restored
+
 - If NuGet packages are not restored properly:
-	- Visual Studio: Right‑click the solution → Restore NuGet Packages.
-	- Command line: run `dotnet restore` in the sample folder (see Build and Run section).
-	- If using nuget.exe: run `nuget restore BulkOperations.sln`.
+	- **Visual Studio**: Right‑click the solution → Restore NuGet Packages.
+	- **Command line**: Run `dotnet restore` in the sample folder (see [Build and Run](#build-and-run-the-sample) section).
+	- **nuget.exe**: Run `nuget restore BulkOperations.sln`.
+
+### Cannot Connect to Cache
+
+- Verify the NCache service is running.
+- Verify that the configured cache (for example, `demoCache`) exists and is running.
+- Verify that the cache name in `App.config` matches the running cache.
+- Verify that [firewall rules](https://www.alachisoft.com/resources/docs/ncache/install-guide/firewalls-ports.html) allow communication with the cache server.
 
 ## References
-
-Reference documentation is available at:\
-https://www.alachisoft.com/resources/docs/ncache/prog-guide/basic-cache-operations.html#bulk-operations
+For more information about Bulk Cache Operations, see:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/bulk-operations.html
 
 ## Additional Resources
 
@@ -84,17 +97,17 @@ https://www.alachisoft.com/nclive/
 ### Documentation
 
 The complete online documentation for NCache is available at:\
-http://www.alachisoft.com/resources/docs/#ncache
+https://www.alachisoft.com/resources/docs/
 
-### Programmer's Guide
-The complete programmer's guide of NCache is available at:\
-http://www.alachisoft.com/resources/docs/ncache/prog-guide/
+### Developer's Guide
+The complete developer's guide of NCache is available at:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
 ## Technical Support
 
 Alachisoft&copy; provides various sources of technical support. 
 
-- Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
+- Please refer to https://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
 ## Copyrights

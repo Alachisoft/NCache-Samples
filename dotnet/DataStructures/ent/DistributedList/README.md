@@ -1,11 +1,11 @@
 # DISTRIBUTED LIST SAMPLE
 
-## Table of contents
+## Table of Contents
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
-* [Build and Run the sample](#build-and-run-the-sample)
-* [Notes](#notes)
+* [Build and Run the Sample](#build-and-run-the-sample)
+* [Troubleshooting](#troubleshooting)
 * [References](#references)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
@@ -13,22 +13,24 @@
 
 ## Introduction
 
-This .NET 8.0 console sample demonstrates how to use NCache's distributed list data type to store and manipulate collections across a distributed cache. Two distributed lists are used as examples; one each for priority and regular customers. The sample shows creating/getting these lists, adding and enumerating `Customer` objects from both lists, fetching by index, updating, removing (by index and instance), and removing both lists from cache.
+An NCache Distributed List is an ordered, distributed collection that stores data across a cache cluster, allowing items to be efficiently added, retrieved, updated, and removed while preserving their order.
 
-This sample uses SampleData project as a reference for model class `Customer`.
+This .NET 8.0 console sample demonstrates how to use NCache's Distributed List data structure to store and manipulate collections in a distributed cache. The sample demonstrates how to create or retrieve two distributed lists for **Priority Customers** and **Regular Customers**. It covers common list operations, including adding Customer objects, enumerating `Customer` objects from both lists, retrieving and updating items by index, removing items by index and by instance, and deleting the distributed lists from the cache.
+
+This sample references the SampleData project for the `Customer` model class.
 
 ## Prerequisites
 
-Before the sample application is executed, make sure that:
+Before running the sample, ensure that:
 
-- .NET 8 SDK or Visual Studio (recommended) installed.
+- .NET 8.0 SDK and Visual Studio (recommended) are installed.
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
-  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+  https://www.alachisoft.com/resources/docs/ncache/getting-started/
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
-- NuGet package required: Alachisoft.NCache.SDK (>= 5.3.6.1). The package reference is already included in the project file.
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
+- NuGet package required: **Alachisoft.NCache.SDK (>= 5.3.6.1)**. The package reference is already included in the project file.
 - SampleData project (which contains the `Customer` model) must be present in the directory as this sample.
 
 ## Build and Run the Sample
@@ -56,19 +58,31 @@ If you need to change the cache name, open `App.config` from the project root di
 </appSettings>
 ```
 
-## Notes
+## Troubleshooting
+
+### Missing SampleData Project
 
 - Ensure the sample solution references SampleData before building:
-   - In Visual Studio: Right-click the solution → Add → Existing Project → `SampleData\SampleData\SampleData.csproj`
-   - Command line: add the project reference or edit the solution file to include the SampleData project.
+   - **Visual Studio**: Right-click the solution → Add → Existing Project → `SampleData\SampleData\SampleData.csproj`
+   - **Command line**: Add the project reference or edit the solution file to include the SampleData project.
+
+### NuGet Packages Are Not Restored
+
 - If NuGet packages are not restored properly:
-	- Visual Studio: Right‑click the solution → Restore NuGet Packages.
-	- Command line: run `dotnet restore` in the sample folder (see Build and Run section).
-	- If using nuget.exe: run `nuget restore DistributedList.sln`.
+	- **Visual Studio**: Right‑click the solution → Restore NuGet Packages.
+	- **Command line**: Run `dotnet restore` in the sample folder (see [Build and Run](#build-and-run-the-sample) section).
+	- **nuget.exe**: Run `nuget restore DistributedList.sln`.
+
+### Cannot Connect to Cache
+
+- Verify the NCache service is running.
+- Verify that the configured cache (for example, `demoCache`) exists and is running.
+- Verify that the cache name in `App.config` matches the running cache.
+- Verify that [firewall rules](https://www.alachisoft.com/resources/docs/ncache/install-guide/firewalls-ports.html) allow communication with the cache server.
 
 ## References
 
-Reference documentation is available at:\
+For more information about Distributed List, see:\
 https://www.alachisoft.com/resources/docs/ncache/prog-guide/list-datatype.html
 
 ## Additional Resources
@@ -84,19 +98,22 @@ https://www.alachisoft.com/nclive/
 ### Documentation
 
 The complete online documentation for NCache is available at:\
-http://www.alachisoft.com/resources/docs/#ncache
+https://www.alachisoft.com/resources/docs/
 
-### Programmer's Guide
-The complete programmer's guide of NCache is available at:\
-http://www.alachisoft.com/resources/docs/ncache/prog-guide/
+### Developer's Guide
+
+The complete developer's guide of NCache is available at:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
 ## Technical Support
 
 Alachisoft&copy; provides various sources of technical support. 
 
-- Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
+- Please refer to https://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
 ## Copyrights
 
 Copyright 2026 Alachisoft&copy;
+
+

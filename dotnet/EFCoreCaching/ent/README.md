@@ -1,11 +1,11 @@
 # EFCORE CACHING SAMPLE
 
-## Table of contents
+## Table of Contents
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
-* [Build and Run the sample](#build-and-run-the-sample)
-* [Notes](#notes)
+* [Build and Run the Sample](#build-and-run-the-sample)
+* [Troubleshooting](#troubleshooting)
 * [References](#references)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
@@ -13,56 +13,61 @@
 
 ## Introduction
 
-This .NET 8.0 console sample demonstrates integrating NCache with Entity Framework Core using the `Alachisoft.NCache.EntityFrameworkCore` provider. The examples show how to cache EF Core query results and entity objects in NCache to reduce database load and improve read performance. This sample demonstrates:
+Entity Framework (EF) is a .NET Object-Relational Mapping (ORM) framework that simplifies database operations by allowing developers to work with data as .NET objects.
+
+This .NET 8.0 console sample demonstrates integrating NCache with Entity Framework Core using the `Alachisoft.NCache.EntityFrameworkCore` provider. The examples show how to cache EF Core query results and entity objects in NCache to reduce database load and improve read performance. 
 
 ### Query Caching
 
 - Query caching involves storing transactional query results in cache using the EF Core extension APIs (`FromCache`/`FromCacheAsync`).
 - Upon execution of a query, the cache is checked for the query result.
-    - If found, the database is queried and the result is cached.
-    - Otherwise the result is fetched from the cache instead of the database. 
+    - If the result is found in the cache, it is returned directly without querying the database.
+    - Otherwise, the database is queried, and the result is stored in the cache for subsequent requests. 
 
 ### Reference Dataset Caching
 
-- Reference dataset caching loads entire datasets into the cache and then directly querying the cache to avoid database hits. 
-- Datasets are first cached from the database via extensions APIs (`LoadIntoCache`/`LoadIntoCacheAsync`) 
-- afterwards any `FromCacheOnly` and `FromCacheOnlyAsync` extension API calls fetch the query results from the cache only without any database hits.
+- Reference dataset caching loads entire datasets into the cache and then directly queries the cache to avoid database hits. 
+- Datasets are first cached from the database via extensions APIs (`LoadIntoCache`/`LoadIntoCacheAsync`). 
+- Once cached, you can use the `FromCacheOnly` or `FromCacheOnlyAsync` extension methods to retrieve query results exclusively from the cache, without accessing the database.
 
 ## Prerequisites
 
-Before the sample application is executed, make sure that:
-- .NET 8.0 SDK or Visual Studio (recommended) installed.
-- Database server (Microsoft SQL Server or SQL Server Express) installed.
-    - Ensure the server is reachable, running and accessible (connection string with credentials is available)
+Before running the sample, ensure that:
+
+- .NET 8.0 SDK and Visual Studio (recommended) are installed.
+- Database server (Microsoft SQL Server or SQL Server Express) is installed.
+    - Ensure the server is reachable, running and accessible (connection string with credentials is available).
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
-  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+  https://www.alachisoft.com/resources/docs/ncache/getting-started/
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - NuGet packages required (references already included in the project):
 	- `EntityFrameworkCore.NCache`
 	- `Microsoft.EntityFrameworkCore`
 	- `Microsoft.EntityFrameworkCore.SqlServer`
-	- `Microsoft.EntityFrameworkCore.tools`
+	- `Microsoft.EntityFrameworkCore.Tools`
 
 ## Build and Run the Sample
 
-To run the sample, first you need to setup the database, build the code and run it.
+To run the sample, first you need to set up the database, build the code, and run it.
 
 ### Database Setup
 
 This sample uses a small subset of the Microsoft's Northwind schema. The scripts create and populate the tables used by the sample (Products, Suppliers, Customers, Orders). You can either use the scripts for the full schema:
-- Full Northwind scripts (GitHub):\
-https://github.com/microsoft/sql-server-samples/tree/main/samples/databases/northwind-pubs
-  - Clone or download the repo and run the appropriate .sql script(s) to create/populate the full Northwind dataset.
-
-Or use the included sample script: `PopulateEFCoreDB.sql` (creates and populates the tables used by this sample).
-- Run the script included with the sample: `PopulateEFCoreDB.sql` (located in this sample folder).
-- Using SQL Server Management Studio (SSMS):
-    - Connect to your SQL Server / SQL Express instance (e.g. .\SQLEXPRESS).
-    - Open PopulateEFCoreDB.sql and click Execute.
-- Using sqlcmd (Windows):
+- **Option 1: Use the full Northwind database**:
+    - Download or clone the official Microsoft Northwind scripts from:\
+    https://github.com/microsoft/sql-server-samples/tree/main/samples/databases/northwind-pubs
+    - Run the appropriate .sql script(s) to create and populate the complete Northwind database.
+- **Option 2: Use the sample database script**:
+    - Run the included `PopulateEFCoreDB.sql` script, which creates and populates only the tables required by this sample.
+    
+You can execute either script using one of the following methods:
+- **Using SQL Server Management Studio (SSMS)**:
+    - Connect to your SQL Server / SQL Express instance (e.g. `.\SQLEXPRESS`).
+    - Open `PopulateEFCoreDB.sql` and click Execute.
+- **Using sqlcmd (Windows)**:
   - Integrated security:
     ```bash
     sqlcmd -S .\SQLEXPRESS -E -i "<path-to-sample>\PopulateEFCoreDB.sql"
@@ -72,7 +77,9 @@ Or use the included sample script: `PopulateEFCoreDB.sql` (creates and populates
     # Replace <server> with server IP or name, <user> and <password> with credentials
     sqlcmd -S <server> -U <user> -P <password> -i "<path-to-sample>\PopulateEFCoreDB.sql"
     ```
-- Verify tables/data:
+
+After the script completes, verify that the tables were created and populated:
+
     ```sql
     SELECT COUNT(*) FROM Customers;
     SELECT TOP 5 * FROM Customers;
@@ -114,19 +121,19 @@ dotnet restore
 dotnet build
 ```
 
-### Configuration (Query Indexes)
+### Configure Query Indexes
 
 Configure the cache to index the model classes so queries can run efficiently:
 
 1. Build EFCoreCaching
     - Build the solution so `EFCoreCaching.dll` is produced in: `EFCoreCaching\bin\Debug\net8.0\EFCoreCaching.dll` (or release folder if built in Release).
-2. Open NCache Web Manager (Default URL: `http://localhost:8251/`).
+2. Open the NCache Management Center (Default URL: `http://localhost:8251/`).
     - Select your cache (this sample uses `demoCache`).
     - If the cache is running, stop it before making configuration changes.
-3. Configure query index
+3. Configure query indexes
     - Click `View Details` and select `Query Indexes` tab in the `Advanced Settings (Clustered Cache)` section.
     - Click `Add` then `Browse`, locate and select the `EFCoreCaching.dll` from the build output folder.
-    - In `Browsed Assemblies` expand the assembly, locate and check the `EFCoreCaching.Models` to check all class as below and click `Add Selected Classes` button.
+    - In `Browsed Assemblies` expand the assembly, locate and check the `EFCoreCaching.Models` to check all classes as below and click `Add Selected Classes` button.
         - [ ] `EFCoreCaching, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`
             - [x] `EFCoreCaching.Models`
                 - [x] `EFCoreCaching.Models.Customer`
@@ -134,36 +141,61 @@ Configure the cache to index the model classes so queries can run efficiently:
                 - [x] `EFCoreCaching.Models.Product`
                 - [x] `EFCoreCaching.Models.Supplier`
 4. Select attributes to index
-    - In the `Select Attributes`, check all the properties (checking the model will select all it's attributes).
+    - In the `Select Attributes`, check all the properties (checking the model will select all its attributes).
     - Click `OK` button 
 5. Save changes and Start Cache
     - Click the `Save Changes` button.
     - Start the cache.
 
-#### Troubleshooting
-
-- If the assembly does not appear or classes are not listed, ensure you have selected `EFCoreCaching.dll` correctly.
-- If the cache fails to start after adding indexes, remove the index, start the cache, fix issues in the assembly, then re-add.
+To learn more about configuring query indexes, please see [NCache Docs](https://www.alachisoft.com/resources/docs/ncache/admin-guide/configure-query-index.html). 
 
 ### Run the sample
 
 After configuring the cache, you can run the sample from visual studio. If you are using command line, navigate to the path (see Build section) and use the following command:
+
 ```bash
 dotnet run
 ```
 
-## Notes
+## Troubleshooting
 
-- Ensure the `ConnectionString` you changed in the `App.config` points to the same database you populated. 
-- The SQL account must have permissions to update data.
+### Assembly Does Not Appear or Classes Are Missing
+
+- Verify that you selected the correct assembly (`EFCoreCaching.dll`) when configuring the cache.
+- Rebuild the sample project if the assembly was recently modified.
+- Ensure the assembly contains public classes that can be discovered.
+
+### Cache Fails to Start After Adding Indexes
+
+If the cache fails to start after adding indexes:
+
+1. Remove the newly added index.
+2. Start the cache.
+3. Resolve any issues in the assembly (such as invalid types or missing dependencies).
+4. Rebuild the assembly and re-add the index.
+
+### Cannot Connect to Cache
+
+- Verify the NCache service is running.
+- Verify that the configured cache (for example, `demoCache`) exists and is running.
+- Verify that the cache name in `App.config` matches the running cache.
+- Verify that [firewall rules](https://www.alachisoft.com/resources/docs/ncache/install-guide/firewalls-ports.html) allow communication with the cache server.
+
+### Database Issues
+
+- Ensure the `ConnString` in `App.config` points to the same database that was populated with the sample data.
+- Verify that the SQL Server account has sufficient permissions to read and update data.
+
+### NuGet Packages Are Not Restored
+
 - If NuGet packages are not restored properly:
-    - Visual Studio: Right‑click the solution → Restore NuGet Packages.
-    - Command line: run `dotnet restore` in the sample folder (see Build section).
-    - If using nuget.exe: run `nuget restore EFCoreCaching.sln`.
+	- **Visual Studio**: Right‑click the solution → Restore NuGet Packages.
+	- **Command line**: Run `dotnet restore` in the sample folder, see Build section.
+	- **nuget.exe**: Run `nuget restore EFCoreCaching.sln`.
 
 ## References
 
-Reference documentation is available at:\
+For more information about EF Core Caching, see:\
 https://www.alachisoft.com/resources/docs/ncache/prog-guide/entity-framework-core-caching.html
 
 ## Additional Resources
@@ -179,19 +211,21 @@ https://www.alachisoft.com/nclive/
 ### Documentation
 
 The complete online documentation for NCache is available at:\
-http://www.alachisoft.com/resources/docs/#ncache
+https://www.alachisoft.com/resources/docs/
 
-### Programmer's Guide
-The complete programmer's guide of NCache is available at:\
-http://www.alachisoft.com/resources/docs/ncache/prog-guide/
+### Developer's Guide
+
+The complete developer's guide of NCache is available at:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
 ## Technical Support
 
 Alachisoft&copy; provides various sources of technical support. 
 
-- Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
+- Please refer to https://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
 ## Copyrights
 
 Copyright 2026 Alachisoft&copy;
+

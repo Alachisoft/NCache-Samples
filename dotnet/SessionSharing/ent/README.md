@@ -1,26 +1,25 @@
 # Session Sharing Sample
 
-## Table of contents
+## Table of Contents
 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
-* [Build and Run the sample](#build-and-run-the-sample)
-* [Notes](#notes)
+* [Build and Run the Sample](#build-and-run-the-sample)
+* [Troubleshooting](#troubleshooting)
 * [References](#references)
 * [Additional Resources](#additional-resources)
 * [Technical Support](#technical-support)
 * [Copyrights](#copyrights)
 
 ## Introduction
+This sample demonstrates cross-platform session sharing between a `.NET 8.0` ASP.NET Core application and a `.NET Framework 4.8.1` ASP.NET application using NCache Session Services as a common distributed session store. Although both applications run independently, they share the same session data, allowing users to seamlessly switch between them while maintaining a consistent application state.
 
-This sample demonstrates Session Sharing between `.NET 8.0` and `.NET Framework 4.8.1` web application platforms using NCache Session Services as the common session store. Both applications run independently but share a single distributed session, allowing them to behave like one unified application.
+The ASP.NET Core application registers NCache as the session provider using `AddNCacheSession`. The .NET Framework application configures session sharing through `Web.config`, where the NCache Session State Provider is added under `<sessionState>`.
 
-The Core application registers NCache as the session provider using `AddNCacheSession`. The .NET Framework application configures session sharing through `Web.config`, where the NCache Session State Provider is added under <sessionState>.
-
-To illustrate cross-platform session sharing, both applications host the same Guess-the-Number game. Both applications run the same logic and use the same session key, ensuring they read and update the same session data. The gameplay is simple:
+To illustrate cross-platform session sharing, both applications host the same **Guess-the-Number** game. Both applications run the same logic and use the same session key, ensuring they read and update the same session data. The sample demonstrates the following workflow:
 - When the first request reaches either application, a random secret number is generated and stored in the shared session.
-- Each user guess is appended to a shared list of attempts (also stored in session)
-	- Switching between the Core and Framework applications shows the same secret number, the same guess history and the same in-progress game state because both are reading from the same distributed session in NCache.
+- Each user guess is appended to a shared list of attempts (also stored in session).
+	- Switching between the Core and Framework applications shows the same secret number, the same guess history, and the same in-progress game state because both are reading from the same distributed session in NCache.
 - If the user correctly guesses the number in either application:
 	- The game is won and the session is reset.
 	- Refreshing the other application immediately starts a new game, demonstrating full cross-platform session synchronization.
@@ -33,15 +32,15 @@ On starting the single page web application, the index page showcases the game d
 
 ## Prerequisites
 
-Before the sample application is executed, make sure that:
+Before running the sample, ensure that:
 
-- .NET 8.0 SDK and .NET Framework 4.8.1 or Visual Studio (recommended) installed.
+- .NET 8.0 SDK, .NET Framework 4.8.1, and Visual Studio (recommended) are installed.
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
-  https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
+  https://www.alachisoft.com/resources/docs/ncache/getting-started/
 - Ensure that `demoCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
-  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
+  https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - NuGet package required (The package references are already included in the project file).
 	- `Alachisoft.NCache.SDK`
 	- `AspNet.SessionState.NCache`
@@ -59,7 +58,7 @@ Before building this sample, if you need to change the cache name, open `appsett
 }
 ```
 
-Also change `cacheName` in `Web.Config`:
+Also change `cacheName` in `Web.config`:
 
 ```xml
 <sessionState ... >
@@ -88,7 +87,7 @@ dotnet build
 
 ### Run
 
-You need to run the SessionSharing projects (`GameNetCore` and `GameNetFramework`).
+You need to run the SessionSharing projects (`GameNetCore` and `GameNetFramework`) so they connect to the same distributed session in NCache.
 
 From Visual Studio (Recommended):
 - Setup both games as multiple startup projects by following the instructions on:\
@@ -105,17 +104,19 @@ dotnet run
 "C:\Program Files\IIS Express\iisexpress.exe" /path:"<path-to-sample>\GameNetFramework" /port:<portNumber>
 ```
 
-## Notes
+## Troubleshooting
+
+### NuGet Packages Are Not Restored
 
 - If NuGet packages are not restored properly:
-	- Visual Studio: Right‑click the solution → Restore NuGet Packages.
-	- Command line: run `dotnet restore` in the sample folder (see Build and Run section).
-	- If using nuget.exe: run `nuget restore SessionSharing.sln`.
+	- **Visual Studio**: Right‑click the solution → Restore NuGet Packages.
+	- **Command line**: Run `dotnet restore` in the sample folder (see Build section).
+	- **nuget.exe**: Run `nuget restore SessionSharing.sln`.
 
 ## References
 
-Reference documentation is available at:\
-https://www.alachisoft.com/resources/docs/ncache/prog-guide/aspnet.html
+For more information about Session Sharing, see:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/aspnet-session-sharing.html
 
 
 ## Additional Resources
@@ -131,17 +132,18 @@ https://www.alachisoft.com/nclive/
 ### Documentation
 
 The complete online documentation for NCache is available at:\
-http://www.alachisoft.com/resources/docs/#ncache
+https://www.alachisoft.com/resources/docs/
 
-### Programmer's Guide
-The complete programmer's guide of NCache is available at:\
-http://www.alachisoft.com/resources/docs/ncache/prog-guide/
+### Developer's Guide
+
+The complete developer's guide of NCache is available at:\
+https://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
 ## Technical Support
 
 Alachisoft&copy; provides various sources of technical support. 
 
-- Please refer to http://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
+- Please refer to https://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
 
 ## Copyrights
