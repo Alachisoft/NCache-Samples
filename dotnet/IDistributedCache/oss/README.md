@@ -78,7 +78,7 @@ dotnet run
 
 - If NuGet packages are not restored properly:
 	- **Visual Studio**: Right‑click the solution → Restore NuGet Packages.
-	- **Command line**: Run `dotnet restore` in the sample folder, see Build section.
+	- **Command line**: Run `dotnet restore` in the sample folder, (see [Build and Run](#build-and-run-the-sample) section).
 	- **nuget.exe**: Run `nuget restore IDistributedCaching.sln`.	
 
 ## References
