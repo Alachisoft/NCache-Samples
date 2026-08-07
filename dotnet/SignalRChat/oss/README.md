@@ -27,6 +27,7 @@ Opening the same URL in multiple tabs creates independent client connections, ea
 
 Users can join or leave groups dynamically.\
 Available actions:
+
 - Join Group – Adds the current connection to a specified group.
 - Leave Group – Removes the current connection from the specified group.
 
@@ -41,15 +42,18 @@ The application supports multiple messaging modes:
 ### Message Flow
 
 - The client enters a message and selects the desired sending mode.
+
 - The message is sent to the SignalR Hub.
+
 - The Hub processes the request and routes the message based on:
+
     - All clients
     - A specific connection
     - A specific group
 - Messages are delivered to recipients in real time.
 
 
-![SignalR Chat Page](../../../../docs/assets/sample-images/SignalRChat-Sample-dotnet-oss.png)
+![SignalR Chat Page](../../../docs/assets/sample-images/SignalRChat-Sample-dotnet-oss.png)
 
 ## Prerequisites
 
@@ -63,7 +67,7 @@ Before running the sample, ensure that:
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - Ensure SignalR applications use `SignalRChatApp` as the event key.
-	- By default, the event key `SignalRChatApp` is configured in `appsettings.json`. Adjust as needed.
+    - By default, the event key `SignalRChatApp` is configured in `appsettings.json`. Adjust as needed.
 - NuGet packages required (references already included in the project):
 	- `Alachisoft.NCache.Opensource.SDK`
 	- `AspNetCore.SignalR.NCache.Opensource`
@@ -82,14 +86,16 @@ Before building this sample, if you need to change the cache name and event key,
 ```
 
 From Visual Studio (Recommended):
+
 - Open `SignalRChat.sln`.
 - Let NuGet packages restore.
 - Build and run.
 
 From command line (optional):
+
 ```bash
 # Replace <path-to-sample> with the sample location on your machine,
-# e.g. d:\ncache-samples\SignalRChat
+# e.g. d:ncache-samplesSignalRChat
 cd "<path-to-sample>"
 dotnet restore
 dotnet build
@@ -114,11 +120,11 @@ https://www.alachisoft.com/resources/docs/ncache/prog-guide/ncache-extension-sig
 
 ### Samples & Playground
 
-For more samples of NCache features on various platforms:\
-https://github.com/Alachisoft/NCache-Samples/
+For more samples of NCache features on various platforms:
+[https://github.com/Alachisoft/NCache-Samples/](https://github.com/Alachisoft/NCache-Samples/)
 
-You can also visit NCache Playground for an interactive feature demo:\
-https://www.alachisoft.com/nclive/
+You can also visit NCache Playground for an interactive feature demo:
+[https://www.alachisoft.com/nclive/](https://www.alachisoft.com/nclive/)
 
 ### Documentation
 
@@ -132,7 +138,7 @@ https://www.alachisoft.com/resources/docs/ncache/prog-guide/
 
 ## Technical Support
 
-Alachisoft&copy; provides various sources of technical support. 
+Alachisoft© provides various sources of technical support.
 
 - Please refer to https://www.alachisoft.com/support.html to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@alachisoft.com](mailto:support@alachisoft.com).
