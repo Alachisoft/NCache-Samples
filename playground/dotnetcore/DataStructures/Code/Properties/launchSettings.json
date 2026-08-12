@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DataStructures": {
+      "commandName": "Project",
+      "commandLineArgs": "demoCache"
+    }
+  }
+}

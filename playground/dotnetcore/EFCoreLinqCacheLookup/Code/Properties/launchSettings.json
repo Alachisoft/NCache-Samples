@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EfCoreLinqCacheLookup": {
+      "commandName": "Project",
+      "commandLineArgs": "demoCache"
+    }
+  }
+}

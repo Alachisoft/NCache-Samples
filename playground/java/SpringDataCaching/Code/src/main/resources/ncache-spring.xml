@@ -1,0 +1,5 @@
+<application-config default-cache-name="books">
+    <caches>
+        <cache name="books" priority="normal" expiration-type="absolute" expiration-period="300"/>
+    </caches>
+</application-config>

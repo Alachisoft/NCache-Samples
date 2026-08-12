@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EfCoreResultsetCaching": {
+      "commandName": "Project",
+      "commandLineArgs": "demoCache"
+    }
+  }
+}
