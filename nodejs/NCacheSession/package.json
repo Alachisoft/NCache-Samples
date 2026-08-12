@@ -10,7 +10,7 @@
   "author": "Alachisoft",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
