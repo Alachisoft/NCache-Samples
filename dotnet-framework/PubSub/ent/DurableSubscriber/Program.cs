@@ -16,6 +16,7 @@ using Alachisoft.NCache.Runtime.Caching.Messaging;
 using Alachisoft.NCache.Runtime.Exceptions;
 using Microsoft.IdentityModel.Protocols;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 // ===============================================================================
@@ -96,7 +97,13 @@ namespace DurableSubscriber
             try
             {
                 // Connecting to a running cache and return a cache handle for it
-                ICache cache = CacheManager.GetCache(cacheName);
+                ConnectionOptions options = new ConnectionOptions();
+                options.ServerList = new List<ServerInfo>()
+                {
+                    new ServerInfo("172.0.0.1", 9800)
+                };
+
+                ICache cache = CacheManager.GetCache(cacheName, options);
 
                 // Printing output on console
                 Console.WriteLine(string.Format("Cache '{0}' is connected.", cacheName));

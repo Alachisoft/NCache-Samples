@@ -42,7 +42,13 @@ var app = builder.Build();
 var cacheName = app.Configuration["NCache:CacheName"];
 
 // Connect to cache
-ICache cache = CacheManager.GetCache(cacheName);
+ConnectionOptions options = new ConnectionOptions();
+options.ServerList = new List<ServerInfo>()
+{
+    new ServerInfo("172.0.0.1", 9800)
+};
+
+ICache cache = CacheManager.GetCache(cacheName, options);
 
 // Messaging service to publish and subscribe to topics
 var messaging = cache.MessagingService;
