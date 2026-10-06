@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.3.6.1" />
+    <PackageReference Include="Alachisoft.NCache.SDK" Version="5.3.800" />
   </ItemGroup>
 
   <ItemGroup>

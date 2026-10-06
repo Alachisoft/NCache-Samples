@@ -68,8 +68,14 @@ ICache GetCache()
     // Trying to connect to cache
     try
     {
+        ConnectionOptions options = new ConnectionOptions();
+        options.ServerList = new List<ServerInfo>()
+        { 
+            new ServerInfo("172.0.0.1", 9800)
+        };
+           
         // Connecting to a running cache and return a cache handle for it
-        ICache cache = CacheManager.GetCache(cacheName);
+        ICache cache = CacheManager.GetCache(cacheName, options);
 
         // Printing output on console
         Console.WriteLine(string.Format("Cache '{0}' is connected.", cacheName));
