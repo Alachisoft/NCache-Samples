@@ -19,9 +19,6 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="config.ncconf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
 	<RuntimeHostConfigurationOption Include="System.Threading.ThreadPool.UseWindowsThreadPool" Value="true" />
   </ItemGroup>
 

@@ -14,12 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="config.ncconf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
