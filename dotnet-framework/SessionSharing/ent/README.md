@@ -40,7 +40,7 @@ Before the sample application is executed, make sure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
 - NuGet package required (The package references are already included in the project file).
@@ -62,7 +62,7 @@ Before building this sample, if you need to change the cache name, open `appsett
   },
   "AllowedHosts": "*",
   "NCacheSettings": {
-    "CacheName": "demoCache",
+    "CacheName": "defaultCache",
     "SessionAppId": "NCacheSharedSessionApp",
     "EnableSessionLocking": false,
     "SessionLockingRetry": -1,
@@ -84,12 +84,23 @@ Before building this sample, if you need to change the cache name, open `appsett
 }
 ```
 
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
+}
+```
+
 Also change `cacheName` in `Web.Config`:
 
 ```xml
 <sessionState cookieless="false" regenerateExpiredSessionId="true" mode="Custom" customProvider="NCacheSessionProvider" timeout="20" cookieName="ASP.NET_CORE_SessionId">
   <providers>
-    <add name="NCacheSessionProvider" type="Alachisoft.NCache.Web.SessionState.NSessionStoreProvider" exceptionsEnabled="true" enableSessionLocking="true" emptySessionWhenLocked="false" sessionLockingRetry="-1" sessionAppId="NCacheSharedSessionApp" useInProc="false" enableLogs="false" cacheName="demoCache" writeExceptionsToEventLog="false" AsyncSession="false" enableSessionSharing="true" useJsonSerialization="true"/>
+    <add name="NCacheSessionProvider" type="Alachisoft.NCache.Web.SessionState.NSessionStoreProvider" exceptionsEnabled="true" enableSessionLocking="true" emptySessionWhenLocked="false" sessionLockingRetry="-1" sessionAppId="NCacheSharedSessionApp" useInProc="false" enableLogs="false" cacheName="defaultCache" writeExceptionsToEventLog="false" AsyncSession="false" enableSessionSharing="true" useJsonSerialization="true"/>
   </providers>
 </sessionState>
 ```

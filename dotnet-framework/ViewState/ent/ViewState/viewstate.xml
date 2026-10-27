@@ -2,7 +2,7 @@
   <viewstateConfig>
     <webApp webAppId="CustomerOrderApp">
       <viewstateGroup groupId="Customers" cacheUriMapping="false" enableViewstateCaching="True" viewstateThreshold="12" groupedViewStateWithSessions="false" maxViewStatePerSession="20">
-         <cacheSettings cacheName="demoCache" connectionRetryInterval="300">
+         <cacheSettings cacheName="defaultCache" connectionRetryInterval="300">
             <expiration type="Sliding" duration="5"/>
          </cacheSettings>
          <pages>
@@ -11,7 +11,7 @@
          </pages>
       </viewstateGroup>
     <viewstateGroup groupId="Orders" cacheUriMapping="false" enableViewstateCaching="true" viewstateThreshold="23" groupedViewStateWithSessions="false" maxViewStatePerSession="5" enableMetadataLocking="True" releaseLockInterval="5">
-      <cacheSettings cacheName="demoCache" connectionRetryInterval="300">
+      <cacheSettings cacheName="defaultCache" connectionRetryInterval="300">
         <expiration type="Sliding" duration="20"/>
       </cacheSettings>
           <pages>
@@ -23,7 +23,7 @@
 </webApp>
   <webApp webAppId="ViewStateApp">
     <viewstateGroup groupId="Group_A" enableViewstateCaching="True" viewstateThreshold="2" groupedViewStateWithSessions="false" maxViewStatePerSession="200">
-      <cacheSettings cacheName="demoCache">
+      <cacheSettings cacheName="defaultCache">
         <expiration type="Sliding" duration="20"/>
       </cacheSettings>
            <pages>

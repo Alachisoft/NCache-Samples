@@ -40,7 +40,7 @@ Before running the sample, ensure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - NuGet packages required (references already included in the project):
@@ -97,7 +97,7 @@ The connection string needs to be placed in the `App.config` in the project root
 
 ```xml
 <appSettings>
-	<add key="CacheName" value="demoCache"/>
+	<add key="CacheName" value="defaultCache"/>
     <!-- Replace db-conn-string with your database connection string.
          Examples:
          - Integrated Security (SQL Express): Server=.\SQLEXPRESS;Database=EFCoreCacheDb;Integrated Security=True;
@@ -105,6 +105,17 @@ The connection string needs to be placed in the `App.config` in the project root
     -->
 	<add key="ConnString" value="db-conn-string" />
 </appSettings>
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
+}
 ```
 
 From Visual Studio (Recommended):
@@ -128,7 +139,7 @@ Configure the cache to index the model classes so queries can run efficiently:
 1. Build EFCoreCaching
     - Build the solution so `EFCoreCaching.dll` is produced in: `EFCoreCaching\bin\Debug\net8.0\EFCoreCaching.dll` (or release folder if built in Release).
 2. Open the NCache Management Center (Default URL: `http://localhost:8251/`).
-    - Select your cache (this sample uses `demoCache`).
+    - Select your cache (this sample uses `defaultCache`).
     - If the cache is running, stop it before making configuration changes.
 3. Configure query indexes
     - Click `View Details` and select `Query Indexes` tab in the `Advanced Settings (Clustered Cache)` section.
@@ -177,7 +188,7 @@ If the cache fails to start after adding indexes:
 ### Cannot Connect to Cache
 
 - Verify the NCache service is running.
-- Verify that the configured cache (for example, `demoCache`) exists and is running.
+- Verify that the configured cache (for example, `defaultCache`) exists and is running.
 - Verify that the cache name in `App.config` matches the running cache.
 - Verify that [firewall rules](https://www.alachisoft.com/resources/docs/ncache/install-guide/firewalls-ports.html) allow communication with the cache server.
 

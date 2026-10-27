@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NCache.Microsoft.Extensions.Caching" Version="5.3.6.1" />
+    <PackageReference Include="NCache.Microsoft.Extensions.Caching" Version="5.3.800" />
   </ItemGroup>
 
   <ItemGroup>

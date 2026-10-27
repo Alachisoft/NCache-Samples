@@ -9,14 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.ResponseCache.NCache" Version="5.3.6.1" />
+    <PackageReference Include="AspNetCore.ResponseCache.NCache" Version="5.3.800" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.1" />
 	<Compile Remove="NCacheTagHelper\**" />
     <Content Remove="NCacheTagHelper\**" />
     <EmbeddedResource Remove="NCacheTagHelper\**" />

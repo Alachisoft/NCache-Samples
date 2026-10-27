@@ -23,8 +23,8 @@ Before the sample application is executed, make sure that:
 
 - .NET Framework 4.8.1 Developer Pack or Visual Studio (recommended) installed.
 - NCache is installed and running in an accessible location.
-- Ensure that `demoCache` (or another cache of your choice) is running.
-	- By default, the cache name `demoCache` is configured in `NCacheNHibernate.xml` and `hibernate.cfg.xml`. Adjust as needed.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
+	- By default, the cache name `defaultCache` is configured in `NCacheNHibernate.xml` and `hibernate.cfg.xml`. Adjust as needed.
 - Ensure that a database of your choice is configured with required permissions and change the Connection String in `App.config`.
 - NuGet packages required (references already included in the project):
 	- `Alachisoft.NCache.SDK`
@@ -52,8 +52,19 @@ If you need to change the cache name and providers, open `NCacheNHibernate.xml` 
 
 ```xml
 <cache-regions>
-	<region name="default" cache-name="demoCache" priority="default" expiration-type="none" expiration-period="0" use-async="false"/>
+	<region name="default" cache-name="defaultCache" priority="default" expiration-type="none" expiration-period="0" use-async="false"/>
 </cache-regions>
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
+}
 ```
 
 Also open `hibernate.cfg.xml` change the `cache.cacheName` value in the `session-factory` region:
@@ -63,7 +74,7 @@ Also open `hibernate.cfg.xml` change the `cache.cacheName` value in the `session
 	<property name="cache.provider_class">Alachisoft.NCache.Integrations.NHibernate.Cache.NCacheProvider, Alachisoft.NCache.Integrations.NHibernate.Cache</property>
 	<property name="cache.use_second_level_cache">true</property>
 	<property name="cache.use_query_cache">true</property>
-		<property name="cache.cacheName">demoCache</property>
+		<property name="cache.cacheName">defaultCache</property>
 </session-factory>
 ```
 

@@ -41,7 +41,7 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 var app = builder.Build();
 
 // Getting cache name from configuration
-var cacheName = app.Configuration["NCache:CacheName"];
+var cacheName = app.Configuration["NCacheSettings:CacheName"];
 
 // Connect to cache
 ICache cache = CacheManager.GetCache(cacheName);
