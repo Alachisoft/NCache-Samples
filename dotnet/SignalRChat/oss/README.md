@@ -63,7 +63,7 @@ Before running the sample, ensure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - Ensure SignalR applications use `SignalRChatApp` as the event key.
@@ -79,10 +79,18 @@ Before building this sample, if you need to change the cache name and event key,
 ```json
 {
   "NCacheConfiguration": {
-    "CacheName": "demoCache",
+    "CacheName": "defaultCache",
     "EventKey": "SignalRChatApp"
 	}
 }
+```
+
+The address of the cache server is read from `client.ncconf` in the project root directory. The `id` of the `cache` element must match the cache name, and the `server` element holds the server address:
+
+```xml
+<cache id="defaultCache">
+  <server name="<cache-server-ip>"/>
+</cache>
 ```
 
 From Visual Studio (Recommended):
