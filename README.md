@@ -89,4 +89,4 @@ Alachisoft&copy; provides various sources of technical support.
 
 ## Copyrights
 
-Copyright 2026 Alachisoft&copy;
+Copyright 2026 Alachisoft &copy;
