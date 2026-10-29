@@ -31,9 +31,9 @@ Before the sample application is executed make sure that:
 
 - .NET Framework 4.8.1 Developer Pack or Visual Studio (recommended) installed.
 - NCache is installed and running in an accessible location.
-- Ensure that `demoCache` (or another cache of your choice) is running.
-	- By default, the cache name `demoCache` is configured in `Web.config`. Adjust as needed.
-- NuGet package required: AspNet.ViewState.NCache (>= 5.3.6.1). The package reference is already included in the project file.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
+	- By default, the cache name `defaultCache` is configured in `Web.config`. Adjust as needed.
+- NuGet package required: AspNet.ViewState.NCache (>= 5.3.800). The package reference is already included in the project file.
 - The data source for this application has been configured to use `northwind.xml` that is present in 'App_Data' folder (present in the sample's source code). Make sure it exists.
 
 - Create an `appbrowser.browser` file under the directory `App_Browsers` in root project folder. Now plug in page adapters in the app_browser file as follows:
@@ -61,6 +61,17 @@ Before building this sample, if you need to change the cache name, open `Web.con
             </cacheSettings>
         </settings>
     </ncContentOptimization>
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
+}
 ```
 
 From Visual Studio (Recommended):

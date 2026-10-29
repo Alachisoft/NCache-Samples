@@ -33,7 +33,7 @@ Before running the sample, ensure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - NuGet package required (The package references are already included in the project file).
@@ -47,12 +47,23 @@ Before building this sample, if you need to change the cache name, open `appsett
 ```json
 {
   "NCacheSettings": {
-    "CacheName": "demoCache",
+    "CacheName": "defaultCache",
     "EnableLogs": false,
     "EnableDetailLogs": false,
     "ExceptionsEnabled": false,
     "OperationRetry": 0,
     "operationRetryInterval": 0
+  }
+}
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
   }
 }
 ```

@@ -34,7 +34,7 @@ Before running the sample, ensure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - NuGet packages required (references already included in the project):
@@ -92,7 +92,7 @@ The connection string needs to be placed in the `App.config` in the project root
 
 ```xml
 <appSettings>
-	<add key="CacheName" value="demoCache"/>
+	<add key="CacheName" value="defaultCache"/>
     <!-- Replace db-conn-string with your database connection string.
          Examples:
          - Integrated Security (SQL Express): Server=.\SQLEXPRESS;Database=EFCoreCacheDb;Integrated Security=True;
@@ -100,6 +100,14 @@ The connection string needs to be placed in the `App.config` in the project root
     -->
 	<add key="ConnString" value="db-conn-string" />
 </appSettings>
+```
+
+The address of the cache server is read from `client.ncconf` in the project root directory. The `id` of the `cache` element must match the cache name, and the `server` element holds the server address:
+
+```xml
+<cache id="defaultCache">
+  <server name="<cache-server-ip>"/>
+</cache>
 ```
 
 From Visual Studio (Recommended):
@@ -128,7 +136,7 @@ dotnet run
 ### Cannot Connect to Cache
 
 - Verify the NCache service is running.
-- Verify that the configured cache (for example, `demoCache`) exists and is running.
+- Verify that the configured cache (for example, `defaultCache`) exists and is running.
 - Verify that the cache name in `App.config` matches the running cache.
 - Verify that [firewall rules](https://www.alachisoft.com/resources/docs/ncache/install-guide/firewalls-ports.html) allow communication with the cache server.
 

@@ -60,10 +60,10 @@ Before running the sample, ensure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
-- NuGet package required: **Alachisoft.NCache.SDK (>= 5.3.6.1)**. The package reference is already included in the project files.
+- NuGet package required: **Alachisoft.NCache.SDK (>= 5.3.800)**. The package reference is already included in the project files.
 - SampleData project (which contains the "Order" model) must be present in the directory as this sample.
 - Verify that each service runs on a different HTTPS port and are correctly specified in Program.cs of Client App.
 
@@ -72,8 +72,19 @@ Before running the sample, ensure that:
 Before building this sample, if you need to change the cache name, open `appsettings.json` from the project root directory and change the `CacheName` value. You need to do this for both `OrderService` and `InventoryService` projects.
 
 ```json
-"NCache": {
-  "CacheName": "demoCache"
+"NCacheSettings": {
+  "CacheName": "defaultCache"
+}
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
 }
 ```
 

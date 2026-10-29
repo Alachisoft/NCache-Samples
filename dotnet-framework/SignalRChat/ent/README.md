@@ -34,7 +34,7 @@ Before the sample application is executed, make sure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
 - Ensure SignalR applications use `SignalRChatApp` as the event key.
@@ -45,14 +45,23 @@ Before the sample application is executed, make sure that:
 
 ## Build and Run the Sample
 
-Before building this sample, if you need to change the cache name and event key, open `appsettings.json` from the project root directory and change the `CacheName` and `EventKey` values:
+Before building this sample, if you need to change the cache name and event key, open `Web.config` from the project root directory and change the `cache` and `eventKey` values:
+
+```xml
+<appSettings>
+  <add key="cache" value="defaultCache" />
+  <add key="eventKey" value="Chat" />
+</appSettings>
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the cache name:
 
 ```json
-{
-  "NCacheConfiguration": {
-	"CacheName": "demoCache",
-	"EventKey": "SignalRChatApp"
-	}
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
 }
 ```
 

@@ -33,10 +33,10 @@ Before the sample application is executed, make sure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
-- NuGet package required: Alachisoft.NCache.SDK (>= 5.3.6.1). The package reference is already included in the project file.
+- NuGet package required: Alachisoft.NCache.SDK (>= 5.3.800). The package reference is already included in the project file.
 - SampleData project (which contains the "Product" model) must be present in the directory as this sample.
 
 ## Build and Run the Sample
@@ -45,15 +45,26 @@ Before building this sample, if you need to change the cache name, open `App.con
 
 ```xml
 <appSettings>
-  <add key="CacheName" value="demoCache"/>
+  <add key="CacheName" value="defaultCache"/>
 </appSettings>
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
+}
 ```
 
 ### Configuration (Enabling Events)
 
 - Follow these steps to enable cache-level events in the NCache Web Manager:
 1. Open NCache Web Manager (Default URL: `http://localhost:8251/`)
-    - Select your cache (this sample uses `demoCache`).
+    - Select your cache (this sample uses `defaultCache`).
     - If the cache is running, stop it before making configuration changes.
 2. Enable cache-level events
 	- Go to `Advanced Settings`.

@@ -39,7 +39,7 @@ Before the sample application is executed, make sure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/ncache.html
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-cache.html
 - NuGet package required (The package references are already included in the project file).
@@ -54,9 +54,17 @@ Before building this sample, if you need to change the cache name, open `Web.Con
 <sessionState ... >
   ...
   <providers>
-    <add name="NCacheSessionProvider" cacheName="demoCache" ... />
+    <add name="NCacheSessionProvider" cacheName="defaultCache" ... />
   </providers>
 </sessionState>
+```
+
+The address of the cache server is read from `client.ncconf` in the project root directory. The `id` of the `cache` element must match the cache name, and the `server` element holds the server address:
+
+```xml
+<cache id="defaultCache">
+  <server name="<cache-server-ip>"/>
+</cache>
 ```
 
 ### Build

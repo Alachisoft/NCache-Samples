@@ -265,3 +265,7 @@ A sample JSON representation is available at `sample_data/product.json`.
 - [NCache Documentation](https://www.alachisoft.com/resources/docs/)
 - [NCache Python Client on PyPI](https://pypi.org/project/ncache-client/)
 - [NCache GitHub](https://github.com/Alachisoft/NCache)
+
+### Copyrights
+
+ Copyright 2026 Alachisoft &copy;

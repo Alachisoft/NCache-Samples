@@ -36,7 +36,7 @@ Before running the sample, ensure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
 - Database server (Microsoft SQL Server or SQL Server Express) is installed.
@@ -51,18 +51,29 @@ Before running the sample, ensure that:
 
 ## Build and Run the Sample
 
-Before building this sample, you need to change the connection string to point to your database, open `appsettings.json` from the project root directory and change `<db-conn-string>` to your connection string in `DemoDBServer`. If you want to change the cache name, change the `demoCache` value of `CacheName` as well.
+Before building this sample, you need to change the connection string to point to your database, open `appsettings.json` from the project root directory and change `<db-conn-string>` to your connection string in `DemoDBServer`. If you want to change the cache name, change the `defaultCache` value of `CacheName` as well.
 
 ```json
 {
   ...
 	"NCacheSettings": {
-		"CacheName": "demoCache", 
+		"CacheName": "defaultCache", 
     ...
 	},
 	"ConnectionStrings": {
 		"DemoDBServer": "<db-conn-string>"
 	}
+}
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
 }
 ```
 

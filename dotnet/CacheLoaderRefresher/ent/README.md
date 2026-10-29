@@ -37,10 +37,10 @@ Before running the sample, ensure that:
 - NCache is installed and running in an accessible location.
   - If not, visit the following link to get started:\
   https://www.alachisoft.com/resources/docs/ncache/getting-started/
-- Ensure that `demoCache` (or another cache of your choice) is running.
+- Ensure that `defaultCache` (or another cache of your choice) is running.
   - This is created during installation, otherwise you can create a new cache via this link:\
   https://www.alachisoft.com/resources/docs/ncache/admin-guide/create-new-distributed-cache.html
-- NuGet package required: **Alachisoft.NCache.SDK (>= 5.3.6.1)**. The package reference is already included in the project file.
+- NuGet package required: **Alachisoft.NCache.SDK (>= 5.3.800)**. The package reference is already included in the project file.
 - SampleData project (which contains the `Product` and `Supplier` models) must be present in the directory as this sample.
 
 ## Build and Run the Sample
@@ -53,8 +53,19 @@ If you need to change the cache name, open `App.config` from the project root di
 
 ```xml
 <appSettings>
-  <add key="CacheName" value="demoCache"/>
+  <add key="CacheName" value="defaultCache"/>
 </appSettings>
+```
+
+The address and port of the cache server are read from the `ncache` section of `appsettings.json` in the project root directory. The entry name must match the `CacheName` value:
+
+```json
+"ncache": {
+  "defaultCache": {
+    "server": "<cache-server-ip>",
+    "port": 9800
+  }
+}
 ```
 
 From Visual Studio (Recommended):
@@ -115,7 +126,7 @@ Follow these steps to deploy and configure the Loader/Refresher provider in the 
 1. Build the provider assembly
     - Build the solution so `LoaderRefresherLib.dll` is produced in: `LoaderRefresherLib\bin\Debug\net8.0\LoaderRefresherLib.dll` (or release folder if built in Release).
 2. Open the NCache Management Center (Default URL: `http://localhost:8251/`).
-    - Select your cache (this sample uses `demoCache`).
+    - Select your cache (this sample uses `defaultCache`).
     - If the cache is running, stop it before making configuration changes.
 3. Enable Cache Loader/Refresher
    - Click `View Details`, select `CacheLoader/Refresher` tab in the `Advanced Settings (Clustered Cache)` section.

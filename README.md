@@ -11,9 +11,9 @@ These samples help developers get started with NCache by providing practical exa
 ## Platforms
 
 - .NET Core Samples (`/dotnet`)
-	- Samples targeting .NET Core, .NET 5, .NET 6, .NET 7, and .NET 8+ platforms.
+	- Samples targeting .NET Core, .NET 6, .NET 7, and .NET 8+ platforms.
 - .NET Framework Samples (`/dotnet-framework`)
-	- Samples targeting .NET Framework 4.6.1, 4.7.2, 4.8, and higher versions.
+	- Samples targeting .NET Framework 4.6.2, 4.7.2, 4.8, and higher versions.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ Before running these samples, ensure you have:
 2. **Development Environment**
    - Visual Studio 2019 or later (for .NET Framework samples)
    - Visual Studio 2019/2022 or VS Code (for .NET Core samples)
-   - .NET Framework 4.6.1+ and/or .NET Core 3.1+ / .NET 5+
+   - .NET Framework 4.6.2+ and/or .NET Core 3.1+ / .NET 6+
 3. **NCache Running**
    - Ensure NCache service is running
    - Create and start a cache named `demoCache` (or modify the cache name in samples)
@@ -89,4 +89,4 @@ Alachisoft&copy; provides various sources of technical support.
 
 ## Copyrights
 
-Copyright 2026 Alachisoft&copy;
+Copyright 2026 Alachisoft &copy;

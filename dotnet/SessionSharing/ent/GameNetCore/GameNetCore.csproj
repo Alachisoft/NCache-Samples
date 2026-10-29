@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Session.NCache" Version="5.3.6.1" />
+    <PackageReference Include="AspNetCore.Session.NCache" Version="5.3.800" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.3.0" />
   </ItemGroup>
 
